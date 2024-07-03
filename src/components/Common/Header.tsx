@@ -15,7 +15,7 @@ export default function Header() {
       </div>
 
       <div
-        className="rounded-buttonRadius bg-mainColor text-black" /* onClick={handleSigninForm} */
+        className="rounded-buttonRadius hover:bg-mainHover bg-mainColor text-black px-btnX py-btnY" /* onClick={handleSigninForm} */
       >
         Войти
       </div>
