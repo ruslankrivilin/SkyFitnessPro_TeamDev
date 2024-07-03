@@ -24,6 +24,6 @@ const firebaseConfig = {
 //appId: идентификатор приложения. Используется для идентификации в Firebase.
 
 
-// Initialize Firebase
+// Initialize Firebas e
 export const app = initializeApp(firebaseConfig);
 export const database = getDatabase(app);
