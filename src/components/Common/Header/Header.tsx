@@ -2,7 +2,7 @@ import "../../css/style.css";
 
 export default function Header() {
   return (
-    <div className="container flex justify-between mx-auto">
+    <div className="container mx-auto flex justify-between">
       <div className="flex flex-col space-y-[15px]">
         <div>
           {/* <Link to="/">
@@ -15,7 +15,7 @@ export default function Header() {
       </div>
 
       <div
-        className="rounded-buttonRadius hover:bg-mainHover bg-mainColor text-black px-btnX py-btnY" /* onClick={handleSigninForm} */
+        className="rounded-buttonRadius bg-mainColor px-btnX py-btnY text-black hover:bg-mainHover" /* onClick={handleSigninForm} */
       >
         Войти
       </div>
