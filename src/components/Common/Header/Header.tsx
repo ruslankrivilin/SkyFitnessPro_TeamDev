@@ -1,4 +1,4 @@
-import "../../css/style.css";
+import "../../../css/style.css";
 
 export default function Header() {
   return (
@@ -21,11 +21,13 @@ export default function Header() {
       </div>
       {/* user Блок */}
       <div>
-        <div>profile_icon</div>
+        <div></div>
 
         <div>
           <div>Сергей</div>
-          <svg>{/*  <use user_arrow_icon="/" /> */}</svg>
+          <svg className="w-[8px] h-[8px]">
+            <use xlinkHref="./public/icons/sprite.svg#icon-user-arrow" />
+          </svg>
         </div>
       </div>
     </div>
