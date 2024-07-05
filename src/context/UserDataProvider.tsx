@@ -1,8 +1,12 @@
 import { createContext, useState } from "react";
 
 function getUserFromLocalStorage() {
+  function getLocalData(userData: string): string {
+    return localStorage.getItem(userData);
+  }
+
   try {
-    return JSON.parse(localStorage.getItem("user"));
+    return JSON.parse(getLocalData("user"));
   } catch (error) {
     return null;
   }
