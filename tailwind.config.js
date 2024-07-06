@@ -16,13 +16,12 @@ export default {
     extend: {
       sizes: {
         cardTextW: "300px",
-        smallMobW: "300px",
         mobileW: "343px",
         cardW: "360px",
         signFormW: "360px",
         modalExW: "460px",
         modalMyPrW: "426px",
-        largeWidth: "1160px",
+        largeW: "1160px",
       },
       colors: {
         mainColor: "#BCEC30",
