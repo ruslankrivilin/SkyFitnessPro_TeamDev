@@ -1,32 +1,36 @@
-import { createContext, useState } from "react";
+import { createContext, FC, PropsWithChildren, useState } from "react";
 
-function getUserFromLocalStorage() {
-  function getLocalData(userData: string): string {
-    return localStorage.getItem(userData);
-  }
+type User = Record<string, unknown>;
 
-  try {
-    return JSON.parse(getLocalData("user"));
-  } catch (error) {
-    return null;
-  }
+type Context = {
+  user: User | null,
+  login: (arg: User) => void,
+  logout: VoidFunction,
 }
 
-export const UserDataContext = createContext(null);
+function getUserFromLocalStorage(): User | null {
+  const res = localStorage.getItem("user");
+  if (res) {
+    try {
+      return JSON.parse(res) as User;
+    } catch (error) {
+      return null;
+    }
+  }
+  return null;
+}
 
-export const UserProvider = ({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) => {
-  const [user, setUser] = useState<string[] | null>(getUserFromLocalStorage());
+export const UserDataContext = createContext<Context | null>(null);
 
-  function login(newUser: string[]): void {
+export const UserProvider: FC<PropsWithChildren> = ({ children }) => {
+  const [user, setUser] = useState(getUserFromLocalStorage());
+
+  function login(newUser: User) {
     setUser(newUser);
     localStorage.setItem("user", JSON.stringify(newUser));
   }
 
-  function logout(): void {
+  function logout() {
     setUser(null);
     localStorage.removeItem("user");
   }
