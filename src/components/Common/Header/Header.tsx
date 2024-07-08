@@ -17,25 +17,23 @@ export default function Header() {
           </p>
         </div>
       </div>
-      
 
       {/* <button
         className="h-[52px] w-[103px] rounded-buttonRadius bg-mainColor px-btnX py-btnY text-center font-defaultFont font-normal text-black hover:bg-mainHover" 
       >
         Войти
       </button> */}
-     
-      
+
       {/* Если пользователь авторизован, то user Блок */}
-      <div>
-        <svg className="">
-           <use xlinkHref="public/icons/profile_icon.svg" /> 
+      <div className="flex items-center ">
+        <svg className="w-[50px] h-[50px] m-[16px]">
+          <use xlinkHref="./public/icons/sprite.svg#icon-profile" />
         </svg>
 
-        <div>
-          <div>Сергей</div>
-          <svg className="">
-           <use xlinkHref="public/icons/user_arrow_icon.svg" /> 
+        <div className="ml-2 flex items-center">
+          <div className="mr-[12px]">Сергей</div>
+          <svg className="w-[8px] h-[8px]">
+            <use xlinkHref="./public/icons/sprite.svg#icon-user-arrow" />
           </svg>
         </div>
       </div>
