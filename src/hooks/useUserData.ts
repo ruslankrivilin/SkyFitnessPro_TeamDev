@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { UserDataContext } from "../context/UserDataProvider";
 
-export function useUser() {
+export function useUserData() {
     return useContext(UserDataContext);
   }

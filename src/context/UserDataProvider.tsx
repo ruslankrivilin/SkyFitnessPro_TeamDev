@@ -1,28 +1,29 @@
-import { createContext, useState } from "react";
+import { createContext, FC, PropsWithChildren, useState } from "react";
+import { ContextType, UserType } from "../types";
 
-function getUserFromLocalStorage() {
-  try {
-    return JSON.parse(localStorage.getItem("user"));
-  } catch (error) {
-    return null;
+function getUserFromLocalStorage(): UserType | null {
+  const res = localStorage.getItem("user");
+  if (res) {
+    try {
+      return JSON.parse(res) as UserType;
+    } catch (error) {
+      return null;
+    }
   }
+  return null;
 }
 
-export const UserDataContext = createContext(null);
+export const UserDataContext = createContext<ContextType | null>(null);
 
-export const UserProvider = ({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) => {
-  const [user, setUser] = useState<string[] | null>(getUserFromLocalStorage());
+export const UserDataProvider: FC<PropsWithChildren> = ({ children }) => {
+  const [user, setUser] = useState(getUserFromLocalStorage());
 
-  function login(newUser: string[]): void {
+  function login(newUser: UserType) {
     setUser(newUser);
     localStorage.setItem("user", JSON.stringify(newUser));
   }
 
-  function logout(): void {
+  function logout() {
     setUser(null);
     localStorage.removeItem("user");
   }
