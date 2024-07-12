@@ -1,8 +1,29 @@
+import { useEffect, useState } from "react";
 import "../../../css/style.css";
 
 import UserModal from "../UserModal/UserModal";
 
 export default function Header() {
+  const [isAuthorizated, setIsAuthorizated] = useState<boolean>(false);
+  const [isOpenedUserModal, setIsOpenedUserModal] = useState<boolean>(false);
+
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+    if (user) {
+      setIsAuthorizated(true);
+    } else {
+      setIsAuthorizated(false);
+    }
+  }, []);
+
+  function handleSigninForm = () => {
+    setIsAuthorizated(true);
+  }
+  function handleUserModal = () => {
+    setIsOpenedUserModal(prevState => !prevState);
+  };
+
+
   return (
     <div className="mx-auto mt-[50px] flex items-center justify-between">
       <div className="flex flex-col space-y-[15px]">
@@ -18,26 +39,25 @@ export default function Header() {
         </div>
       </div>
 
-      {/* <button
-        className="h-[52px] w-[103px] rounded-buttonRadius bg-mainColor px-btnX py-btnY text-center font-defaultFont font-normal text-black hover:bg-mainHover" 
-      >
+      {!isAuthorizated && (<button className="h-[52px] w-[103px] rounded-buttonRadius bg-mainColor px-btnX py-btnY text-center font-defaultFont font-normal text-black hover:bg-mainHover"
+      onClick={handleSigninForm}>
         Войти
-      </button> */}
+      </button>)}
 
       {/* Если пользователь авторизован, то user Блок */}
-      <div className="flex items-center ">
+       {isAuthorizated && (<div className="flex items-center ">
         <svg className="w-[50px] h-[50px] m-[16px]">
           <use xlinkHref="./public/icons/sprite.svg#icon-profile" />
         </svg>
 
-        <div className="ml-2 flex items-center">
+        <div className="ml-2 flex items-center" onClick={handleUserModal}>
           <div className="mr-[12px]">Сергей</div>
           <svg className="w-[8px] h-[8px]">
             <use xlinkHref="./public/icons/sprite.svg#icon-user-arrow" />
           </svg>
         </div>
-      </div>
-      <UserModal />
+      </div> )}
+      {/* <UserModal /> */}
     </div>
   );
 }
