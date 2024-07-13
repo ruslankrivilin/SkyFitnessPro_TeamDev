@@ -24,7 +24,7 @@ export default function CourseLogo() {
               <div className="h-full w-full pl-[650px]">
                 <img
                   className="h-full object-contain object-center"
-                  src="/images/images_small/yoga_female_sm.png"
+                  src="/images/images_small/yoga_female_hd_slice.png"
                 />
               </div>
             </div>
