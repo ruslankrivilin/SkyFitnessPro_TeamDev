@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import "../../../css/style.css";
 
-import UserModal from "../UserModal/UserModal";
+// import UserModal from "../UserModal/UserModal";
 
 export default function Header() {
   const [isAuthorizated, setIsAuthorizated] = useState<boolean>(false);
-  const [isOpenedUserModal, setIsOpenedUserModal] = useState<boolean>(false);
+  const [isOpenSigninForm, setIsOpenSigninForm] = useState<boolean>(false);
 
   useEffect(() => {
     const user = localStorage.getItem("user");
@@ -16,12 +16,12 @@ export default function Header() {
     }
   }, []);
 
-  function handleSigninForm = () => {
-    setIsAuthorizated(true);
+  function handleOpenSigninForm () {
+    setIsOpenSigninForm(true);
   }
-  function handleUserModal = () => {
-    setIsOpenedUserModal(prevState => !prevState);
-  };
+  // function handleUserModal = () => {
+  //   setIsOpenedUserModal(prevState => !prevState);
+  // };
 
 
   return (
@@ -40,7 +40,7 @@ export default function Header() {
       </div>
 
       {!isAuthorizated && (<button className="h-[52px] w-[103px] rounded-buttonRadius bg-mainColor px-btnX py-btnY text-center font-defaultFont font-normal text-black hover:bg-mainHover"
-      onClick={handleSigninForm}>
+      onClick={handleOpenSigninForm}>
         Войти
       </button>)}
 
@@ -50,13 +50,14 @@ export default function Header() {
           <use xlinkHref="./public/icons/sprite.svg#icon-profile" />
         </svg>
 
-        <div className="ml-2 flex items-center" onClick={handleUserModal}>
+        <div className="ml-2 flex items-center" >
           <div className="mr-[12px]">Сергей</div>
           <svg className="w-[8px] h-[8px]">
             <use xlinkHref="./public/icons/sprite.svg#icon-user-arrow" />
           </svg>
         </div>
       </div> )}
+      {isOpenSigninForm && <SigninForm />}
       {/* <UserModal /> */}
     </div>
   );
