@@ -1,11 +1,10 @@
-// import Header from "../../components/Common/Header/Header";
-import CoursePage from "../CoursePage/CoursePage";
+import Header from "../../components/Common/Header/Header";
 
 
 export default function MainPage() {
   return(<>
     <div className="container mx-auto">
-      <CoursePage />
+    <Header />
     </div>
     </>);
 }
