@@ -7,11 +7,13 @@ import LowStartMan from "../../components/OtherComponents/LowStartMan/LowStartMa
 export default function CoursePage() {
   return (
     <>
+      <div className="flex flex-col container mx-auto md: ">
       <Header />
       <CourseLogo />
       <FittingText />
       <Directions />
       <LowStartMan/>
+      </div>
     </>
   );
 }
