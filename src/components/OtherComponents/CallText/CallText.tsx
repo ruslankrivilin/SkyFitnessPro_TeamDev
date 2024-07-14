@@ -1,7 +1,7 @@
 export default function CallText() {
   return (
     <div className="w-auto flex flex-col p-10  container relative">
-      <h2 className="text-7xl font-medium">Начните путь <br/>к новому телу</h2>
+      <h2 className="text-6xl font-medium">Начните путь <br/>к новому телу</h2>
       {/* <div> */}
       <ul className="text-2xl font-normal list-disc py-l p-10">
         <li>проработка всех групп мышц</li>
