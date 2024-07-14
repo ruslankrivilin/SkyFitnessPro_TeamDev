@@ -6,7 +6,7 @@ import { getDatabase } from "firebase/database";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
-const firebaseConfig = {
+export const firebaseConfig = {
   apiKey: "AIzaSyCkN4xe36J9U7gt-sOI3NmKzHpbVpMTcXE",
   authDomain: "spfitnesspro.firebaseapp.com",
   databaseURL: "https://spfitnesspro-default-rtdb.europe-west1.firebasedatabase.app",
