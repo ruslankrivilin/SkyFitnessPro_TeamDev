@@ -19,7 +19,7 @@ export default function MyProgressModal() {
           </h1>
         </div>
         <div className="h-[364px] overflow-hidden scroll-smooth">
-          <div className="h-[380px] overflow-y-scroll scroll-smooth">
+          <div className="h-[364px] overflow-y-scroll scroll-smooth">
             {testArr.map((el) => {
               return (
                 <div key={el.id}>
