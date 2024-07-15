@@ -1,6 +1,33 @@
-import Header from "../../components/Common/Header/Header";
-
+import CourseCard from "../../components/Common/CourseCard/CourseCard";
+import Exercises from "../../components/OtherComponents/Exercises/Exercises";
+import MyProgressModal from "../../components/OtherModals/MyProgressModal/MyProgressModal";
+import WorkoutModal from "../../components/OtherModals/WorkoutModal/WorkoutModal";
 
 export default function CoursePage() {
-  return <Header />;
+  const objCard = [
+    { id: 1, name: "Йога", progress: 40 },
+    { id: 2, name: "Стретчинг", progress: 0 },
+    { id: 3, name: "Зумба", progress: 100 },
+  ];
+
+  const IsMainPage = true;
+  return (
+    <>
+      <p className="text-#000000 mb-[40px] text-3xl font-semibold">Мои курсы</p>
+      <div className="flex justify-between">
+        {objCard.map((el) => (
+          <CourseCard
+            id={el.id}
+            key={el.id}
+            cursName={el.name}
+            progress={el.progress}
+            url={IsMainPage}
+          />
+        ))}
+      </div>
+      <Exercises />
+      <WorkoutModal />
+      <MyProgressModal />
+    </>
+  );
 }
