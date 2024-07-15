@@ -27,7 +27,7 @@ export default function MyProgressModal() {
                   <input
                     className="border-colorBorderBtn mb-[20px] h-[48px] w-[288px] rounded-lg border-[1px] p-[20px] text-lg"
                     type="number"
-                    placeholder="0 - 1000"
+                    placeholder="0 - 100"
                   />
                 </div>
               );
