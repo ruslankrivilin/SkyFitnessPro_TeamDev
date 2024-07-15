@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import "../../../css/style.css";
 import SigninForm from "../SigninForm/SigninForm";
 import UserModal from "../UserModal/UserModal";
+import { Link } from "react-router-dom";
+import { appRoutes } from "../../../lib/appRoutes";
 
 // import UserModal from "../UserModal/UserModal";
 
@@ -69,7 +71,7 @@ export default function Header(page: string) {
         </div>
       ) : (
         <button
-          className="h-[52px] w-[103px] rounded-buttonRadius bg-mainColor px-btnX py-btnY text-center font-defaultFont font-normal text-black hover:bg-mainHover"
+          className=" rounded-buttonRadius bg-mainColor px-btnX py-btnY text-center font-defaultFont font-normal text-black hover:bg-mainHover"
           onClick={handleOpenSigninForm}
         >
           Войти
