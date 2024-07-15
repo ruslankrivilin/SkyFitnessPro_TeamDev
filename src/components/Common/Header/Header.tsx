@@ -39,10 +39,10 @@ export default function Header(page: string) {
   return (
     <div className="mx-auto mt-[50px] flex items-center justify-between">
       <div className="flex flex-col space-y-[15px]">
-        <div className="">
-          <a>
+        <div>
+          <Link to={appRoutes.MAIN}>
             <img src="/images/logo.png" alt="logo" />
-          </a>
+          </Link>
         </div>
         {isCorrectForTextPage && (
           <div className="space-y-[60px]">
