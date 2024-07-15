@@ -11,7 +11,7 @@ export default function MyProgressModal() {
     { id: 4, title: "Сколько раз вы сделали приседаний?" },
   ];
   return (
-    <div className="h-m-[596px] w-m-[426px] flex justify-center rounded-3xl bg-white">
+    <div className="flex h-[596px] w-[426px] justify-center rounded-3xl bg-white">
       <div className="w-[384px] p-[40px]">
         <div>
           <h1 className="mb-[48px] flex justify-start text-3xl">

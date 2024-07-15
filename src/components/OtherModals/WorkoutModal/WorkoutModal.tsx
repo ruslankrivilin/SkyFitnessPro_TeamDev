@@ -61,8 +61,12 @@ export default function WorkoutModal() {
     console.log(el);
   }
 
+  function handleClickStart() {
+    console.log("work");
+  }
+
   return (
-    <div className="h-m-[608px] w-m-[460px] flex justify-center rounded-3xl bg-white">
+    <div className="flex h-[608px] w-[460px] justify-center rounded-3xl bg-white">
       <div className="w-[384px] p-[40px]">
         <div>
           <h1 className="mb-[48px] flex justify-center text-3xl">
@@ -111,7 +115,11 @@ export default function WorkoutModal() {
             </div>
           </div>
           <div className="flex content-center items-center justify-center">
-            <button className="text-l h-[48px] w-[288px] rounded-3xl bg-mainColor">
+            <button
+              className="text-l h-[48px] w-[288px] rounded-3xl bg-mainColor"
+              disabled={training === null && true}
+              onClick={handleClickStart}
+            >
               Начать
             </button>
           </div>

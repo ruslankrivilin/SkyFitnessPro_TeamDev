@@ -13,21 +13,25 @@ export default function CoursePage() {
   const IsMainPage = true;
   return (
     <>
-      <p className="text-#000000 mb-[40px] text-3xl font-semibold">Мои курсы</p>
-      <div className="flex justify-between">
-        {objCard.map((el) => (
-          <CourseCard
-            id={el.id}
-            key={el.id}
-            cursName={el.name}
-            progress={el.progress}
-            url={IsMainPage}
-          />
-        ))}
+      <div className="bg-black">
+        <p className="text-#000000 mb-[40px] text-3xl font-semibold">
+          Мои курсы
+        </p>
+        <div className="flex justify-between">
+          {objCard.map((el) => (
+            <CourseCard
+              id={el.id}
+              key={el.id}
+              cursName={el.name}
+              progress={el.progress}
+              url={IsMainPage}
+            />
+          ))}
+        </div>
+        <Exercises />
+        <WorkoutModal />
+        <MyProgressModal />
       </div>
-      <Exercises />
-      <WorkoutModal />
-      <MyProgressModal />
     </>
   );
 }
