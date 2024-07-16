@@ -35,6 +35,7 @@ export default {
         progressColor: "#00C1FF",
         bgColor: "#F7F7F7",
         blackout: "#FAFAFA",
+        inputColor: "#D0CECE",
       },
       borderRadius: {
         inputRadius: "8px",
