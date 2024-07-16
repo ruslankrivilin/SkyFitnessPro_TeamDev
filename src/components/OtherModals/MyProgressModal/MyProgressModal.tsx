@@ -21,8 +21,17 @@ export default function MyProgressModal() {
   const [inputs, setInputs] = useState<{ [key: number]: string }>({});
 
   function handleClickSaveProgress() {
-    setIsSuccess(!isSuccess);
-    /*  URL.then((response) => setSaveProgress(!isSuccess)) */
+    const allInputsFilled = testArr.every(
+      (el) =>
+        inputs[el.id]?.trim() !== "" &&
+        testArr.length === Object.keys(inputs).length,
+    );
+    if (allInputsFilled) {
+      setIsSuccess(!isSuccess);
+    } else {
+      alert("Заполните все поля.");
+      /*  URL.then((response) => setSaveProgress(!isSuccess)) */
+    }
   }
 
   const handleInputChange = (
@@ -36,6 +45,8 @@ export default function MyProgressModal() {
       [id]: updatedValue,
     });
   };
+
+  console.log(inputs);
 
   return (
     <div className="h-[596px] w-[426px] flex-col justify-center rounded-3xl bg-white">
@@ -57,7 +68,6 @@ export default function MyProgressModal() {
                     className="border-colorBorderBtn mb-[20px] h-[48px] w-[288px] rounded-lg border-[1px] p-[20px] text-lg"
                     type="number"
                     placeholder="Enter a number (0-100)"
-                    name={`inputValue`}
                   />
                 </label>
               </div>
