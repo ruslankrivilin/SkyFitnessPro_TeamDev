@@ -6,8 +6,11 @@ import { Link } from "react-router-dom";
 import { appRoutes } from "../../../lib/appRoutes";
 
 // import UserModal from "../UserModal/UserModal";
+type HeaderType = {
+  page: string;
+}
 
-export default function Header(page: string) {
+export default function Header({page}: HeaderType) {
   const [isAuthorizated, setIsAuthorizated] = useState<boolean>(false);
   const [isOpenedSigninForm, setIsOpenedSigninForm] = useState<boolean>(false);
   const [isOpenedUserModal, setIsOpenedUserModal] = useState<boolean>(false);
@@ -24,7 +27,7 @@ export default function Header(page: string) {
   }, []);
 
   useEffect(() => {
-    if (page === "MainPage" || page === "CoursePage") {
+    if (page === "CorrectForTextPage") {
       setIsCorrectForTextPage(true);
     } else {
       setIsCorrectForTextPage(false);
@@ -71,7 +74,7 @@ export default function Header(page: string) {
         </div>
       ) : (
         <button
-          className=" rounded-buttonRadius bg-mainColor px-btnX py-btnY text-center font-defaultFont font-normal text-black hover:bg-mainHover"
+          className=" rounded-buttonRadius bg-mainColor px-btnX py-btnY text-center  font-normal text-black hover:bg-mainHover"
           onClick={handleOpenSigninForm}
         >
           Войти
