@@ -6,7 +6,7 @@ export default function WorkoutModal() {
     title: string;
     description: string;
     day: number;
-    active: string;
+    progress: number;
   };
 
   const testArr = [
@@ -14,43 +14,43 @@ export default function WorkoutModal() {
       title: "Утренняя практика",
       description: "Йога на каждый день",
       day: 1,
-      active: "finish",
+      progress: 100,
     },
     {
       title: "Красота и здоровье",
       description: "Йога на каждый день",
       day: 2,
-      active: "finish",
+      progress: 12,
     },
     {
       title: "Асаны стоя",
       description: "Йога на каждый день",
       day: 3,
-      active: "start",
+      progress: 34,
     },
     {
       title: "Растягиваем мышцы бедра",
       description: "Йога на каждый день",
       day: 4,
-      active: "start",
+      progress: 65,
     },
     {
       title: "Гибкость спины",
       description: "Йога на каждый день",
       day: 5,
-      active: "start",
+      progress: 100,
     },
     {
       title: "Гибкость рук",
       description: "Йога на каждый день",
       day: 6,
-      active: "start",
+      progress: 43,
     },
     {
       title: "Сальто назад",
       description: "Йога на каждый день",
       day: 7,
-      active: "start",
+      progress: 100,
     },
   ];
 
@@ -78,7 +78,7 @@ export default function WorkoutModal() {
             <div className="h-[330px] overflow-y-scroll scroll-smooth">
               {testArr.map((el, index) => (
                 <div key={index} className="mb-[10px] h-[56px] pb-[8px]">
-                  {el.active === "finish" ? (
+                  {el.progress === 100 ? (
                     <div className="border-colorBorderBtn pointer-events-none mb-[10px] flex content-center items-center justify-start border-b-[1px]">
                       <svg className="ml-[2px] mr-[12px] h-[20px] w-[20px]">
                         <use xlinkHref="/public/icons/sprite.svg#icon-done" />
