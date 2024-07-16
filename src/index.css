@@ -7,6 +7,19 @@
   padding: 0px;
 }
 
+body {
+  padding-left: 140px;
+  padding-right: 140px;
+  font-family: "Roboto";
+}
+
+@media (max-width: 420px) {
+  body {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
 progress[value]::-webkit-progress-value {
   background-color: #00c1ff;
   border-radius: 50px;
