@@ -66,7 +66,7 @@ export default function WorkoutModal() {
   }
 
   return (
-    <div className="shadow-3xl flex h-[608px] w-[460px] justify-center rounded-3xl bg-white shadow-gray-400">
+    <div className="flex h-[608px] w-[460px] justify-center rounded-3xl bg-white shadow-blockShadow shadow-gray-400">
       <div className="w-[384px] p-[40px]">
         <div>
           <h1 className="mb-[48px] flex justify-center text-3xl">
