@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "../../../css/style.css";
-import { courseLogoSrc } from "../../../lib/courseLogoSrc";
+import { courseLogoSrc } from "../../../lib/courseSettings";
 
 type FiltersItemType = {
   courseName: string;
@@ -17,11 +17,11 @@ export default function CourseCard({
 
   function setImg() {
     if (courseName === "Йога") {
-      return courseLogoSrc.Yoga;
+      return courseLogoSrc.Yoga.imgSrc;
     } else if (courseName === "Стретчинг") {
-      return courseLogoSrc.Stretching;
+      return courseLogoSrc.Stretching.imgSrc;
     } else {
-      return courseLogoSrc.Zumba;
+      return courseLogoSrc.Zumba.imgSrc;
     }
   }
 
