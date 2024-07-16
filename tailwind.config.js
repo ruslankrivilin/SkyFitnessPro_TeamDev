@@ -52,6 +52,9 @@ export default {
         l: "30px",
         xl: "40px",
       },
+      boxShadow: {
+        "3xl": "0 0px 150px 0px rgba(0, 0, 0, 0.3)",
+      },
     },
   },
   plugins: [],

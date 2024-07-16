@@ -1,31 +1,33 @@
+import { useState } from "react";
 import "../../../css/style.css";
+import { courseLogoSrc } from "../../../lib/courseLogoSrc";
 
 type FiltersItemType = {
-  id: number;
-  cursName: string;
-  progress: number;
-  url: boolean;
+  courseName: string;
+  totalProgress: number;
+  isMainPage: boolean;
 };
 
 export default function CourseCard({
-  id,
-  cursName,
-  progress,
-  url,
+  courseName,
+  totalProgress,
+  isMainPage,
 }: FiltersItemType) {
+  const [showTooltip, setShowTooltip] = useState(false);
+
   function setImg() {
-    if (cursName === "Йога") {
-      return "yoga_female_sm.png";
-    } else if (cursName === "Стретчинг") {
-      return "stretching_female_sm.png";
+    if (courseName === "Йога") {
+      return courseLogoSrc.Yoga;
+    } else if (courseName === "Стретчинг") {
+      return courseLogoSrc.Stretching;
     } else {
-      return "zumba_female_sm.png";
+      return courseLogoSrc.Zumba;
     }
   }
 
   return (
     <>
-      <div className={`rounded-3xl bg-white`} key={id}>
+      <div className={`rounded-3xl bg-white`}>
         <div className="relative mb-[24px]">
           <img
             className="rounded-3xl object-contain"
@@ -33,21 +35,43 @@ export default function CourseCard({
             alt=""
           />
           <div className="absolute right-0 top-0">
-            {url ? (
-              <svg className="m-[20px] h-[32px] w-[32px] cursor-default">
-                <use xlinkHref="/public/icons/sprite.svg#icon-minus" />
-              </svg>
+            {isMainPage ? (
+              <div
+                className="relative inline-block cursor-pointer"
+                onMouseEnter={() => setShowTooltip(true)}
+                onMouseLeave={() => setShowTooltip(false)}
+              >
+                <svg className="m-[20px] h-[32px] w-[32px]">
+                  <use xlinkHref="/public/icons/sprite.svg#icon-plus" />
+                </svg>
+                {showTooltip && (
+                  <span className="absolute bottom-[125%] ml-[64px] whitespace-nowrap rounded-[25px] bg-mainHover p-[10px] pl-[20px] pr-[20px] text-center text-black">
+                    добавить курс
+                  </span>
+                )}
+              </div>
             ) : (
-              <svg className="m-[20px] h-[32px] w-[32px] cursor-default">
-                <use xlinkHref="/public/icons/sprite.svg#icon-plus" />
-              </svg>
+              <div
+                className="relative inline-block cursor-pointer"
+                onMouseEnter={() => setShowTooltip(true)}
+                onMouseLeave={() => setShowTooltip(false)}
+              >
+                <svg className="m-[20px] h-[32px] w-[32px]">
+                  <use xlinkHref="/public/icons/sprite.svg#icon-minus" />
+                </svg>
+                {showTooltip && (
+                  <span className="absolute bottom-[125%] ml-[64px] whitespace-nowrap rounded-[25px] bg-mainHover p-[10px] pl-[20px] pr-[20px] text-center text-black">
+                    удалить курс
+                  </span>
+                )}
+              </div>
             )}
           </div>
         </div>
 
         <div className="mx-[32px] flex list-none flex-col rounded-[12px]">
           <div>
-            <h1 className="mb-[2px] flex flex-row text-3xl">{cursName}</h1>
+            <h1 className="mb-[2px] flex flex-row text-3xl">{courseName}</h1>
             <div className="mb-[2px] flex w-[288px] flex-wrap">
               <div className="m-[6px] flex content-center items-center">
                 <svg className="m-[8px] h-[15px] w-[15px]">
@@ -69,25 +93,25 @@ export default function CourseCard({
               </div>
             </div>
 
-            {url && (
+            {isMainPage && (
               <div className="mb-[40px]">
                 <p className="flex justify-start bg-bgColor text-lg">
-                  Прогресс {progress}%
+                  Прогресс {totalProgress}%
                 </p>
                 <progress
                   className="inline-block h-[6px] w-[288px] appearance-none align-middle"
-                  value={progress}
+                  value={totalProgress}
                   max="100"
                 ></progress>
               </div>
             )}
           </div>
-          {url && (
+          {isMainPage && (
             <button className="text-l mb-[15px] flex h-[48px] w-[288px] content-center items-center justify-center rounded-3xl bg-mainColor">
               <h2>
-                {progress === 0 && "Начать тренировку"}
-                {progress === 100 && "Начать заново"}
-                {progress > 0 && progress !== 100 && "Продолжить"}
+                {totalProgress === 0 && "Начать тренировку"}
+                {totalProgress === 100 && "Начать заново"}
+                {totalProgress > 0 && totalProgress !== 100 && "Продолжить"}
               </h2>
             </button>
           )}

@@ -1,6 +1,5 @@
 import CourseCard from "../../components/Common/CourseCard/CourseCard";
 import Exercises from "../../components/OtherComponents/Exercises/Exercises";
-import MyProgressModal from "../../components/OtherModals/MyProgressModal/MyProgressModal";
 import WorkoutModal from "../../components/OtherModals/WorkoutModal/WorkoutModal";
 
 export default function CoursePage() {
@@ -13,24 +12,22 @@ export default function CoursePage() {
   const IsMainPage = true;
   return (
     <>
-      <div className="bg-black">
+      <div>
         <p className="text-#000000 mb-[40px] text-3xl font-semibold">
           Мои курсы
         </p>
         <div className="flex justify-between">
           {objCard.map((el) => (
             <CourseCard
-              id={el.id}
               key={el.id}
-              cursName={el.name}
-              progress={el.progress}
-              url={IsMainPage}
+              courseName={el.name}
+              totalProgress={el.progress}
+              isMainPage={IsMainPage}
             />
           ))}
         </div>
         <Exercises />
         <WorkoutModal />
-        <MyProgressModal />
       </div>
     </>
   );

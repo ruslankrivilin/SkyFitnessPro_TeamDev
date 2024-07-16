@@ -66,7 +66,7 @@ export default function WorkoutModal() {
   }
 
   return (
-    <div className="flex h-[608px] w-[460px] justify-center rounded-3xl bg-white">
+    <div className="shadow-3xl flex h-[608px] w-[460px] justify-center rounded-3xl bg-white shadow-gray-400">
       <div className="w-[384px] p-[40px]">
         <div>
           <h1 className="mb-[48px] flex justify-center text-3xl">
@@ -76,42 +76,40 @@ export default function WorkoutModal() {
         <div className="h-[446px]">
           <div className="mb-[34px] overflow-hidden scroll-smooth">
             <div className="h-[330px] overflow-y-scroll scroll-smooth">
-              {testArr.map((el, index) => {
-                return (
-                  <div key={index} className="mb-[10px] h-[56px] pb-[8px]">
-                    {el.active === "finish" ? (
-                      <div className="border-colorBorderBtn pointer-events-none mb-[10px] flex content-center items-center justify-start border-b-[1px]">
-                        <svg className="ml-[2px] mr-[12px] h-[20px] w-[20px]">
-                          <use xlinkHref="/public/icons/sprite.svg#icon-done" />
-                        </svg>
-                        <div className="mr-[10px]">
-                          <p className="text-lg text-zinc-500">{el.title}</p>
-                          <p className="text-zinc-500">
-                            {el.description} / {el.day} день
-                          </p>
-                        </div>
+              {testArr.map((el, index) => (
+                <div key={index} className="mb-[10px] h-[56px] pb-[8px]">
+                  {el.active === "finish" ? (
+                    <div className="border-colorBorderBtn pointer-events-none mb-[10px] flex content-center items-center justify-start border-b-[1px]">
+                      <svg className="ml-[2px] mr-[12px] h-[20px] w-[20px]">
+                        <use xlinkHref="/public/icons/sprite.svg#icon-done" />
+                      </svg>
+                      <div className="mr-[10px]">
+                        <p className="text-lg text-zinc-500">{el.title}</p>
+                        <p className="text-zinc-500">
+                          {el.description} / {el.day} день
+                        </p>
                       </div>
-                    ) : (
-                      <div
-                        onClick={() => handleSelectTraining(index, el)}
-                        className={`border-colorBorderBtn mb-[10px] flex cursor-pointer content-center items-center justify-start border-b-[1px]`}
-                      >
-                        <svg className="ml-[2px] mr-[12px] h-[20px] w-[20px]">
-                          <use
-                            xlinkHref={`/public/icons/sprite.svg#${training === index ? "icon-done" : "icon-not-done"}`}
-                          />
-                        </svg>
-                        <div className="mr-[10px]">
-                          <p className="text-lg">{el.title}</p>
-                          <p>
-                            {el.description} / {el.day} день
-                          </p>
-                        </div>
+                    </div>
+                  ) : (
+                    <div
+                      onClick={() => handleSelectTraining(index, el)}
+                      className={`border-colorBorderBtn mb-[10px] flex cursor-pointer content-center items-center justify-start border-b-[1px]`}
+                    >
+                      <svg className="ml-[2px] mr-[12px] h-[20px] w-[20px]">
+                        <use
+                          xlinkHref={`/public/icons/sprite.svg#${training === index ? "icon-done" : "icon-not-done"}`}
+                        />
+                      </svg>
+                      <div className="mr-[10px]">
+                        <p className="text-lg">{el.title}</p>
+                        <p>
+                          {el.description} / {el.day} день
+                        </p>
                       </div>
-                    )}
-                  </div>
-                );
-              })}
+                    </div>
+                  )}
+                </div>
+              ))}
             </div>
           </div>
           <div className="flex content-center items-center justify-center">
