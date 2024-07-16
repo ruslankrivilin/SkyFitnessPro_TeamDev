@@ -1,35 +1,40 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import "../../../css/style.css";
 
-export default function MyProgressModal() {
-  const testArr = [
-    { id: 1, title: "Сколько раз вы сделали наклоны вперед?" },
-    { id: 2, title: "Сколько раз вы сделали наклоны назад?" },
-    {
-      id: 3,
-      title: "Сколько раз вы сделали поднятие ног, согнутых в коленях?",
-    },
-    { id: 4, title: "Сколько раз вы сделали приседаний?" },
-  ];
+interface TestItem {
+  id: number;
+  title: string;
+}
 
+const testArr: TestItem[] = [
+  { id: 1, title: "Сколько раз вы сделали наклоны вперед?" },
+  { id: 2, title: "Сколько раз вы сделали наклоны назад?" },
+  {
+    id: 3,
+    title: "Сколько раз вы сделали поднятие ног, согнутых в коленях?",
+  },
+  { id: 4, title: "Сколько раз вы сделали приседаний?" },
+];
+
+export default function MyProgressModal() {
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
+  const [inputs, setInputs] = useState<{ [key: number]: string }>({});
 
   function handleClickSaveProgress() {
     setIsSuccess(!isSuccess);
     /*  URL.then((response) => setSaveProgress(!isSuccess)) */
   }
 
-  const [inputValue, setInputValue] = useState<number | string>("");
-
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value;
-    const numberValue = Number(value);
-
-    if (!isNaN(numberValue) && numberValue <= 100) {
-      setInputValue(numberValue);
-    } else if (value === "") {
-      setInputValue("");
-    }
+  const handleInputChange = (
+    e: ChangeEvent<HTMLInputElement>,
+    id: number,
+  ): void => {
+    const { value } = e.target;
+    const updatedValue = Number(value) > 100 ? "100" : value;
+    setInputs({
+      ...inputs,
+      [id]: updatedValue,
+    });
   };
 
   return (
@@ -47,12 +52,12 @@ export default function MyProgressModal() {
                 <p className="mb-[10px] rounded-xl">{el.title}</p>
                 <label>
                   <input
+                    value={inputs[el.id] || ""}
+                    onChange={(e) => handleInputChange(e, el.id)}
                     className="border-colorBorderBtn mb-[20px] h-[48px] w-[288px] rounded-lg border-[1px] p-[20px] text-lg"
                     type="number"
                     placeholder="Enter a number (0-100)"
-                    name={`progressInput${el.id}`}
-                    value={inputValue}
-                    onChange={handleInputChange}
+                    name={`inputValue`}
                   />
                 </label>
               </div>
