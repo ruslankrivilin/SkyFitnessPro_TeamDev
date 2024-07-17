@@ -1,16 +1,9 @@
-// import { useNavigate } from "react-router-dom";
-// import { appRoutes } from "../../../lib/appRoutes";
-
 import { useEffect, useState } from "react";
-import SigninForm from "../../Common/SigninForm/SigninForm";
-import CourseCard from "../../Common/CourseCard/CourseCard";
+// import SigninForm from "../../Common/SigninForm/SigninForm";
 
 export default function CallText() {
   const [isAuthorizated, setIsAuthorizated] = useState<boolean>(false);
-  const [isOpenedSigninForm, setIsOpenedSigninForm] = useState<boolean>(false);
-  const [isOpenedCourserCard, setIsOpenedCourserCard] =
-    useState<boolean>(false);
-  // const navigate = useNavigate();
+  // const [isOpenedSigninForm, setIsOpenedSigninForm] = useState<boolean>(false);
 
   useEffect(() => {
     const user = localStorage.getItem("user");
@@ -21,12 +14,9 @@ export default function CallText() {
     }
   }, []);
 
-  function handleOpenSigninForm() {
-    setIsOpenedSigninForm(true);
-  }
-  function hendelCourserCard() {
-    setIsOpenedCourserCard((prevState) => !prevState);
-  }
+  // function handleOpenSigninForm() {
+  //   setIsOpenedSigninForm(true);
+  // }
 
   return (
     <div className="container relative mx-auto mb-10 mt-20 flex rounded-blockRadius shadow-[0_4px_67px_-12px_rgba(0,0,0,0.13)]">
@@ -45,21 +35,21 @@ export default function CallText() {
           {isAuthorizated ? (
             <button
               className="w-1/3 rounded-buttonRadius bg-mainColor py-inptY font-defaultFont font-normal hover:bg-mainHover"
-              onClick={hendelCourserCard}
+             
             >
               Добавить курс
             </button>
           ) : (
             <button
               className="w-1/3 rounded-buttonRadius bg-mainColor py-inptY font-defaultFont font-normal hover:bg-mainHover"
-              onClick={handleOpenSigninForm}
+              // onClick={handleOpenSigninForm}
             >
               Войдите, чтобы добавить курс
             </button>
           )}
-          {isOpenedSigninForm && (
+          {/* {isOpenedSigninForm && (
             <SigninForm setIsOpenedSigninForm={setIsOpenedSigninForm} />
-          )}
+          )} */}
         </div>
       </div>
     </div>
