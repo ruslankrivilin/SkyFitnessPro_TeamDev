@@ -53,6 +53,7 @@ export default {
         pL: "30px",
         pXL: "40px",
       },
+
       boxShadow: {
         blockShadow: "0 0px 150px 0px rgba(0, 0, 0, 0.3)",
       },
