@@ -60,9 +60,6 @@ export default function CallText() {
           {isOpenedSigninForm && (
             <SigninForm setIsOpenedSigninForm={setIsOpenedSigninForm} />
           )}
-          {isOpenedCourserCard && (
-            <CourseCard setIsOpenedCourserCard={setIsOpenedCourserCard} />
-          )}
         </div>
       </div>
     </div>

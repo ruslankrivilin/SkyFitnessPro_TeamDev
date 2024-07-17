@@ -10,12 +10,12 @@ export default function CoursePage() {
     <>
       <div className="md: container mx-auto flex flex-col">
         <Header />
-        {/* <CourseLogo />
-        <FittingText /> */}
+        <CourseLogo courseName={"BodyFlex"} />
+        <FittingText />
         <Directions />
         <div className="gap-10">
-        {/* <LowStartMan />
-        <CallText /> */}
+        <LowStartMan />
+        <CallText />
         </div>
         
       </div>
