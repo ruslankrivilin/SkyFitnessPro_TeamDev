@@ -2,6 +2,10 @@ import { Link } from "react-router-dom";
 import { appRoutes } from "../../../lib/appRoutes";
 
 export default function UserModal() {
+  const handleLogout = () => {
+    localStorage.removeItem('user');
+  };
+
   return (
     <div className="bg-whit absolute right-0 top-16 mr-[140px] mt-[74px] grid gap-[34px] rounded-blockRadius p-l text-center shadow-[0_4px_67px_-12px_rgba(0,0,0,0.13)]">
       <div>
@@ -13,9 +17,11 @@ export default function UserModal() {
           Мой профиль
         </button>
       </Link>
-      <button className="h-[52px] w-[206px] rounded-buttonRadius border-[1px] border-solid border-black bg-white px-btnX py-btnY font-defaultFont font-normal text-black hover:bg-bgColor">
+      <Link to={appRoutes.MAIN}>
+      <button className="h-[52px] w-[206px] rounded-buttonRadius border-[1px] border-solid border-black bg-white px-btnX py-btnY font-defaultFont font-normal text-black hover:bg-bgColor" onClick={handleLogout}>
         Выйти
       </button>
+      </Link>
     </div>
   );
 }
