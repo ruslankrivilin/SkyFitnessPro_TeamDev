@@ -1,4 +1,4 @@
-export const courseLogoSrc = {
+export const bgCourseColor = {
     BodyFlex: "/public/images/images_small/bodyflex_female_sm.png",
     StepAerobic: "/public/images/images_small/step_aerobic_sm.png",
     Stretching: "/public/images/images_small/stretching_female_sm.png",

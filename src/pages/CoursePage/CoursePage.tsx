@@ -1,18 +1,23 @@
 import Header from "../../components/Common/Header/Header";
-import CourseLogo from "../../components/DataComponents/CourseLogo/CourseLogo";
+// import CourseLogo from "../../components/DataComponents/CourseLogo/CourseLogo";
 import Directions from "../../components/DataComponents/Directions/Directions";
-import FittingText from "../../components/DataComponents/FittingText/FittingTexts";
-import LowStartMan from "../../components/OtherComponents/LowStartMan/LowStartMan";
+// import FittingText from "../../components/DataComponents/FittingText/FittingTexts";
+// import CallText from "../../components/OtherComponents/CallText/CallText";
+// import LowStartMan from "../../components/OtherComponents/LowStartMan/LowStartMan";
 
 export default function CoursePage() {
   return (
     <>
-      <div className="flex flex-col container mx-auto md: ">
-      <Header />
-      <CourseLogo />
-      <FittingText />
-      <Directions />
-      <LowStartMan/>
+      <div className="md: container mx-auto flex flex-col">
+        <Header />
+        {/* <CourseLogo />
+        <FittingText /> */}
+        <Directions />
+        <div className="gap-10">
+        {/* <LowStartMan />
+        <CallText /> */}
+        </div>
+        
       </div>
     </>
   );
