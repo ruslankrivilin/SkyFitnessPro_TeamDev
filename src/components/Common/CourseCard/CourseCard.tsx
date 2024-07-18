@@ -10,7 +10,7 @@ const objCard = [
 
 export default function CourseCard() {
   const [showTooltip, setShowTooltip] = useState(false);
-  const isMainPage = false;
+  const isMainPage = true;
 
   function setImg(courseName: string) {
     if (courseName === "Йога") {
@@ -26,8 +26,8 @@ export default function CourseCard() {
     <>
       <p className="text-#000000 mb-[40px] text-3xl font-semibold">Мои курсы</p>
       <div className="flex justify-between">
-        {objCard.map((el) => (
-          <div className={`rounded-3xl bg-white`}>
+        {objCard.map((el, index) => (
+          <div className={`rounded-3xl bg-white`} key={index}>
             <div className="relative mb-[24px]">
               <img
                 className="rounded-3xl object-contain"
@@ -109,8 +109,8 @@ export default function CourseCard() {
                 )}
               </div>
               {isMainPage && (
-                <button className="text-l mb-[15px] flex h-[48px] w-[288px] content-center items-center justify-center rounded-3xl bg-mainColor">
-                  <h2>
+                <button className="text-l mb-[15px] flex content-center items-center justify-center rounded-3xl bg-mainColor hover:bg-mainHover">
+                  <h2 className="mx-[68px] my-[16px]">
                     {el.totalProgress === 0 && "Начать тренировку"}
                     {el.totalProgress === 100 && "Начать заново"}
                     {el.totalProgress > 0 &&
