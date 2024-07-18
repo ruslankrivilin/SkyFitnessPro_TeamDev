@@ -42,15 +42,15 @@ export default function Header({page}: HeaderType) {
   }
 
   return (
-    <div className="mx-auto mt-[50px] flex items-center justify-between">
-      <div className="flex flex-col space-y-[15px]">
-        <div>
+    <div className="flex justify-between  py-[40px]">
+      <div className="flex flex-col md:space-y-[15px]">
+        <div className="flex">
           <Link to={appRoutes.MAIN}>
             <img src="/images/logo.png" alt="logo" />
           </Link>
         </div>
         {isCorrectForTextPage && (
-          <div className="space-y-[60px]">
+          <div className="space-y-[60px] ">
             <p className="font-roboto hidden md:flex">
               Онлайн тренировки для занятий дома
             </p>
@@ -73,12 +73,12 @@ export default function Header({page}: HeaderType) {
           </div>
         </div>
       ) : (
-        <button
-          className=" rounded-buttonRadius bg-mainColor px-btnX py-btnY text-center  font-normal text-black hover:bg-mainHover"
+        <div
+          className="px-[16px] py-[8px] rounded-buttonRadius bg-mainColor text-center  font-normal text-black hover:bg-mainHover md:px-btnX md:py-btnY w-[103px] h-[52px] size-[18px]"
           onClick={handleOpenSigninForm}
         >
           Войти
-        </button>
+        </div>
       )}
       {isOpenedSigninForm && (
         <SigninForm setIsOpenedSigninForm={setIsOpenedSigninForm} />
