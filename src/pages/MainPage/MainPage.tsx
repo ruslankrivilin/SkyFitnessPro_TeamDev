@@ -23,7 +23,7 @@ export default function MainPage() {
       <div className="">
         <Header page={page} />
         <div className="md:mb-[50px] md:mt-[60px] flex items-center justify-between">
-          <h1 className="font-medium leading-normal  pr[32px] text-[32px]    md:text-pretty text-[60px] h-[120]px inline-block align-middle text-left">
+          <h1 className="font-medium leading-normal  pr[32px] text-[32px]     md:text-pretty md:text-[60px] h-[120px] inline-block align-middle text-left">
             Начните заниматься спортом  и улучшите качество жизни
           </h1>
           <div className="hidden md:flex flex-col items-center">
