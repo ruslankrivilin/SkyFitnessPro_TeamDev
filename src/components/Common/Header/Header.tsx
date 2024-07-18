@@ -66,7 +66,7 @@ export default function Header({page}: HeaderType) {
           </svg>
 
           <div className="ml-2 flex items-center" onClick={handleUserModal}>
-            <div className="mr-[12px]">Сергей</div>
+            <div className="hidden md:mr-[12px] ">Сергей</div>
             <svg className="h-[8px] w-[8px]">
               <use xlinkHref="./public/icons/sprite.svg#icon-user-arrow" />
             </svg>

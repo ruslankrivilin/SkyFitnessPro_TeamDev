@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body{
+  padding-left: 140px;
+  padding-right: 140px;
+  font: "Roboto";
+}
