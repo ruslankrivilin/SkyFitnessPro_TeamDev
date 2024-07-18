@@ -44,6 +44,8 @@ export default {
         progressRadius: "50px",
       },
       padding: {
+        btnYsm: "8px",
+        btnXsm: "16px",
         inptY: "16px",
         inptX: "18px",
         btnY: "16px",
