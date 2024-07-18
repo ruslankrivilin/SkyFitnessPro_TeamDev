@@ -81,7 +81,9 @@ export default function SigninForm() {
          </div>
         <div className="flex flex-col justify-center items-center">
           <button 
-          className="mt-3 h-[52px] w-[280px] rounded-buttonRadius text-[18px] font-normal bg-mainColor hover:bg-mainHover active:bg-black" onClick={handleLogin}>Войти</button>
+          className="mt-3 h-[52px] w-[280px] rounded-buttonRadius text-[18px] font-normal bg-mainColor hover:bg-mainHover active:bg-black" onClick={handleLogin}>
+          Войти
+          </button>
           <Link to={appRoutes.SIGNUP}>
           <button
             className="mt-3 h-[52px] w-[280px] rounded-buttonRadius text-[18px] font-normal leading-[19.8px] border hover:bg-bgColor active:bg-blackout disabled:bg-gray-light disabled:text-gray-dark disabled:border-gray-dark transition-colors duration-300"
