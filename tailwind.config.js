@@ -4,10 +4,10 @@ export default {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     screens: {
-      smSc: "480px",
-      mdSc: "768px",
-      lgSc: "976px",
-      xlSc: "1440px",
+      sm: "480px",
+      md: "768px",
+      lg: "976px",
+      xl: "1440px",
     },
     fontFamily: {
       defaultFont: ["Roboto", "sans-serif"],
