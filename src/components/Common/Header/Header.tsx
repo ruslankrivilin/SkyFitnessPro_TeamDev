@@ -74,7 +74,7 @@ export default function Header({page}: HeaderType) {
         </div>
       ) : (
         <div
-          className="px-[16px] py-[8px] rounded-buttonRadius bg-mainColor text-center  font-normal text-black hover:bg-mainHover md:px-btnX md:py-btnY w-[103px] h-[52px] size-[18px]"
+          className="px-btnX py-btnY rounded-buttonRadius bg-mainColor text-center  font-normal text-black hover:bg-mainHover md: w-[103px] h-[52px] size-[18px]"
           onClick={handleOpenSigninForm}
         >
           Войти
