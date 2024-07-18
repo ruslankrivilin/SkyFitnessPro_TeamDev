@@ -74,7 +74,7 @@ export default function Header(page: string) {
           className="h-[52px] w-[103px] rounded-buttonRadius bg-mainColor px-btnX py-btnY text-center font-defaultFont font-normal text-black hover:bg-mainHover"
           onClick={handleOpenSigninForm}
         >
-          Войти
+          <Link to={appRoutes.SIGNIN}>Войти</Link>
         </button>
       )}
       {isOpenedSigninForm && (

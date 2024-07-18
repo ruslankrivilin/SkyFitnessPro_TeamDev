@@ -4,4 +4,6 @@ export const appRoutes = {
   USER_PROFILE: "/userprofile",
   WORKOUT_VIDEO: "/userprofile/workout/:id",
   NOT_FOUND: "*",
+  SIGNIN: '/signin',
+  SIGNUP: '/signup',
 };

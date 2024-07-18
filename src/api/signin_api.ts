@@ -6,28 +6,45 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 //const authUrl = "https://spfitnesspro.firebaseapp.com";
 
 export type ErrorType = {
-    error: Error;
-    reset: () => void;
-  }
+  error: Error;
+  reset: () => void;
+}
 
 //Авторизация
-  const auth = getAuth();
-  export const loginWithFirebase = async (email, password) => {
-    try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+const auth = getAuth();
+export const loginWithFirebase = async (email, password) => {
+  try {
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
 
-      const user = userCredential.user;
-      // Дополнительные действия после успешной авторизации, например, перенаправление пользователя на другую страницу
-      console.log('Пользователь успешно авторизован:', user);
-      return user;
-    } catch (error) {
-      // Обработка ошибок при авторизации
-      const errorCode: ErrorType = error.code;
-      const errorMessage: ErrorType = error.message;
-      console.error('Ошибка при авторизации пользователя:', errorCode, errorMessage);
-      throw new Error(errorMessage);
+    const user = userCredential.user;
+    // Дополнительные действия после успешной авторизации, например, перенаправление пользователя на другую страницу
+    console.log('Пользователь успешно авторизован:', user);
+    return user;
+  } catch (error) {
+    // Обработка ошибок при авторизации
+    const errorCode: ErrorType = error.code;
+    const errorMessage: ErrorType = error.message;
+    console.error('Ошибка при авторизации пользователя:', errorCode, errorMessage);
+    throw new Error(errorMessage);
+  }
+};
+
+// Регистрация
+export function signIn({ email, password }) {
+  return fetch(userHost + "/login", {
+    method: "POST",
+    body: JSON.stringify({
+      email,
+      password,
+    }),
+  }).then((response) => {
+    if (response.status === 400) {
+      alert("Неверный логин или пароль");
+      throw new Error("Неверный логин или пароль");
     }
-  };
+    return response.json();
+  })
+}
 
 
 /*   import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
