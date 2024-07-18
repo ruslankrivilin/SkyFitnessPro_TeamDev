@@ -1,60 +1,60 @@
 import { useState } from "react";
 import "../../../css/style.css";
+const testArr = [
+  {
+    title: "Утренняя практика",
+    description: "Йога на каждый день",
+    day: 1,
+    progress: 100,
+  },
+  {
+    title: "Красота и здоровье",
+    description: "Йога на каждый день",
+    day: 2,
+    progress: 12,
+  },
+  {
+    title: "Асаны стоя",
+    description: "Йога на каждый день",
+    day: 3,
+    progress: 34,
+  },
+  {
+    title: "Растягиваем мышцы бедра",
+    description: "Йога на каждый день",
+    day: 4,
+    progress: 65,
+  },
+  {
+    title: "Гибкость спины",
+    description: "Йога на каждый день",
+    day: 5,
+    progress: 100,
+  },
+  {
+    title: "Гибкость рук",
+    description: "Йога на каждый день",
+    day: 6,
+    progress: 43,
+  },
+  {
+    title: "Сальто назад",
+    description: "Йога на каждый день",
+    day: 7,
+    progress: 100,
+  },
+];
+
+type typeSetTrain = {
+  title: string;
+  description: string;
+  day: number;
+  progress: number;
+};
 
 export default function WorkoutModal() {
-  type typeSetTrain = {
-    title: string;
-    description: string;
-    day: number;
-    progress: number;
-  };
-
-  const testArr = [
-    {
-      title: "Утренняя практика",
-      description: "Йога на каждый день",
-      day: 1,
-      progress: 100,
-    },
-    {
-      title: "Красота и здоровье",
-      description: "Йога на каждый день",
-      day: 2,
-      progress: 12,
-    },
-    {
-      title: "Асаны стоя",
-      description: "Йога на каждый день",
-      day: 3,
-      progress: 34,
-    },
-    {
-      title: "Растягиваем мышцы бедра",
-      description: "Йога на каждый день",
-      day: 4,
-      progress: 65,
-    },
-    {
-      title: "Гибкость спины",
-      description: "Йога на каждый день",
-      day: 5,
-      progress: 100,
-    },
-    {
-      title: "Гибкость рук",
-      description: "Йога на каждый день",
-      day: 6,
-      progress: 43,
-    },
-    {
-      title: "Сальто назад",
-      description: "Йога на каждый день",
-      day: 7,
-      progress: 100,
-    },
-  ];
-
   const [training, setTraining] = useState<number | null>(null);
+  /*  const {courses, setCourses} = useCourses */
 
   function handleSelectTraining(id: number, el: typeSetTrain) {
     setTraining(id);
@@ -91,6 +91,7 @@ export default function WorkoutModal() {
                       </div>
                     </div>
                   ) : (
+                    /* border-b-[1px] border-mainColor */
                     <div
                       onClick={() => handleSelectTraining(index, el)}
                       className={`mb-[10px] flex cursor-pointer content-center items-center justify-start border-b-[1px] border-gray-300`}

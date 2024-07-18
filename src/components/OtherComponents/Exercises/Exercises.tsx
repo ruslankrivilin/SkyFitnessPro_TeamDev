@@ -1,12 +1,12 @@
-import { useState } from "react";
-import MyProgressModal from "../../OtherModals/MyProgressModal/MyProgressModal";
 import "../../../css/style.css";
 
-export default function Exercises() {
-  const [isOpenedMyProgress, setIsOpenedMyProgress] = useState<boolean>(false);
+type Exercises = {
+  setIsOpenedMyProgress: (arg: boolean) => void;
+};
 
+export default function Exercises({ setIsOpenedMyProgress }: Exercises) {
   function handleClick() {
-    setIsOpenedMyProgress(!isOpenedMyProgress);
+    setIsOpenedMyProgress(true);
   }
 
   const testArr = [
@@ -21,35 +21,25 @@ export default function Exercises() {
     { id: 9, info: "Поднятие ног, согнутых в коленях", progress: 23 },
   ];
 
-  const columns = [];
-
-  for (let i = 0; i < testArr.length; i += 3) {
-    columns.push(testArr.slice(i, i + 3));
-  }
-
   return (
     <div className="mt-[40px] flex rounded-3xl bg-white">
-      <div className="p-[40px]">
+      <div className="flex flex-col p-[40px]">
         <h1 className="mb-[20px] text-3xl">Упражнения тренировки 2</h1>
-        <div className="mb-[40px] flex flex-row justify-between">
-          {columns.map((column, columnIndex) => (
-            <div className="mb-[20px]" key={columnIndex}>
-              {column.map((item, itemIndex) => (
-                <div key={itemIndex} className="flex flex-col justify-between">
-                  <p className="mb-[10px] h-[20px] w-[320px]">
-                    {item.info} {item.progress}%
-                  </p>
-                  <progress
-                    className="mb-[20px] h-[6px] w-[288px]"
-                    value={item.progress}
-                    max="100"
-                  ></progress>
-                </div>
-              ))}
+        <div className="mb-[40px] flex h-[164px] flex-col flex-wrap gap-[16px]">
+          {testArr.map((item, itemIndex) => (
+            <div key={itemIndex} className="flex flex-col gap-[10px]">
+              <p className="font-roboto text-[18px] font-normal">
+                {item.info} {item.progress}%
+              </p>
+              <progress
+                className="h-[6px] w-[320px]"
+                value={item.progress}
+                max="100"
+              ></progress>
             </div>
           ))}
         </div>
-        {isOpenedMyProgress && <MyProgressModal />}
+
         <button
           onClick={handleClick}
           className="text-l mt-[8px] h-[48px] w-[288px] rounded-3xl bg-mainColor"

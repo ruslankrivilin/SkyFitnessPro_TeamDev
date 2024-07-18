@@ -1,37 +1,36 @@
 import { useState } from "react";
 import "../../../css/style.css";
-import { courseLogoSrc } from "../../../lib/courseSettings";
 
-const objCard = [
-  { id: 1, courseName: "Йога", totalProgress: 40 },
-  { id: 2, courseName: "Стретчинг", totalProgress: 0 },
-  { id: 3, courseName: "Зумба", totalProgress: 100 },
+const courseData = [
+  {
+    courseName: "Йога",
+    totalProgress: 40,
+    imgSrc: "/public/images/images_small/yoga_female_sm.png",
+  },
+  {
+    courseName: "Стретчинг",
+    totalProgress: 0,
+    imgSrc: "/public/images/images_small/stretching_female_sm.png",
+  },
+  {
+    courseName: "Зумба",
+    totalProgress: 100,
+    imgSrc: "/public/images/images_small/zumba_female_sm.png",
+  },
 ];
 
-export default function CourseCard() {
+export default function CourseCard({ isMainPage }: { isMainPage: boolean }) {
   const [showTooltip, setShowTooltip] = useState(false);
-  const isMainPage = true;
-
-  function setImg(courseName: string) {
-    if (courseName === "Йога") {
-      return courseLogoSrc.Yoga.imgSrc;
-    } else if (courseName === "Стретчинг") {
-      return courseLogoSrc.Stretching.imgSrc;
-    } else {
-      return courseLogoSrc.Zumba.imgSrc;
-    }
-  }
 
   return (
     <>
-      <p className="text-#000000 mb-[40px] text-3xl font-semibold">Мои курсы</p>
-      <div className="flex justify-between">
-        {objCard.map((el, index) => (
+      <div className="flex flex-wrap gap-[40px]">
+        {courseData.map((el, index) => (
           <div className={`rounded-3xl bg-white`} key={index}>
             <div className="relative mb-[24px]">
               <img
                 className="rounded-3xl object-contain"
-                src={`/images/images_small/${setImg(el.courseName)}`}
+                src={el.imgSrc}
                 alt=""
               />
               <div className="absolute right-0 top-0">
@@ -45,8 +44,8 @@ export default function CourseCard() {
                       <use xlinkHref="/public/icons/sprite.svg#icon-plus" />
                     </svg>
                     {showTooltip && (
-                      <span className="absolute bottom-[125%] ml-[64px] whitespace-nowrap rounded-[25px] bg-mainHover p-[10px] pl-[20px] pr-[20px] text-center text-black">
-                        добавить курс
+                      <span className="absolute left-[64px] whitespace-nowrap rounded-[5px] border-[1px] border-black bg-white p-[6px] pl-[20px] pr-[20px] text-center text-black">
+                        Добавить курс
                       </span>
                     )}
                   </div>
@@ -60,8 +59,8 @@ export default function CourseCard() {
                       <use xlinkHref="/public/icons/sprite.svg#icon-minus" />
                     </svg>
                     {showTooltip && (
-                      <span className="absolute bottom-[125%] ml-[64px] whitespace-nowrap rounded-[25px] bg-mainHover p-[10px] pl-[20px] pr-[20px] text-center text-black">
-                        удалить курс
+                      <span className="absolute left-[64px] whitespace-nowrap rounded-[5px] border-[1px] border-black bg-white p-[6px] pl-[20px] pr-[20px] text-center text-black">
+                        Удалить курс
                       </span>
                     )}
                   </div>
@@ -95,30 +94,31 @@ export default function CourseCard() {
                   </div>
                 </div>
 
-                {isMainPage && (
-                  <div className="mb-[40px]">
-                    <p className="flex justify-start bg-bgColor text-lg">
-                      Прогресс {el.totalProgress}%
-                    </p>
-                    <progress
-                      className="inline-block h-[6px] w-[288px] appearance-none align-middle"
-                      value={el.totalProgress}
-                      max="100"
-                    ></progress>
+                {!isMainPage && (
+                  <div>
+                    <div className="mb-[40px]">
+                      <p className="flex justify-start bg-bgColor text-lg">
+                        Прогресс {el.totalProgress}%
+                      </p>
+                      <progress
+                        className="inline-block h-[6px] w-[288px] appearance-none align-middle"
+                        value={el.totalProgress}
+                        max="100"
+                      ></progress>
+                    </div>
+                    <button className="text-l mb-[15px] flex content-center items-center justify-center rounded-3xl bg-mainColor hover:bg-mainHover">
+                      <h2 className="mx-[68px] my-[16px]">
+                        {el.totalProgress === 0 && "Начать тренировку"}
+                        {el.totalProgress === 100 && "Начать заново"}
+                        {el.totalProgress > 0 &&
+                          el.totalProgress !== 100 &&
+                          "Продолжить"}
+                      </h2>
+                      {/* style btn */}
+                    </button>
                   </div>
                 )}
               </div>
-              {isMainPage && (
-                <button className="text-l mb-[15px] flex content-center items-center justify-center rounded-3xl bg-mainColor hover:bg-mainHover">
-                  <h2 className="mx-[68px] my-[16px]">
-                    {el.totalProgress === 0 && "Начать тренировку"}
-                    {el.totalProgress === 100 && "Начать заново"}
-                    {el.totalProgress > 0 &&
-                      el.totalProgress !== 100 &&
-                      "Продолжить"}
-                  </h2>
-                </button>
-              )}
             </div>
           </div>
         ))}

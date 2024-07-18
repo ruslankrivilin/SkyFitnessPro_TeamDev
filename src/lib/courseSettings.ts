@@ -1,22 +1,27 @@
-export const courseLogoSrc = {
-  BodyFlex: {
-    imgSrc: "bodyflex_female_sm.png",
-    bgColor: "#7D458C",
+export const courseLogoSrc = [
+  {
+    courseName: "Бодифлекс",
+    imgSrc: "/public/images/images_small/bodyflex_female_sm.png",
+    bgColor: "bodyFlexColor",
   },
-  StepAerobic: {
-    imgSrc: "step_aerobic_sm.png",
-    bgColor: "#FF7E65",
+  {
+    courseName: "Степ-аэробика",
+    imgSrc: "/public/images/images_small/step_aerobic_sm.png",
+    bgColor: "stepAerobicColor",
   },
-  Stretching: {
-    imgSrc: "stretching_female_sm.png",
-    bgColor: "#2491D2",
+  {
+    courseName: "Стретчинг",
+    imgSrc: "/public/images/images_small/stretching_female_sm.png",
+    bgColor: "stretchingColor",
   },
-  Yoga: {
-    imgSrc: "yoga_female_sm.png",
-    bgColor: "#FFC700",
+  {
+    courseName: "Йога",
+    imgSrc: "/public/images/images_small/yoga_female_sm.png",
+    bgColor: "yogaColor",
   },
-  Zumba: {
-    imgSrc: "zumba_female_sm.png",
-    bgColor: "#F7A012",
+  {
+    courseName: "Зумба",
+    imgSrc: "/public/images/images_small/zumba_female_sm.png",
+    bgColor: "zumbaColor",
   },
-};
+];
