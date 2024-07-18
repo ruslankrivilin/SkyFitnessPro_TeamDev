@@ -42,9 +42,9 @@ export default function Header({page}: HeaderType) {
   }
 
   return (
-    <div className="flex justify-between  py-[40px]">
-      <div className="flex flex-col md:space-y-[15px]">
-        <div className="flex">
+    <div className="flex justify-between py-[40px] md:pt-[50px]">
+      <div className="flex flex-col ">
+        <div className="flex mb-[15px]">
           <Link to={appRoutes.MAIN}>
             <img src="/images/logo.png" alt="logo" />
           </Link>
@@ -74,7 +74,7 @@ export default function Header({page}: HeaderType) {
         </div>
       ) : (
         <div
-          className="px-[16px] py-[8px] rounded-buttonRadius bg-mainColor text-center  font-normal text-black hover:bg-mainHover md:px-btnX md:py-btnY w-[103px] h-[52px] size-[18px]"
+          className="rounded-buttonRadius bg-mainColor text-center size-[18px]  font-normal text-black hover:bg-mainHover px-[16px] py-[8px]  md:px-btnX py-btnY w-[103px] h-[52px] "
           onClick={handleOpenSigninForm}
         >
           Войти
