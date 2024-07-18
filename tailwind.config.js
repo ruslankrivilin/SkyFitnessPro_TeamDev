@@ -39,7 +39,8 @@ export default {
       },
       borderRadius: {
         inputRadius: "8px",
-        blockRadius: "30px",
+        blockRadiusMin: "28px",
+        blockRadiusMax: "30px",
         buttonRadius: "46px",
         progressRadius: "50px",
       },
