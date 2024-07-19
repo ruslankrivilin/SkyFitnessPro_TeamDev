@@ -6,8 +6,11 @@ import { Link } from "react-router-dom";
 import { appRoutes } from "../../../lib/appRoutes";
 
 // import UserModal from "../UserModal/UserModal";
+type HeaderType = {
+  page: string;
+}
 
-export default function Header(page: string) {
+export default function Header({page}: HeaderType) {
   const [isAuthorizated, setIsAuthorizated] = useState<boolean>(false);
   const [isOpenedSigninForm, setIsOpenedSigninForm] = useState<boolean>(false);
   const [isOpenedUserModal, setIsOpenedUserModal] = useState<boolean>(false);
@@ -24,7 +27,7 @@ export default function Header(page: string) {
   }, []);
 
   useEffect(() => {
-    if (page === "MainPage" || page === "CoursePage") {
+    if (page === "CorrectForTextPage") {
       setIsCorrectForTextPage(true);
     } else {
       setIsCorrectForTextPage(false);
@@ -39,15 +42,15 @@ export default function Header(page: string) {
   }
 
   return (
-    <div className="mx-auto mt-[50px] flex items-center justify-between">
-      <div className="flex flex-col space-y-[15px]">
-        <div>
+    <div className="flex justify-between  py-[40px]">
+      <div className="flex flex-col md:space-y-[15px]">
+        <div className="flex">
           <Link to={appRoutes.MAIN}>
             <img src="/images/logo.png" alt="logo" />
           </Link>
         </div>
         {isCorrectForTextPage && (
-          <div className="space-y-[60px]">
+          <div className="space-y-[60px] ">
             <p className="font-roboto hidden md:flex">
               Онлайн тренировки для занятий дома
             </p>
@@ -63,19 +66,19 @@ export default function Header(page: string) {
           </svg>
 
           <div className="ml-2 flex items-center" onClick={handleUserModal}>
-            <div className="mr-[12px]">Сергей</div>
+            <div className="hidden md:mr-[12px] ">Сергей</div>
             <svg className="h-[8px] w-[8px]">
               <use xlinkHref="./public/icons/sprite.svg#icon-user-arrow" />
             </svg>
           </div>
         </div>
       ) : (
-        <button
-          className="h-[52px] w-[103px] rounded-buttonRadius bg-mainColor px-btnX py-btnY text-center font-defaultFont font-normal text-black hover:bg-mainHover"
+        <div
+          className="py-[8px] px-[16px] rounded-buttonRadius bg-mainColor text-center  font-normal text-black hover:bg-mainHover md:px-btnX py-btnY w-[103px] h-[52px] size-[18px]"
           onClick={handleOpenSigninForm}
         >
           Войти
-        </button>
+        </div>
       )}
       {isOpenedSigninForm && (
         <SigninForm setIsOpenedSigninForm={setIsOpenedSigninForm} />

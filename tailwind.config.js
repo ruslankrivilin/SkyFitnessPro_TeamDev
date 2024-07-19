@@ -39,11 +39,14 @@ export default {
       },
       borderRadius: {
         inputRadius: "8px",
-        blockRadius: "30px",
+        blockRadiusMin: "28px",
+        blockRadiusMax: "30px",
         buttonRadius: "46px",
         progressRadius: "50px",
       },
       padding: {
+        btnYsm: "8px",
+        btnXsm: "16px",
         inptY: "16px",
         inptX: "18px",
         btnY: "16px",
