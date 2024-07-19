@@ -39,7 +39,7 @@ export default function Header(page: string) {
   }
 
   return (
-    <div className="container mx-auto mt-[50px] flex items-center justify-between">
+    <div className="mx-auto mt-[50px] flex items-center justify-between">
       <div className="flex flex-col space-y-[15px]">
         <div>
           <Link to={appRoutes.MAIN}>
@@ -54,25 +54,12 @@ export default function Header(page: string) {
           </div>
         )}
       </div>
-      
 
-      {/* <button
-        className="h-[52px] w-[103px] rounded-buttonRadius bg-mainColor px-btnX py-btnY text-center font-defaultFont font-normal text-black hover:bg-mainHover" 
-      >
-        Войти
-      </button> */}
-     
-      
       {/* Если пользователь авторизован, то user Блок */}
-      <div>
-        <svg className="">
-           <use xlinkHref="public/icons/profile_icon.svg" /> 
-        </svg>
-
-        <div>
-          <div>Сергей</div>
-          <svg className="">
-           <use xlinkHref="public/icons/user_arrow_icon.svg" /> 
+      {isAuthorizated ? (
+        <div className="flex items-center">
+          <svg className="m-[16px] h-[50px] w-[50px]">
+            <use xlinkHref="./public/icons/sprite.svg#icon-profile" />
           </svg>
 
           <div className="ml-2 flex items-center" onClick={handleUserModal}>
