@@ -1,38 +1,33 @@
-// //import React from "react";
-// //import { useState } from "react";
-// //import firebase from 'firebase/app';
-// import 'firebase/auth';
-// import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-// //const authUrl = "https://spfitnesspro.firebaseapp.com";
+//import React from "react";
+//import { useState } from "react";
+//import firebase from 'firebase/app';
+import 'firebase/auth';
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+//const authUrl = "https://spfitnesspro.firebaseapp.com";
 
-// export type ErrorType = {
-//   error: Error;
-//   reset: () => void;
-// }
+export type ErrorType = {
+    error: Error;
+    reset: () => void;
+  }
 
-// //Авторизация
-// const auth = getAuth();
-// export const loginWithFirebase = async (email, password) => {
-//   try {
-//     const userCredential = await signInWithEmailAndPassword(auth, email, password);
+//Авторизация
+  const auth = getAuth();
+  export const loginWithFirebase = async (email, password) => {
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
 
-//     const user = userCredential.user;
-//     // Дополнительные действия после успешной авторизации, например, перенаправление пользователя на другую страницу
-//     console.log('Пользователь успешно авторизован:', user);
-//     return user;
-//   } catch (error) {
-//     // Обработка ошибок при авторизации
-//     const errorCode: ErrorType = error.code;
-//     const errorMessage: ErrorType = error.message;
-//     console.error('Ошибка при авторизации пользователя:', errorCode, errorMessage);
-//     throw new Error(errorMessage);
-//   }
-// };
-
-// Регистрация
-export function signIn() {
-  return(console.log)
-}
+      const user = userCredential.user;
+      // Дополнительные действия после успешной авторизации, например, перенаправление пользователя на другую страницу
+      console.log('Пользователь успешно авторизован:', user);
+      return user;
+    } catch (error) {
+      // Обработка ошибок при авторизации
+      const errorCode: ErrorType = error.code;
+      const errorMessage: ErrorType = error.message;
+      console.error('Ошибка при авторизации пользователя:', errorCode, errorMessage);
+      throw new Error(errorMessage);
+    }
+  };
 
 
 /*   import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
