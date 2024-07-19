@@ -78,7 +78,7 @@ export default function Header({page}: HeaderType) {
           onClick={handleOpenSigninForm}
         >
           Войти
-        </div>
+        </div> 
       )}
       {isOpenedSigninForm && (
         <SigninForm setIsOpenedSigninForm={setIsOpenedSigninForm} />
