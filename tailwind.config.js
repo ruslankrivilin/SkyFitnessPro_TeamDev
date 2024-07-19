@@ -4,10 +4,10 @@ export default {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     screens: {
-      smSc: "480px",
-      mdSc: "768px",
-      lgSc: "976px",
-      xlSc: "1440px",
+      sm: "480px",
+      md: "768px",
+      lg: "976px",
+      xl: "1440px",
     },
     fontFamily: {
       defaultFont: ["Roboto", "sans-serif"],
@@ -39,11 +39,14 @@ export default {
       },
       borderRadius: {
         inputRadius: "8px",
-        blockRadius: "30px",
+        blockRadiusMin: "28px",
+        blockRadiusMax: "30px",
         buttonRadius: "46px",
         progressRadius: "50px",
       },
       padding: {
+        btnYsm: "8px",
+        btnXsm: "16px",
         inptY: "16px",
         inptX: "18px",
         btnY: "16px",
