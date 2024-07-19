@@ -1,91 +1,68 @@
-//import React from "react";
-//import { useState } from "react";
-//import firebase from 'firebase/app';
-import 'firebase/auth';
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-//const authUrl = "https://spfitnesspro.firebaseapp.com";
+import { signOut } from 'firebase/auth';
+//import { useAppDispatch } from 'hooks/redux-hooks';
+import React, { useContext, useEffect, useState } from 'react'
+import { useAuth } from '../hooks/useUserData';
 
-export type ErrorType = {
-    error: Error;
-    reset: () => void;
+
+const AuthContext = React.createContext()
+
+type loginData = [
+  email: string,
+  password: string,
+  user: null,
+]
+
+ const function Logout() {
+  return signOut(auth)
+}
+export default function signinApi  ({email, password}:loginData) {
+
+      const [createAccount, setCreateAccount] = useState(false)
+      const [userCreds, setUserCreds] = useState({ email: '', password: '' })
+  
+      const { signUp, login } = useAuth()
+  
+      function updateEmail(e) {
+          setUserCreds({ ...userCreds, email: e.target.value })
+      }
+  
+      function updatePassword(e) {
+          setUserCreds({ ...userCreds, password: e.target.value })
+      }
+  
+      function handleSubmit(e) {
+          e.preventDefault()
+          // предотвращает регистрацию, если форма не заполнена
+          if (!userCreds.email || !userCreds.password) { return }
+  
+          if (createAccount) {
+              // рекомендуется добавить сюда проверку пароля с помощью регулярного выражения
+              console.log('Registering')
+              signUp(userCreds.email, userCreds.password)
+          } else {
+              console.log('Logging in')
+              login(userCreds.email, userCreds.password)
+          }
+      }
+
   }
+  
 
-//Авторизация
-  const auth = getAuth();
-  export const loginWithFirebase = async (email, password) => {
-    try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
-
-      const user = userCredential.user;
-      // Дополнительные действия после успешной авторизации, например, перенаправление пользователя на другую страницу
-      console.log('Пользователь успешно авторизован:', user);
-      return user;
-    } catch (error) {
-      // Обработка ошибок при авторизации
-      const errorCode: ErrorType = error.code;
-      const errorMessage: ErrorType = error.message;
-      console.error('Ошибка при авторизации пользователя:', errorCode, errorMessage);
-      throw new Error(errorMessage);
-    }
-  };
-
-
-/*   import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-
-const auth = getAuth();
-createUserWithEmailAndPassword(auth, email: string, password: string): Promise<UserCredential>
-  .then((userCredential) => {
-    return fetch(authUrl + "/login", {
-        method: "POST",
-        body: JSON.stringify({
-          email,
-          password,
-        }),
-
-    // Успешная регистрация пользователя
-    //const user = userCredential.user;
-    // Дополнительные действия после успешной регистрации, например, перенаправление пользователя на другую страницу
-    //console.log('Пользователь успешно зарегистрирован:', user);
-  })
-  .catch((error) => {
-    // Обработка ошибок при регистрации пользователя
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    console.error('Ошибка при регистрации пользователя:', errorCode, errorMessage);
-    // Дополнительные действия при возникновении ошибки, например, отображение сообщения об ошибке пользователю
-  }); */
-
-/* (<div className="wrapper">
-    <div className="container-signin">
-      <div className="modal">
-        <div className="modal__block">
-          <div className="modal__ttl">
-            <h2>Вход</h2>
+  /* 
+    
+      return (
+          <div>
+              <input placeholder='Email' value={userCreds.email} onChange={(e) => {
+                  updateEmail(e)
+              }}></input>
+              <input placeholder='Password' type='password' value={userCreds.password} onChange={(e) => {
+                  updatePassword(e)
+              }}></input>
+              <button onClick={handleSubmit}>
+                  <p>Submit</p>
+              </button>
+              <button onClick={() => setCreateAccount(!createAccount)}>
+                  <p>{createAccount ? 'Sign In' : 'Sign Up'}</p>
+              </button>
           </div>
-          <form className="modal__form-login" id="formLogIn" action="#">
-            <input
-              className="modal__input"
-              type="text"
-              name="login"
-              id="formlogin"
-              placeholder="Эл. почта"
-            />
-            <input
-              className="modal__input"
-              type="password"
-              name="password"
-              id="formpassword"
-              placeholder="Пароль"
-            />
-            <button className="modal__btn-enter _hover01" id="btnEnter">
-              <a href="../main.html">Войти</a>
-            </button>
-            <div className="modal__form-group">
-              <p>Нужно зарегистрироваться?</p>
-              <a href="signup.html">Регистрируйтесь здесь</a>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>) */
+      ) */
