@@ -32,12 +32,12 @@ export default function UserProfile() {
       setIsNotCorrect("Пароли не совпадают");
       return;
     }
-    // changePassword(loginData.password)
+    // changePassword(isChangeMode.password)
     //   .then(() => {
     //     navigate(appRoutes.USER_PROFILE);
     //   })
-    //   .catch((error) => {
-    //     setError(error.message);
+    //   .catch((isNotCorrect) => {
+    //     setIsNotCorrect(isNotCorrect.message);
     //   });
   }
 
