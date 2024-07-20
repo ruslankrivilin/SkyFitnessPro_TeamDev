@@ -1,27 +1,72 @@
-import { CourseType, WorkoutType } from "../types";
-import { ref, get, child, set} from "firebase/database";
-import { db } from "./firebase_api";
+import { CourseType} from "../types";
+import { ref, get, child} from "firebase/database";
+import { database } from "./firebase_api";
 
-
-export const getCourses = async () => {
+//Получить все курсы
+export const getCoursesApi = async () => {
     let result: CourseType[] = [];
   
     try {
-      const snapshot = await get(child(ref(db), `courses`));
-  
-      if (snapshot.exists()) {
-        Object.keys(snapshot.val()).forEach((key) => {
-          result.push(snapshot.val()[key]);
-        });
-  
-        result = result.sort(compareByOrder);
+        const snapshot = await get(child(ref(database), `courses`));
+    
+        if (snapshot.exists()) {
+          Object.keys(snapshot.val()).forEach((key) => {
+            result.push(snapshot.val()[key]);
+          });
+    
+          result = result.sort(compareByOrder);
+        }
+      } catch (e) {
+        console.error(e);
       }
+    
+      return result;
+    };
+
+ /*  //Получить все воркауты
+  export const getUserWorkouts = async (userId: string, courseId: string) => {
+    try {
+      const workoutIdsSnapshot = await get(
+        child(ref(db), `courses/${courseId}/workouts`)
+      );
+  
+      if (workoutIdsSnapshot.exists()) {
+        const workoutIds = workoutIdsSnapshot.val();
+        let workouts = [];
+  
+        for (let id of workoutIds) {
+          const workoutDataSnapshot = await get(
+            child(ref(db), `workouts/${id}/name`)
+          );
+  
+          if (workoutDataSnapshot.exists()) {
+            const progressSnapshot = await get(
+              child(ref(db), `users/${userId}/${courseId}/${id}/done`)
+            );
+  
+            if (progressSnapshot.exists()) {
+              workouts.push({
+                name: workoutDataSnapshot.val(),
+  
+                id,
+                progress: progressSnapshot.val(),
+  
+              });
+            }
+          }
+        }
+  
+        return workouts; // Возвращаем готовый массив тренировок
+      }
+  
+      return []; // Возвращаем пустой массив, если workoutIds не существует
     } catch (e) {
       console.error(e);
+      return []; // Возвращаем пустой массив в случае ошибки
     }
-  
-    return result;
   };
+
+
 
   export const getCourse = async (courseId: string) => {
     let result: CourseType[] = [];
@@ -61,47 +106,7 @@ export const getCourses = async () => {
     }
   };
   
-  export const getUserWorkouts = async (userId: string, courseId: string) => {
-    try {
-      const workoutIdsSnapshot = await get(
-        child(ref(database), `courses/${courseId}/workouts`)
-      );
-  
-      if (workoutIdsSnapshot.exists()) {
-        const workoutIds = workoutIdsSnapshot.val();
-        let workouts = [];
-  
-        for (let id of workoutIds) {
-          const workoutDataSnapshot = await get(
-            child(ref(db), `workouts/${id}/name`)
-          );
-  
-          if (workoutDataSnapshot.exists()) {
-            const progressSnapshot = await get(
-              child(ref(db), `users/${userId}/${courseId}/${id}/done`)
-            );
-  
-            if (progressSnapshot.exists()) {
-              workouts.push({
-                name: workoutDataSnapshot.val(),
-  
-                id,
-                progress: progressSnapshot.val(),
-  
-              });
-            }
-          }
-        }
-  
-        return workouts; // Возвращаем готовый массив тренировок
-      }
-  
-      return []; // Возвращаем пустой массив, если workoutIds не существует
-    } catch (e) {
-      console.error(e);
-      return []; // Возвращаем пустой массив в случае ошибки
-    }
-  };
+ 
   
   export const getCourseById = async (courseId: string) => {
     let result: CourseType | null = null;
@@ -142,7 +147,7 @@ export const getCourses = async () => {
   
     return result;
   };
-
+*/
 export function compareByOrder(a: CourseType, b: CourseType) {
     if (a.order < b.order){
         return -1;
@@ -151,4 +156,4 @@ export function compareByOrder(a: CourseType, b: CourseType) {
         return 1;
     }
     return 0;
-}
+} 
