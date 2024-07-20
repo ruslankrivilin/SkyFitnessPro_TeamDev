@@ -7,15 +7,18 @@ import { getFirestore } from "firebase/firestore";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
+
+
 export const firebaseConfig = {
-  apiKey: import.meta.env.REACT_APP_FIREBASE_API_KEY || "notnull",
-  authDomain: import.meta.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+
+  apiKey: "AIzaSyCkN4xe36J9U7gt-sOI3NmKzHpbVpMTcXE", //с этим надо что то сделать тк должно быть в виде REACT_APP_FIREBASE_API_KEY
+  authDomain: "REACT_APP_FIREBASE_AUTH_DOMAIN",
   databaseURL:
     "https://spfitnesspro-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: import.meta.env.REACT_APP_FIREBASE_PROJECT_ID,
-  storageBucket: import.meta.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.REACT_APP_FIREBASE_APP_ID,
+  projectId: "REACT_APP_FIREBASE_PROJECT_ID",
+  storageBucket: "REACT_APP_FIREBASE_STORAGE_BUCKET",
+  messagingSenderId: "REACT_APP_FIREBASE_MESSAGING_SENDER_ID",
+  appId: "REACT_APP_FIREBASE_APP_ID",
 };
 
 // Initialize Firebase

@@ -1,13 +1,19 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { useAppDispatch } from "../hooks/redux-hooks";
 import { setUser } from "./slices/userSlices";
-import { useNavigate } from "react-router-dom";
 import { auth } from "./firebase_api";
+import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../hooks/redux-hooks";
+import { getFavoriteCourseOfUser } from "./courses_api";
 
-export default function signinApi(email: string, password: string) {
+// signinApi должна быть компонентом React, переименовл ее заглавной буквы.
+//В ином случае не работают хуки useAppDispatch и useNavigate
+export default function SigninApi(email: string, password: string) {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  console.log({ email, password });
   signInWithEmailAndPassword(auth, email, password)
     .then(({ user }) => {
-      const dispatch = useAppDispatch();
+      console.log(auth, email, password);
       dispatch(
         setUser({
           email: user.email,
@@ -15,15 +21,19 @@ export default function signinApi(email: string, password: string) {
           token: user.refreshToken,
         }),
       );
-      //setIsLoginModalOpened(false);
-      const navigate = useNavigate();
       navigate("/");
       console.log(user);
-      //временно для тестов и отслеживания что получаем на выходе
-      console.log("Token:", user.refreshToken);
-      console.log("ID:", user.uid);
-      console.log("Email:", user.email);
-    })
-    .catch(() => alert("Invalid user!"));
+      console.log({ email, password });
 
+      // Получение курсов, относящихся только к конкретному userId
+      getFavoriteCourseOfUser(user.uid)
+        .then((courses) => {
+          console.log(courses);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    })
+    .catch(() => alert("Ошибка авторизации! Попробуйте зарегистрироваться."));
+  console.log({ email, password });
 }

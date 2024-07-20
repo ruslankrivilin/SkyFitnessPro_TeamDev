@@ -4,14 +4,14 @@ import { useAppDispatch } from "../hooks/redux-hooks";
 import { useNavigate } from "react-router-dom";
 import { auth } from "./firebase_api";
 
-export default function signupApi(
-  email: string,
-  password: string,
-) {
+// signupApi должна быть компонентом React, переименовл ее заглавной буквы.
+//В ином случае не работают хуки useAppDispatch и useNavigate
+export default function SignupApi(email: string, password: string) {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   createUserWithEmailAndPassword(auth, email, password)
     .then(({ user }) => {
       console.log(user);
-      const dispatch = useAppDispatch();
       dispatch(
         setUser({
           email: user.email,
@@ -19,7 +19,6 @@ export default function signupApi(
           token: user.refreshToken,
         }),
       );
-      const navigate = useNavigate();
       navigate("/");
     })
     .catch(console.error);
