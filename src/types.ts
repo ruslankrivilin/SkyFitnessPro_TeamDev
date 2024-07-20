@@ -24,3 +24,15 @@ export interface CourseType {
   fitting: string;
   directions: string[];
 }
+
+export interface WorkoutType {
+  name: string;
+  _id: string;
+  exercises: ExerciseType[];
+  video:string;
+}
+export interface ExerciseType {
+  name: string;
+  progress: number;
+  quantity: number;
+}

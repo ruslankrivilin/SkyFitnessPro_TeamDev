@@ -1,18 +1,23 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { setUser } from "./slices/userSlices";
 
+type RegData = [name:string, email:string, password:string]
 
-export default function signupApi= async (name, email, password) => {
-    try {
-      const res = await createUserWithEmailAndPassword(auth, email, password);
-      const user = res.user;
-      await addDoc(collection(db, "users"), {
-        uid: user.uid,
-        name,
-        authProvider: "local",
-        email,
-      });
-    } catch (err) {
-      console.error(err);
-      alert(err.message);
-    }
+export default function signupApi (auth, email:RegData, password:RegData) {
+
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  createUserWithEmailAndPassword(auth, email, password)
+    .then(({ user }) => {
+      console.log(user);
+      dispatch(
+        setUser({
+          email: user.email,
+          id: user.uid,
+          token: user.refreshToken,
+        })
+      );
+      navigate("/");
+    })
+    .catch(console.error);
   };

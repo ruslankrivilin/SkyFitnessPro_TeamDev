@@ -7,7 +7,7 @@ import {getFirestore} from 'firebase/firestore'
 
 // Your web app's Firebase configuration
 export const firebaseConfig = {
-  apiKey: import.meta.env.REACT_APP_FIREBASE_API_KEY,
+  apiKey: import.meta.env.REACT_APP_FIREBASE_API_KEY || 'notnull',
   authDomain: import.meta.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
   databaseURL: "https://spfitnesspro-default-rtdb.europe-west1.firebasedatabase.app",
   projectId: import.meta.env.REACT_APP_FIREBASE_PROJECT_ID ,
@@ -18,14 +18,5 @@ export const firebaseConfig = {
 
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
-
 export const auth = getAuth(app);
 export const db = getFirestore(app);
-
-//"AIzaSyCkN4xe36J9U7gt-sOI3NmKzHpbVpMTcXE"
-//"spfitnesspro.firebaseapp.com"
-//"https://spfitnesspro-default-rtdb.europe-west1.firebasedatabase.app"
-//"spfitnesspro"
-//"spfitnesspro.appspot.com"
-//"646527140879"
-//"1:646527140879:web:9157e41fa4ab53e1fb4f7a"

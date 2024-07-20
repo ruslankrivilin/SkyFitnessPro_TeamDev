@@ -1,68 +1,25 @@
-import { signOut } from 'firebase/auth';
-//import { useAppDispatch } from 'hooks/redux-hooks';
-import React, { useContext, useEffect, useState } from 'react'
-import { useAuth } from '../hooks/useUserData';
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { useAppDispatch } from "../hooks/redux-hooks";
+import { setUser } from "./slices/userSlices";
+import { useNavigate } from "react-router-dom";
+import { auth } from "./firebase_api";
 
+export default function signinApi(email: string, password: string) {
+  signInWithEmailAndPassword(auth, email, password)
+    .then(({ user }) => {
+      const dispatch = useAppDispatch();
+      dispatch(
+        setUser({
+          email: user.email,
+          id: user.uid,
+          token: user.refreshToken,
+        }),
+      );
+      //setIsLoginModalOpened(false);
+      const navigate = useNavigate();
+      navigate("/");
+      console.log(user);
+    })
+    .catch(() => alert("Invalid user!"));
 
-const AuthContext = React.createContext()
-
-type loginData = [
-  email: string,
-  password: string,
-  user: null,
-]
-
- const function Logout() {
-  return signOut(auth)
 }
-export default function signinApi  ({email, password}:loginData) {
-
-      const [createAccount, setCreateAccount] = useState(false)
-      const [userCreds, setUserCreds] = useState({ email: '', password: '' })
-  
-      const { signUp, login } = useAuth()
-  
-      function updateEmail(e) {
-          setUserCreds({ ...userCreds, email: e.target.value })
-      }
-  
-      function updatePassword(e) {
-          setUserCreds({ ...userCreds, password: e.target.value })
-      }
-  
-      function handleSubmit(e) {
-          e.preventDefault()
-          // предотвращает регистрацию, если форма не заполнена
-          if (!userCreds.email || !userCreds.password) { return }
-  
-          if (createAccount) {
-              // рекомендуется добавить сюда проверку пароля с помощью регулярного выражения
-              console.log('Registering')
-              signUp(userCreds.email, userCreds.password)
-          } else {
-              console.log('Logging in')
-              login(userCreds.email, userCreds.password)
-          }
-      }
-
-  }
-  
-
-  /* 
-    
-      return (
-          <div>
-              <input placeholder='Email' value={userCreds.email} onChange={(e) => {
-                  updateEmail(e)
-              }}></input>
-              <input placeholder='Password' type='password' value={userCreds.password} onChange={(e) => {
-                  updatePassword(e)
-              }}></input>
-              <button onClick={handleSubmit}>
-                  <p>Submit</p>
-              </button>
-              <button onClick={() => setCreateAccount(!createAccount)}>
-                  <p>{createAccount ? 'Sign In' : 'Sign Up'}</p>
-              </button>
-          </div>
-      ) */
