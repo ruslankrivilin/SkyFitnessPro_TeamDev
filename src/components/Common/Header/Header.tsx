@@ -15,24 +15,21 @@ export default function Header({page}: HeaderType) {
   const [isOpenedSigninForm, setIsOpenedSigninForm] = useState<boolean>(false);
   const [isOpenedUserModal, setIsOpenedUserModal] = useState<boolean>(false);
   const [isCorrectForTextPage, setIsCorrectForTextPage] =
-    useState<boolean>(true);
+    useState<string>("");
+   
+ 
 
   useEffect(() => {
+   setIsCorrectForTextPage(page)
     const user = localStorage.getItem("user");
     if (user) {
       setIsAuthorizated(true);
     } else {
       setIsAuthorizated(false);
     }
-  }, []);
-
-  useEffect(() => {
-    if (page === "CorrectForTextPage") {
-      setIsCorrectForTextPage(true);
-    } else {
-      setIsCorrectForTextPage(false);
-    }
   }, [page]);
+
+ 
 
   function handleOpenSigninForm() {
     setIsOpenedSigninForm(true);
@@ -49,7 +46,7 @@ export default function Header({page}: HeaderType) {
             <img src="/images/logo.png" alt="logo" />
           </Link>
         </div>
-        {isCorrectForTextPage && (
+        {isCorrectForTextPage === "CorrectForTextPage" && (
           <div className="space-y-[60px] ">
             <p className="font-roboto  hidden md:flex md:text-stone-500">
               Онлайн тренировки для занятий дома
@@ -60,12 +57,12 @@ export default function Header({page}: HeaderType) {
 
       {/* Если пользователь авторизован, то user Блок */}
       {isAuthorizated ? (
-        <div className="flex items-center">
+        <div className="flex items-center" onClick={handleUserModal}>
           <svg className="h-[36px] w-[36px] mr-[10px] md:m-[16px] md:h-[50px] md:w-[50px]">
             <use xlinkHref="./public/icons/sprite.svg#icon-profile" />
           </svg>
 
-          <div className="ml-2 flex items-center" onClick={handleUserModal}>
+          <div className="ml-2 flex items-center" >
             <div className="hidden md:mr-[12px] ">Сергей</div>
             <svg className="w-[8px] h-[4px] md:h-[8px] ">
               <use xlinkHref="./public/icons/sprite.svg#icon-user-arrow" />
