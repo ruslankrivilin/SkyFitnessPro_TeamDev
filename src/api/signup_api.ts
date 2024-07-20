@@ -1,41 +1,26 @@
-import { initializeApp } from "firebase/app";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { setUser } from "./slices/userSlices";
+import { useAppDispatch } from "../hooks/redux-hooks";
+import { useNavigate } from "react-router-dom";
+import { auth } from "./firebase_api";
 
-
-//Регистрация
-
-// Получение объекта аутентификации
-const auth = getAuth(app);
-
-// Функция для регистрации пользователя
-async function signUp({ auth, email, password }) {
-  try {
-    // Отправка запроса на регистрацию пользователя
-    const userCredential = await createUserWithEmailAndPassword(auth, login, password);
-    const user = userCredential.user;
-    
-    // Дополнительные действия после успешной регистрации
-    console.log('Пользователь успешно зарегистрирован:', user);
-  } catch (error) {
-    // Обработка ошибок при регистрации
-    console.error('Ошибка при регистрации пользователя:', error);
-  }
+export default function signupApi(
+  email: string,
+  password: string,
+) {
+  createUserWithEmailAndPassword(auth, email, password)
+    .then(({ user }) => {
+      console.log(user);
+      const dispatch = useAppDispatch();
+      dispatch(
+        setUser({
+          email: user.email,
+          id: user.uid,
+          token: user.refreshToken,
+        }),
+      );
+      const navigate = useNavigate();
+      navigate("/");
+    })
+    .catch(console.error);
 }
-
-
-  
-/* export function signUp({ login, name, password }) {
-    return fetch(userHost, {
-      method: "POST",
-      body: JSON.stringify({
-        login,
-        name,
-        password,
-      }),
-    }).then((response) => {
-      if (response.status === 400) {
-        throw new Error("Пользователь уже зарегистрирован");
-      }
-      return response.json();
-    });
-  } */
