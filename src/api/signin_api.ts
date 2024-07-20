@@ -19,6 +19,10 @@ export default function signinApi(email: string, password: string) {
       const navigate = useNavigate();
       navigate("/");
       console.log(user);
+      //временно для тестов и отслеживания что получаем на выходе
+      console.log("Token:", user.refreshToken);
+      console.log("ID:", user.uid);
+      console.log("Email:", user.email);
     })
     .catch(() => alert("Invalid user!"));
 
