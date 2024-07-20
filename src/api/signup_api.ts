@@ -8,6 +8,7 @@ export default function signupApi(
   email: string,
   password: string,
 ) {
+  
   createUserWithEmailAndPassword(auth, email, password)
     .then(({ user }) => {
       console.log(user);
