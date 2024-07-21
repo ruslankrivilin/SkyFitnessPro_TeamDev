@@ -8,9 +8,9 @@ import { appRoutes } from "../../../lib/appRoutes";
 // import UserModal from "../UserModal/UserModal";
 type HeaderType = {
   page: string;
-}
+};
 
-export default function Header({page}: HeaderType) {
+export default function Header({ page }: HeaderType) {
   const [isAuthorizated, setIsAuthorizated] = useState<boolean>(false);
   const [isOpenedSigninForm, setIsOpenedSigninForm] = useState<boolean>(false);
   const [isOpenedUserModal, setIsOpenedUserModal] = useState<boolean>(false);
@@ -24,10 +24,10 @@ export default function Header({page}: HeaderType) {
     } else {
       setIsAuthorizated(false);
     }
-  }, []);
+  }, [page]);
 
   useEffect(() => {
-    if (page === "CorrectForTextPage") {
+    if (page) {
       setIsCorrectForTextPage(true);
     } else {
       setIsCorrectForTextPage(false);
@@ -42,16 +42,16 @@ export default function Header({page}: HeaderType) {
   }
 
   return (
-    <div className="flex justify-between py-[40px] md:pt-[50px] md:pb-[60px]">
-      <div className="flex flex-col ">
+    <div className="flex justify-between py-[40px] md:pb-[60px] md:pt-[50px]">
+      <div className="flex flex-col">
         <div className="flex md:mb-[15px]">
           <Link to={appRoutes.MAIN}>
             <img src="/images/logo.png" alt="logo" />
           </Link>
         </div>
         {isCorrectForTextPage && (
-          <div className="space-y-[60px] ">
-            <p className="font-roboto  hidden md:flex md:text-stone-500">
+          <div className="space-y-[60px]">
+            <p className="font-roboto hidden md:flex md:text-stone-500">
               Онлайн тренировки для занятий дома
             </p>
           </div>
@@ -60,21 +60,21 @@ export default function Header({page}: HeaderType) {
 
       {/* Если пользователь авторизован, то user Блок */}
       {isAuthorizated ? (
-        <div className="flex items-center">
-          <svg className="h-[36px] w-[36px] mr-[10px] md:m-[16px] md:h-[50px] md:w-[50px]">
+        <div className="flex items-center" onClick={handleUserModal}>
+          <svg className="mr-[10px] h-[36px] w-[36px] md:m-[16px] md:h-[50px] md:w-[50px]">
             <use xlinkHref="./public/icons/sprite.svg#icon-profile" />
           </svg>
 
-          <div className="ml-2 flex items-center" onClick={handleUserModal}>
-            <div className="hidden md:mr-[12px] ">Сергей</div>
-            <svg className="w-[8px] h-[4px] md:h-[8px] ">
+          <div className="ml-2 flex items-center">
+            <div className="hidden md:mr-[12px]">Сергей</div>
+            <svg className="h-[4px] w-[8px] md:h-[8px]">
               <use xlinkHref="./public/icons/sprite.svg#icon-user-arrow" />
             </svg>
           </div>
         </div>
       ) : (
         <div
-          className="rounded-buttonRadius bg-mainColor text-center size-[18px]  font-normal text-black hover:bg-mainHover px-[16px] py-[8px] w-[83px] h-[36px] md:px-btnX md:py-btnY md:w-[103px] md:h-[52px] md:leading-[20px]"
+          className="size-[18px] h-[36px] w-[83px] rounded-buttonRadius bg-mainColor px-[16px] py-[8px] text-center font-normal text-black hover:bg-mainHover md:h-[52px] md:w-[103px] md:px-btnX md:py-btnY md:leading-[20px]"
           onClick={handleOpenSigninForm}
         >
           Войти
@@ -83,7 +83,9 @@ export default function Header({page}: HeaderType) {
       {isOpenedSigninForm && (
         <SigninForm setIsOpenedSigninForm={setIsOpenedSigninForm} />
       )}
-      {isOpenedUserModal && <UserModal setIsOpenedUserModal={setIsOpenedUserModal}/>}
+      {isOpenedUserModal && (
+        <UserModal setIsOpenedUserModal={setIsOpenedUserModal} />
+      )}
     </div>
   );
 }

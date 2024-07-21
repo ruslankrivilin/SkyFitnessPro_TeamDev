@@ -7,7 +7,7 @@ export default function UserModal() {
   };
 
   return (
-    <div className="bg-whit absolute right-0 top-16 mr-[140px] mt-[74px] grid gap-[34px] rounded-blockRadius p-l text-center shadow-[0_4px_67px_-12px_rgba(0,0,0,0.13)]">
+    <div className="z-[9999] bg-white absolute right-0 top-16 mr-[140px] mt-[74px] grid gap-[34px] rounded-blockRadius p-l text-center shadow-[0_4px_67px_-12px_rgba(0,0,0,0.13)]">
       <div>
         <div>Сергей</div>
         <div>sergey.petrov96@mail.ru</div>
