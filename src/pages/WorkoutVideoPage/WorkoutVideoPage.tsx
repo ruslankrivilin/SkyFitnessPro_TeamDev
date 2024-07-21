@@ -4,6 +4,8 @@
 /* import { useParams } from "react-router-dom"; */
 /* import MyProgressModal from "../../components/OtherModals/MyProgressModal/MyProgressModal"; */
 
+/* import Exercises from "../../components/OtherComponents/Exercises/Exercises"; */
+
 export default function WorkoutVideoPage() {
   /* const {id} = useParams() */
 
@@ -13,6 +15,7 @@ export default function WorkoutVideoPage() {
       {/* <CourseCard isMainPage={false} /> */}
       {/* <WorkoutModal /> */}
       {/* <MyProgressModal /> */}
+      {/* <Exercises /> */}
     </>
   );
 }
