@@ -22,9 +22,12 @@ const CourseData = [
   },
 ];
 
+interface TooltipState {
+  [key: number]: boolean;
+}
+
 export default function CourseCard({ isMainPage }: { isMainPage: boolean }) {
-  const [courses] = useState(CourseData);
-  const [showTooltips, setShowTooltips] = useState([{}]);
+  const [showTooltips, setShowTooltips] = useState<TooltipState>({});
 
   const handleMouseEnter = (id: number) => {
     setShowTooltips((prev) => ({ ...prev, [id]: true }));
@@ -37,8 +40,8 @@ export default function CourseCard({ isMainPage }: { isMainPage: boolean }) {
   return (
     <>
       <div className="flex flex-wrap gap-[40px]">
-        {courses.map((el, index) => (
-          <div className="rounded-3xl bg-white" key={index}>
+        {CourseData.map((el, index) => (
+          <div key={index}>
             <div className="relative mb-[24px]">
               <img
                 className="rounded-3xl object-contain"
@@ -56,7 +59,7 @@ export default function CourseCard({ isMainPage }: { isMainPage: boolean }) {
                       <use xlinkHref="/public/icons/sprite.svg#icon-plus" />
                     </svg>
                     {showTooltips[index] && (
-                      <span className="absolute left-[64px] z-[9999] whitespace-nowrap rounded-[5px] border-[1px] border-black bg-white p-[6px] pl-[20px] pr-[20px] text-center text-black">
+                      <span className="absolute left-[64px] z-[1] whitespace-nowrap rounded-[5px] border-[1px] border-black bg-white p-[6px] pl-[20px] pr-[20px] text-center text-black">
                         Добавить курс
                       </span>
                     )}
@@ -80,26 +83,26 @@ export default function CourseCard({ isMainPage }: { isMainPage: boolean }) {
               </div>
             </div>
 
-            <div className="mx-[32px] flex list-none flex-col rounded-[12px]">
+            <div className="mx-[30px] flex flex-col">
               <div>
-                <h1 className="mb-[2px] flex flex-row text-3xl">
+                <h1 className="mb-[20px] flex flex-row text-3xl">
                   {el.courseName}
                 </h1>
                 <div className="mb-[2px] flex w-[288px] flex-wrap">
-                  <div className="m-[6px] flex content-center items-center">
-                    <svg className="m-[8px] h-[15px] w-[15px]">
+                  <div className="m-x-[6px] m-y-[3px] flex content-center items-center p-[10px]">
+                    <svg className="mr-[8px] h-[15px] w-[15px]">
                       <use xlinkHref="/public/icons/sprite.svg#icon-calendar" />
                     </svg>
                     <p className="text-base">25 дней</p>
                   </div>
-                  <div className="m-[6px] flex content-center items-center">
-                    <svg className="m-[8px] h-[15px] w-[15px]">
+                  <div className="m-x-[6px] m-y-[3px] flex content-center items-center p-[10px]">
+                    <svg className="mr-[8px] h-[15px] w-[15px]">
                       <use xlinkHref="/public/icons/sprite.svg#icon-clockface" />
                     </svg>
                     <p className="text-base">20-50 мин/день</p>
                   </div>
-                  <div className="m-[6px] flex content-center items-center">
-                    <svg className="m-[8px] h-[15px] w-[15px]">
+                  <div className="m-x-[6px] m-y-[3px] flex content-center items-center p-[10px]">
+                    <svg className="mr-[8px] h-[15px] w-[15px]">
                       <use xlinkHref="/public/icons/sprite.svg#icon-difficult-full" />
                     </svg>
                     <p className="text-base">Сложность</p>
