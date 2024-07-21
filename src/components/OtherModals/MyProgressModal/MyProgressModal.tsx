@@ -59,7 +59,7 @@ export default function MyProgressModal({ setIsOpenedMyProgress }: MyProgress) {
   };
 
   return (
-    <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black bg-opacity-50">
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black bg-opacity-20">
       <div className="flex-col justify-center rounded-[30px] bg-white">
         {isSuccess ? (
           <>
