@@ -80,11 +80,11 @@ export default function MyProgressModal({ setIsOpenedMyProgress }: MyProgress) {
             <div className="h-[364px] overflow-y-scroll scroll-smooth">
               {testArr.map((el) => (
                 <div key={el.id} className="mr-[20px]">
-                  <p className="mb-[10px] rounded-xl text-lg">{el.title}</p>
+                  <p className="mb-[10px] rounded-xl text-[18px]">{el.title}</p>
                   <input
                     value={progressData[el.id] || ""}
                     onChange={(e) => handleInputChange(e, el.id)}
-                    className="border-colorBorderBtn mb-[20px] h-[48px] w-[288px] rounded-lg border-[1px] p-[20px] text-lg opacity-75"
+                    className="border-colorBorderBtn mb-[20px] h-[48px] w-[288px] rounded-lg border-[1px] p-[20px] text-[18px] opacity-75"
                     type="number"
                     placeholder="0"
                   />
@@ -95,9 +95,9 @@ export default function MyProgressModal({ setIsOpenedMyProgress }: MyProgress) {
           <div className="flex content-center items-center justify-center">
             <button
               onClick={handleClickSaveProgress}
-              className="mt-[24px] rounded-[30px] bg-mainColor hover:bg-mainHover"
+              className="mt-[24px] block w-full rounded-[30px] bg-mainColor text-[18px] hover:bg-mainHover"
             >
-              <p className="text-l mx-[128px] my-[16px]">Сохранить</p>
+              <p className="mx-[128px] my-[16px]">Сохранить</p>
             </button>
           </div>
         </div>

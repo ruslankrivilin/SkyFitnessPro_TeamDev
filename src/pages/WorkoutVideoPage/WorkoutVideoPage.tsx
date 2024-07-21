@@ -1,9 +1,8 @@
 /* import Header from "../../components/Common/Header/Header"; */
 /* import CourseCard from "../../components/Common/CourseCard/CourseCard"; */
-
-import WorkoutModal from "../../components/OtherModals/WorkoutModal/WorkoutModal";
-
+/* import WorkoutModal from "../../components/OtherModals/WorkoutModal/WorkoutModal";
 /* import { useParams } from "react-router-dom"; */
+/* import MyProgressModal from "../../components/OtherModals/MyProgressModal/MyProgressModal"; */
 
 export default function WorkoutVideoPage() {
   /* const {id} = useParams() */
@@ -12,7 +11,8 @@ export default function WorkoutVideoPage() {
     <>
       {/* <Header /> */}
       {/* <CourseCard isMainPage={false} /> */}
-      <WorkoutModal />
+      {/* <WorkoutModal /> */}
+      {/* <MyProgressModal /> */}
     </>
   );
 }
