@@ -92,26 +92,26 @@ export default function CourseCard({ isMainPage }: { isMainPage: boolean }) {
                   <svg className="mr-[8px] h-[15px] w-[15px]">
                     <use xlinkHref="/public/icons/sprite.svg#icon-calendar" />
                   </svg>
-                  <p className="text-base">25 дней</p>
+                  <p className="text-[16px]">25 дней</p>
                 </div>
                 <div className="m-x-[6px] m-y-[3px] flex content-center items-center p-[10px]">
                   <svg className="mr-[8px] h-[15px] w-[15px]">
                     <use xlinkHref="/public/icons/sprite.svg#icon-clockface" />
                   </svg>
-                  <p className="text-base">20-50 мин/день</p>
+                  <p className="text-[16px]">20-50 мин/день</p>
                 </div>
                 <div className="m-x-[6px] m-y-[3px] flex content-center items-center p-[10px]">
                   <svg className="mr-[8px] h-[15px] w-[15px]">
                     <use xlinkHref="/public/icons/sprite.svg#icon-difficult-full" />
                   </svg>
-                  <p className="text-base">Сложность</p>
+                  <p className="text-[16px]">Сложность</p>
                 </div>
               </div>
 
               {!isMainPage && (
                 <div>
                   <div>
-                    <p className="flex justify-start bg-bgColor text-lg">
+                    <p className="flex justify-start bg-bgColor text-[18px]">
                       Прогресс {el.totalProgress}%
                     </p>
                     <progress
@@ -120,7 +120,7 @@ export default function CourseCard({ isMainPage }: { isMainPage: boolean }) {
                       max="100"
                     ></progress>
                   </div>
-                  <button className="text-l mb-[15px] mt-[34px] block w-full rounded-[30px] bg-mainColor hover:bg-mainHover">
+                  <button className="mb-[15px] mt-[34px] block w-full rounded-[30px] bg-mainColor text-[18px] hover:bg-mainHover">
                     <h2 className="mx-[68px] my-[16px]">
                       {el.totalProgress === 0 && "Начать тренировку"}
                       {el.totalProgress === 100 && "Начать заново"}

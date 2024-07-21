@@ -115,7 +115,7 @@ export default function WorkoutModal() {
           </div>
           <div className="mt-[34px] flex content-center items-center justify-center">
             <button
-              className="text-l block w-full rounded-[30px] bg-mainColor hover:bg-mainHover"
+              className="block w-full rounded-[30px] bg-mainColor text-[18px] hover:bg-mainHover"
               disabled={training === null && true}
               onClick={handleClickStart}
             >
