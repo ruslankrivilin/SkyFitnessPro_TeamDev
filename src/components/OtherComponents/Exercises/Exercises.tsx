@@ -22,9 +22,9 @@ export default function Exercises({ setIsOpenedMyProgress }: Exercises) {
   ];
 
   return (
-    <div className="mt-[40px] flex rounded-3xl bg-white">
+    <div className="mt-[40px] flex rounded-[30px] bg-white">
       <div className="flex flex-col p-[40px]">
-        <h1 className="mb-[20px] text-3xl">Упражнения тренировки 2</h1>
+        <h1 className="mb-[20px] text-[32px]">Упражнения тренировки 2</h1>
         <div className="mb-[40px] flex h-[164px] flex-col flex-wrap gap-[16px]">
           {testArr.map((item, itemIndex) => (
             <div key={itemIndex} className="flex flex-col gap-[10px]">
@@ -42,7 +42,7 @@ export default function Exercises({ setIsOpenedMyProgress }: Exercises) {
 
         <button
           onClick={handleClick}
-          className="text-l mt-[8px] h-[48px] w-[288px] rounded-3xl bg-mainColor"
+          className="text-l mt-[8px] h-[48px] w-[288px] rounded-[30px] bg-mainColor"
         >
           Заполнить свой прогресс
         </button>

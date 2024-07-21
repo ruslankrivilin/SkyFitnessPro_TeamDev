@@ -44,7 +44,7 @@ export default function CourseCard({ isMainPage }: { isMainPage: boolean }) {
           <div key={index}>
             <div className="relative mb-[24px]">
               <img
-                className="rounded-3xl object-contain"
+                className="rounded-[30px] object-contain"
                 src={el.imgSrc}
                 alt=""
               />
@@ -84,7 +84,7 @@ export default function CourseCard({ isMainPage }: { isMainPage: boolean }) {
             </div>
 
             <div className="mx-[30px] flex flex-col">
-              <h1 className="mb-[20px] flex flex-row text-3xl">
+              <h1 className="mb-[20px] flex flex-row text-[32px]">
                 {el.courseName}
               </h1>
               <div className="mb-[20px] flex w-[288px] flex-wrap">
@@ -120,7 +120,7 @@ export default function CourseCard({ isMainPage }: { isMainPage: boolean }) {
                       max="100"
                     ></progress>
                   </div>
-                  <button className="text-l mb-[15px] mt-[34px] block w-full rounded-3xl bg-mainColor hover:bg-mainHover">
+                  <button className="text-l mb-[15px] mt-[34px] block w-full rounded-[30px] bg-mainColor hover:bg-mainHover">
                     <h2 className="mx-[68px] my-[16px]">
                       {el.totalProgress === 0 && "Начать тренировку"}
                       {el.totalProgress === 100 && "Начать заново"}

@@ -59,7 +59,7 @@ export default function MyProgressModal({ setIsOpenedMyProgress }: MyProgress) {
   };
 
   return (
-    <div className="flex-col justify-center rounded-3xl bg-white">
+    <div className="flex-col justify-center rounded-[30px] bg-white">
       {isSuccess ? (
         <>
           <div className="flex w-[426px] flex-col gap-[34px] p-[40px]">
@@ -72,7 +72,7 @@ export default function MyProgressModal({ setIsOpenedMyProgress }: MyProgress) {
       ) : (
         <div className="w-[426px] p-[40px]">
           <div>
-            <h1 className="mb-[48px] flex justify-start text-3xl">
+            <h1 className="mb-[48px] flex justify-start text-[32px]">
               Мой прогресс
             </h1>
           </div>
@@ -95,7 +95,7 @@ export default function MyProgressModal({ setIsOpenedMyProgress }: MyProgress) {
           <div className="flex content-center items-center justify-center">
             <button
               onClick={handleClickSaveProgress}
-              className="mt-[24px] rounded-3xl bg-mainColor hover:bg-mainHover"
+              className="mt-[24px] rounded-[30px] bg-mainColor hover:bg-mainHover"
             >
               <p className="text-l mx-[128px] my-[16px]">Сохранить</p>
             </button>

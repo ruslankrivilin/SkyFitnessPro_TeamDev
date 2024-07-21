@@ -66,26 +66,26 @@ export default function WorkoutModal() {
   }
 
   return (
-    <div className="flex w-[460px] justify-center rounded-3xl bg-white p-[40px] shadow-blockShadow shadow-gray-400">
+    <div className="flex w-[460px] justify-center rounded-[30px] bg-white p-[40px] shadow-blockShadow shadow-gray-400">
       <div className="w-[380px]">
         <div>
-          <h1 className="mb-[48px] flex justify-center text-3xl">
+          <h1 className="mb-[48px] flex justify-center text-[32px]">
             Выберите тренировку
           </h1>
         </div>
         <div>
-          <div className="mb-[34px] overflow-hidden scroll-smooth">
-            <div className="h-[330px] overflow-y-scroll scroll-smooth">
+          <div className="overflow-hidden scroll-smooth">
+            <div className="h-[354px] overflow-y-scroll scroll-smooth">
               {testArr.map((el, index) => (
-                <div key={index} className="mb-[10px] h-[56px] pb-[8px]">
+                <div key={index} className="mb-[20px] h-[54px] pb-[8px]">
                   {el.progress === 100 ? (
-                    <div className="pointer-events-none mb-[10px] flex content-center items-center justify-start border-b-[1px] border-gray-300">
+                    <div className="border-underLineColor pointer-events-none mb-[20px] flex content-center items-center justify-start border-b-[1px]">
                       <svg className="ml-[2px] mr-[12px] h-[20px] w-[20px]">
                         <use xlinkHref="/public/icons/sprite.svg#icon-done" />
                       </svg>
-                      <div className="mr-[10px]">
-                        <p className="text-2xl text-zinc-500">{el.title}</p>
-                        <p className="text-zinc-500">
+                      <div className="mb-[10px] mr-[10px]">
+                        <p className="text-[24px] text-zinc-500">{el.title}</p>
+                        <p className="text-[18px] text-zinc-500">
                           {el.description} / {el.day} день
                         </p>
                       </div>
@@ -94,7 +94,7 @@ export default function WorkoutModal() {
                     /* border-b-[1px] border-mainColor */
                     <div
                       onClick={() => handleSelectTraining(index, el)}
-                      className={`mb-[10px] flex cursor-pointer content-center items-center justify-start border-b-[1px] border-gray-300`}
+                      className={`border-underLineColor mb-[20px] flex cursor-pointer content-center items-center justify-start border-b-[1px]`}
                     >
                       <svg className="ml-[2px] mr-[12px] h-[20px] w-[20px]">
                         <use
@@ -102,8 +102,8 @@ export default function WorkoutModal() {
                         />
                       </svg>
                       <div className="mr-[10px]">
-                        <p className="text-2xl">{el.title}</p>
-                        <p>
+                        <p className="text-[24px]">{el.title}</p>
+                        <p className="text-[18px]">
                           {el.description} / {el.day} день
                         </p>
                       </div>
@@ -113,9 +113,9 @@ export default function WorkoutModal() {
               ))}
             </div>
           </div>
-          <div className="flex content-center items-center justify-center">
+          <div className="mt-[34px] flex content-center items-center justify-center">
             <button
-              className="text-l rounded-3xl bg-mainColor hover:bg-mainHover"
+              className="text-l block w-full rounded-[30px] bg-mainColor hover:bg-mainHover"
               disabled={training === null && true}
               onClick={handleClickStart}
             >
