@@ -84,55 +84,53 @@ export default function CourseCard({ isMainPage }: { isMainPage: boolean }) {
             </div>
 
             <div className="mx-[30px] flex flex-col">
-              <div>
-                <h1 className="mb-[20px] flex flex-row text-3xl">
-                  {el.courseName}
-                </h1>
-                <div className="mb-[2px] flex w-[288px] flex-wrap">
-                  <div className="m-x-[6px] m-y-[3px] flex content-center items-center p-[10px]">
-                    <svg className="mr-[8px] h-[15px] w-[15px]">
-                      <use xlinkHref="/public/icons/sprite.svg#icon-calendar" />
-                    </svg>
-                    <p className="text-base">25 дней</p>
-                  </div>
-                  <div className="m-x-[6px] m-y-[3px] flex content-center items-center p-[10px]">
-                    <svg className="mr-[8px] h-[15px] w-[15px]">
-                      <use xlinkHref="/public/icons/sprite.svg#icon-clockface" />
-                    </svg>
-                    <p className="text-base">20-50 мин/день</p>
-                  </div>
-                  <div className="m-x-[6px] m-y-[3px] flex content-center items-center p-[10px]">
-                    <svg className="mr-[8px] h-[15px] w-[15px]">
-                      <use xlinkHref="/public/icons/sprite.svg#icon-difficult-full" />
-                    </svg>
-                    <p className="text-base">Сложность</p>
-                  </div>
+              <h1 className="mb-[20px] flex flex-row text-3xl">
+                {el.courseName}
+              </h1>
+              <div className="mb-[20px] flex w-[288px] flex-wrap">
+                <div className="m-x-[6px] m-y-[3px] flex content-center items-center p-[10px]">
+                  <svg className="mr-[8px] h-[15px] w-[15px]">
+                    <use xlinkHref="/public/icons/sprite.svg#icon-calendar" />
+                  </svg>
+                  <p className="text-base">25 дней</p>
                 </div>
-
-                {!isMainPage && (
-                  <div>
-                    <div className="mb-[40px]">
-                      <p className="flex justify-start bg-bgColor text-lg">
-                        Прогресс {el.totalProgress}%
-                      </p>
-                      <progress
-                        className="inline-block h-[6px] w-[288px] appearance-none align-middle"
-                        value={el.totalProgress}
-                        max="100"
-                      ></progress>
-                    </div>
-                    <button className="text-l mb-[15px] flex content-center items-center justify-center rounded-3xl bg-mainColor hover:bg-mainHover">
-                      <h2 className="mx-[68px] my-[16px]">
-                        {el.totalProgress === 0 && "Начать тренировку"}
-                        {el.totalProgress === 100 && "Начать заново"}
-                        {el.totalProgress > 0 &&
-                          el.totalProgress !== 100 &&
-                          "Продолжить"}
-                      </h2>
-                    </button>
-                  </div>
-                )}
+                <div className="m-x-[6px] m-y-[3px] flex content-center items-center p-[10px]">
+                  <svg className="mr-[8px] h-[15px] w-[15px]">
+                    <use xlinkHref="/public/icons/sprite.svg#icon-clockface" />
+                  </svg>
+                  <p className="text-base">20-50 мин/день</p>
+                </div>
+                <div className="m-x-[6px] m-y-[3px] flex content-center items-center p-[10px]">
+                  <svg className="mr-[8px] h-[15px] w-[15px]">
+                    <use xlinkHref="/public/icons/sprite.svg#icon-difficult-full" />
+                  </svg>
+                  <p className="text-base">Сложность</p>
+                </div>
               </div>
+
+              {!isMainPage && (
+                <div>
+                  <div>
+                    <p className="flex justify-start bg-bgColor text-lg">
+                      Прогресс {el.totalProgress}%
+                    </p>
+                    <progress
+                      className="inline-block h-[6px] w-full appearance-none align-middle"
+                      value={el.totalProgress}
+                      max="100"
+                    ></progress>
+                  </div>
+                  <button className="text-l mb-[15px] mt-[34px] block w-full rounded-3xl bg-mainColor hover:bg-mainHover">
+                    <h2 className="mx-[68px] my-[16px]">
+                      {el.totalProgress === 0 && "Начать тренировку"}
+                      {el.totalProgress === 100 && "Начать заново"}
+                      {el.totalProgress > 0 &&
+                        el.totalProgress !== 100 &&
+                        "Продолжить"}
+                    </h2>
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         ))}

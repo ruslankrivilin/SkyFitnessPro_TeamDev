@@ -9,7 +9,7 @@ export default function WorkoutVideoPage() {
   return (
     <>
       {/* <Header /> */}
-      <CourseCard isMainPage={true} />
+      <CourseCard isMainPage={false} />
     </>
   );
 }
