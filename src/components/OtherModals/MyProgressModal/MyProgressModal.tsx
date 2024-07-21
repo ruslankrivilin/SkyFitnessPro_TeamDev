@@ -43,7 +43,7 @@ export default function MyProgressModal({ setIsOpenedMyProgress }: MyProgress) {
     setTimeout(() => {
       setIsOpenedMyProgress(false);
       setIsSuccess(false);
-    }, 3000);
+    }, 2000);
   }
 
   const handleInputChange = (
@@ -63,8 +63,10 @@ export default function MyProgressModal({ setIsOpenedMyProgress }: MyProgress) {
       <div className="flex-col justify-center rounded-[30px] bg-white">
         {isSuccess ? (
           <>
-            <div className="flex w-[426px] flex-col gap-[34px] p-[40px]">
-              <h1>Ваш прогресс засчитан!</h1>
+            <div className="flex w-[426px] flex-col items-center justify-center p-[40px]">
+              <h1 className="mb-[34px] text-center text-[40px]">
+                Ваш прогресс засчитан!
+              </h1>
               <svg className="h-[68px] w-[68px]">
                 <use xlinkHref="/public/icons/sprite.svg#icon-done" />
               </svg>
