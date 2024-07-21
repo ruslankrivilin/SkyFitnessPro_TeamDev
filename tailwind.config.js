@@ -2,6 +2,13 @@
 
 export default {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  safelist: [ // Вот здесь укажи все возможные классы
+    'bg-yogaColor',
+    'bg-stretchingColor',
+    'bg-zumbaColor',
+    'bg-stepAerobicColor',
+    'bg-bodyFlexColor',
+  ],
   theme: {
     screens: {
       sm: "480px",
