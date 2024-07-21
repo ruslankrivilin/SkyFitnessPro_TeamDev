@@ -39,7 +39,6 @@ export default function WorkoutVideoPage() {
             className="left-0 top-0 h-[639px] w-full"
             src="https://cdn.pixabay.com/video/2023/01/27/148212-793717957_large.mp4"
             title="Vidio training"
-            frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
           ></iframe>
