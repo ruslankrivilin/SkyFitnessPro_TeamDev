@@ -6,13 +6,31 @@ import { useState } from "react";
 export default function WorkoutVideoPage() {
   const [isOpenedMyProgress, setIsOpenedMyProgress] = useState<boolean>(false);
 
+  const workoutProgress = [
+    { id: 1, info: "Наклоны вперед", progress: 90 },
+    { id: 2, info: "Наклоны назад", progress: 100 },
+    { id: 3, info: "Поднятие ног, согнутых в коленях", progress: 100 },
+    { id: 4, info: "Поднятие ног, согнутых в коленях", progress: 63 },
+    { id: 5, info: "Наклоны вперед", progress: 42 },
+    { id: 6, info: "Наклоны назад", progress: 93 },
+    { id: 7, info: "Поднятие ног, согнутых в коленях", progress: 100 },
+    { id: 8, info: "Наклоны вперед", progress: 100 },
+    { id: 9, info: "Поднятие ног, согнутых в коленях", progress: 23 },
+  ];
+
+  const NameSelectedCourse = "Йога";
+  const workoutNumber = "2";
+  const paths = "Красота и здоровье / Йога на каждый день / 2 день";
+
   return (
     <>
       <Header />
       <div className="flex-start mt-[20px] flex flex-col">
-        <h1 className="mb-[24px] text-[60px] font-medium">Йога</h1>
+        <h1 className="mb-[24px] text-[60px] font-medium">
+          {NameSelectedCourse}
+        </h1>
         <p className="mb-[40px] w-[800px] border-b-[2px] border-black text-[32px]">
-          Красота и здоровье / Йога на каждый день / 2 день
+          {paths}
         </p>
       </div>
       <div className="mb-[40px] flex items-center justify-center bg-gray-100">
@@ -27,7 +45,11 @@ export default function WorkoutVideoPage() {
           ></iframe>
         </div>
       </div>
-      <Exercises setIsOpenedMyProgress={setIsOpenedMyProgress} />
+      <Exercises
+        setIsOpenedMyProgress={setIsOpenedMyProgress}
+        workoutProgress={workoutProgress}
+        workoutNumber={workoutNumber}
+      />
       {isOpenedMyProgress && (
         <MyProgressModal setIsOpenedMyProgress={setIsOpenedMyProgress} />
       )}
