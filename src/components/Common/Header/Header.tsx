@@ -22,7 +22,7 @@ export default function Header({ page }: HeaderType) {
     if (user) {
       setIsAuthorizated(true);
     } else {
-      setIsAuthorizated(false);
+      setIsAuthorizated(true);
     }
   }, [page]);
 
@@ -43,8 +43,8 @@ export default function Header({ page }: HeaderType) {
 
   return (
     <div className="flex justify-between py-[40px] md:pb-[60px] md:pt-[50px]">
-      <div className="flex flex-col">
-        <div className="flex md:mb-[15px]">
+      <div className="flex flex-col pr-[69px]">
+        <div className="flex w-[220px] h-[35px] md:mb-[15px]">
           <Link to={appRoutes.MAIN}>
             <img src="/images/logo.png" alt="logo" />
           </Link>
@@ -61,7 +61,7 @@ export default function Header({ page }: HeaderType) {
       {/* Если пользователь авторизован, то user Блок */}
       {isAuthorizated ? (
         <div className="flex items-center" onClick={handleUserModal}>
-          <svg className="mr-[10px] h-[36px] w-[36px] md:m-[16px] md:h-[50px] md:w-[50px]">
+          <svg className="pr-[10px] h-[36px] w-[36px] md:m-[16px] md:h-[50px] md:w-[50px]">
             <use xlinkHref="./public/icons/sprite.svg#icon-profile" />
           </svg>
 
