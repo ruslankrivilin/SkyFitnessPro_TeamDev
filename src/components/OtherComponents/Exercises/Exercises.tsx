@@ -24,7 +24,7 @@ export default function Exercises({ setIsOpenedMyProgress }: Exercises) {
   return (
     <div className="rounded-[30px] bg-white p-[40px] shadow-blockShadow">
       <h1 className="mb-[20px] text-[32px]">Упражнения тренировки 2</h1>
-      <div className="mb-[40px] grid grid-cols-3 gap-x-[60px] gap-y-[20px]">
+      <div className="mb-[40px] grid grid-cols-1 gap-x-[60px] gap-y-[24px] md:grid-cols-3 md:gap-y-[20px]">
         {testArr.map((item, itemIndex) => (
           <div key={itemIndex} className="flex flex-col">
             <p className="font-roboto text-[18px] font-normal">
@@ -41,9 +41,9 @@ export default function Exercises({ setIsOpenedMyProgress }: Exercises) {
 
       <button
         onClick={handleClick}
-        className="w-[288px] rounded-[30px] bg-mainColor py-[16px] text-[18px]"
+        className="rounded-[30px] bg-mainColor text-[18px]"
       >
-        Заполнить свой прогресс
+        <p className="mx-[37px] my-[16px]">Заполнить свой прогресс</p>
       </button>
     </div>
   );

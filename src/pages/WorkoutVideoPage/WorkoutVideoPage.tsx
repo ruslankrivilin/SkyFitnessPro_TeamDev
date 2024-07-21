@@ -1,12 +1,12 @@
 /* import Header from "../../components/Common/Header/Header"; */
 /* import MyProgressModal from "../../components/OtherModals/MyProgressModal/MyProgressModal"; */
-/* import Exercises from "../../components/OtherComponents/Exercises/Exercises"; */
-/* import { useState } from "react"; */
+import Exercises from "../../components/OtherComponents/Exercises/Exercises";
+import { useState } from "react";
 /* import CourseCard from "../../components/Common/CourseCard/CourseCard"; */
-import WorkoutModal from "../../components/OtherModals/WorkoutModal/WorkoutModal";
+/* import WorkoutModal from "../../components/OtherModals/WorkoutModal/WorkoutModal"; */
 
 export default function WorkoutVideoPage() {
-  /*   const [isOpenedMyProgress, setIsOpenedMyProgress] = useState<boolean>(false); */
+  const [isOpenedMyProgress, setIsOpenedMyProgress] = useState<boolean>(false);
 
   return (
     <>
@@ -26,10 +26,10 @@ export default function WorkoutVideoPage() {
           ></iframe>
         </div>
       </div> */}
-      {/*    <Exercises setIsOpenedMyProgress={setIsOpenedMyProgress} /> */}
+      <Exercises setIsOpenedMyProgress={setIsOpenedMyProgress} />
 
       {/* <CourseCard isMainPage={false} /> */}
-      <WorkoutModal />
+      {/* <WorkoutModal /> */}
       {/* <MyProgressModal /> */}
     </>
   );
