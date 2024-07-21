@@ -67,7 +67,7 @@ export default function WorkoutModal() {
 
   return (
     <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black bg-opacity-50">
-      <div className="flex w-[343px] justify-center rounded-[30px] bg-white p-[30px] shadow-blockShadow shadow-gray-400 sm:w-[460px] sm:p-[40px]">
+      <div className="flex w-[343px] justify-center rounded-[30px] bg-white p-[30px] shadow-blockShadow sm:w-[460px] sm:p-[40px]">
         <div>
           <div className="mb-[34px] w-[283px] sm:mb-[48px] sm:w-[346px]">
             <h1 className="text-[32px]">Выберите тренировку</h1>

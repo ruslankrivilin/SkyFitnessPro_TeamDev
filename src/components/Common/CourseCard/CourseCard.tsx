@@ -39,9 +39,12 @@ export default function CourseCard({ isMainPage }: { isMainPage: boolean }) {
 
   return (
     <>
-      <div className="flex flex-wrap justify-center gap-[40px] sm:justify-center md:justify-center lg:justify-start">
+      <div className="mt-[50px] flex flex-wrap justify-center gap-[40px] sm:justify-center md:justify-center lg:justify-start">
         {CourseData.map((el, index) => (
-          <div key={index}>
+          <div
+            key={index}
+            className="rounded-[30px] bg-bgColor shadow-blockShadow"
+          >
             <div className="relative mb-[24px]">
               <img
                 className="rounded-[30px] object-contain"
