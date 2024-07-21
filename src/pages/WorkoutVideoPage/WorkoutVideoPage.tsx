@@ -1,19 +1,20 @@
-/* import Header from "../../components/Common/Header/Header"; */
-/* import MyProgressModal from "../../components/OtherModals/MyProgressModal/MyProgressModal"; */
+import Header from "../../components/Common/Header/Header";
+import MyProgressModal from "../../components/OtherModals/MyProgressModal/MyProgressModal";
 import Exercises from "../../components/OtherComponents/Exercises/Exercises";
 import { useState } from "react";
-/* import CourseCard from "../../components/Common/CourseCard/CourseCard"; */
-/* import WorkoutModal from "../../components/OtherModals/WorkoutModal/WorkoutModal"; */
 
 export default function WorkoutVideoPage() {
   const [isOpenedMyProgress, setIsOpenedMyProgress] = useState<boolean>(false);
 
   return (
     <>
-      {/*  {isOpenedMyProgress && (
-        <MyProgressModal setIsOpenedMyProgress={setIsOpenedMyProgress} />
-      )} */}
-      {/* <Header />
+      <Header />
+      <div className="flex-start mt-[20px] flex flex-col">
+        <h1 className="mb-[24px] text-[60px] font-medium">Йога</h1>
+        <p className="mb-[40px] w-[800px] border-b-[2px] border-black text-[32px]">
+          Красота и здоровье / Йога на каждый день / 2 день
+        </p>
+      </div>
       <div className="mb-[40px] flex items-center justify-center bg-gray-100">
         <div className="aspect-w-16 aspect-h-9 relative max-h-[639px] w-full max-w-[1160px] overflow-hidden rounded-lg shadow-lg">
           <iframe
@@ -25,12 +26,11 @@ export default function WorkoutVideoPage() {
             allowFullScreen
           ></iframe>
         </div>
-      </div> */}
+      </div>
       <Exercises setIsOpenedMyProgress={setIsOpenedMyProgress} />
-
-      {/* <CourseCard isMainPage={false} /> */}
-      {/* <WorkoutModal /> */}
-      {/* <MyProgressModal /> */}
+      {isOpenedMyProgress && (
+        <MyProgressModal setIsOpenedMyProgress={setIsOpenedMyProgress} />
+      )}
     </>
   );
 }
