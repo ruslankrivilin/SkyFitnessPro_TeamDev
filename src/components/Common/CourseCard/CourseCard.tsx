@@ -39,7 +39,7 @@ export default function CourseCard({ isMainPage }: { isMainPage: boolean }) {
 
   return (
     <>
-      <div className="flex flex-wrap gap-[40px]">
+      <div className="flex flex-wrap justify-center gap-[40px]">
         {CourseData.map((el, index) => (
           <div key={index}>
             <div className="relative mb-[24px]">
