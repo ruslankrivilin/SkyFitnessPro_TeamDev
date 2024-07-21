@@ -67,37 +67,37 @@ export default function WorkoutModal() {
 
   return (
     <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black bg-opacity-50">
-      <div className="flex w-[460px] justify-center rounded-[30px] bg-white p-[40px] shadow-blockShadow shadow-gray-400">
-        <div className="w-[380px]">
-          <div>
-            <h1 className="mb-[48px] flex justify-center text-[32px]">
-              Выберите тренировку
-            </h1>
+      <div className="flex w-[343px] justify-center rounded-[30px] bg-white p-[30px] shadow-blockShadow shadow-gray-400 sm:w-[460px] sm:p-[40px]">
+        <div>
+          <div className="mb-[34px] w-[283px] sm:mb-[48px] sm:w-[346px]">
+            <h1 className="text-[32px]">Выберите тренировку</h1>
           </div>
           <div>
-            <div className="overflow-hidden scroll-smooth">
-              <div className="h-[354px] overflow-y-scroll scroll-smooth">
+            <div className="w-[283px] overflow-hidden scroll-smooth sm:w-auto">
+              <div className="h-[314px] overflow-y-scroll scroll-smooth sm:h-[354px]">
                 {testArr.map((el, index) => (
-                  <div key={index} className="mb-[20px] h-[54px] pb-[8px]">
+                  <div
+                    key={index}
+                    className="pb-[8px] sm:mb-[20px] sm:h-[54px]"
+                  >
                     {el.progress === 100 ? (
-                      <div className="border-underLineColor pointer-events-none mb-[20px] flex content-center items-center justify-start border-b-[1px]">
+                      <div className="pointer-events-none flex content-center items-center justify-start border-b-[1px] border-underLineColor sm:mb-[20px]">
                         <svg className="ml-[2px] mr-[12px] h-[20px] w-[20px]">
                           <use xlinkHref="/public/icons/sprite.svg#icon-done" />
                         </svg>
-                        <div className="mb-[10px] mr-[10px]">
-                          <p className="text-[24px] text-zinc-500">
+                        <div className="mr-[10px] sm:mb-[10px]">
+                          <p className="text-[18px] text-zinc-500 sm:text-[24px]">
                             {el.title}
                           </p>
-                          <p className="text-[18px] text-zinc-500">
+                          <p className="text-[14px] text-zinc-500 sm:text-[18px]">
                             {el.description} / {el.day} день
                           </p>
                         </div>
                       </div>
                     ) : (
-                      /* border-b-[1px] border-mainColor */
                       <div
                         onClick={() => handleSelectTraining(index, el)}
-                        className="border-underLineColor mb-[20px] border-b-[1px]"
+                        className="border-b-[1px] border-underLineColor sm:mb-[20px]"
                       >
                         <div
                           className={`flex cursor-pointer content-center items-center justify-start ${training === index && `rounded-[8px] border-[2px] border-mainColor`}`}
@@ -105,9 +105,11 @@ export default function WorkoutModal() {
                           <svg className="ml-[2px] mr-[12px] h-[20px] w-[20px]">
                             <use xlinkHref="/public/icons/sprite.svg#icon-not-done" />
                           </svg>
-                          <div className="mr-[10px]">
-                            <p className="text-[24px]">{el.title}</p>
-                            <p className="text-[18px]">
+                          <div className="mr-[10px] sm:mb-[10px]">
+                            <p className="text-[18px] sm:text-[24px]">
+                              {el.title}
+                            </p>
+                            <p className="text-[14px] sm:text-[18px]">
                               {el.description} / {el.day} день
                             </p>
                           </div>
@@ -124,7 +126,7 @@ export default function WorkoutModal() {
                 disabled={training === null && true}
                 onClick={handleClickStart}
               >
-                <p className="mx-[158px] my-[16px]">Начать</p>
+                <p className="my-[16px]">Начать</p>
               </button>
             </div>
           </div>
