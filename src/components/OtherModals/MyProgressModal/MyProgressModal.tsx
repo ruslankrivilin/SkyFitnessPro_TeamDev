@@ -59,49 +59,53 @@ export default function MyProgressModal({ setIsOpenedMyProgress }: MyProgress) {
   };
 
   return (
-    <div className="flex-col justify-center rounded-[30px] bg-white">
-      {isSuccess ? (
-        <>
-          <div className="flex w-[426px] flex-col gap-[34px] p-[40px]">
-            <h1>Ваш прогресс засчитан!</h1>
-            <svg className="h-[68px] w-[68px]">
-              <use xlinkHref="/public/icons/sprite.svg#icon-done" />
-            </svg>
-          </div>
-        </>
-      ) : (
-        <div className="w-[426px] p-[40px]">
-          <div>
-            <h1 className="mb-[48px] flex justify-start text-[32px]">
-              Мой прогресс
-            </h1>
-          </div>
-          <div className="overflow-hidden scroll-smooth">
-            <div className="h-[364px] overflow-y-scroll scroll-smooth">
-              {testArr.map((el) => (
-                <div key={el.id} className="mr-[20px]">
-                  <p className="mb-[10px] rounded-xl text-[18px]">{el.title}</p>
-                  <input
-                    value={progressData[el.id] || ""}
-                    onChange={(e) => handleInputChange(e, el.id)}
-                    className="border-colorBorderBtn mb-[20px] h-[48px] w-[288px] rounded-lg border-[1px] p-[20px] text-[18px] opacity-75"
-                    type="number"
-                    placeholder="0"
-                  />
-                </div>
-              ))}
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black bg-opacity-50">
+      <div className="flex-col justify-center rounded-[30px] bg-white">
+        {isSuccess ? (
+          <>
+            <div className="flex w-[426px] flex-col gap-[34px] p-[40px]">
+              <h1>Ваш прогресс засчитан!</h1>
+              <svg className="h-[68px] w-[68px]">
+                <use xlinkHref="/public/icons/sprite.svg#icon-done" />
+              </svg>
+            </div>
+          </>
+        ) : (
+          <div className="w-[426px] p-[40px]">
+            <div>
+              <h1 className="mb-[48px] flex justify-start text-[32px]">
+                Мой прогресс
+              </h1>
+            </div>
+            <div className="overflow-hidden scroll-smooth">
+              <div className="h-[364px] overflow-y-scroll scroll-smooth">
+                {testArr.map((el) => (
+                  <div key={el.id} className="mr-[20px]">
+                    <p className="mb-[10px] rounded-xl text-[18px]">
+                      {el.title}
+                    </p>
+                    <input
+                      value={progressData[el.id] || ""}
+                      onChange={(e) => handleInputChange(e, el.id)}
+                      className="border-colorBorderBtn mb-[20px] h-[48px] w-[288px] rounded-lg border-[1px] p-[20px] text-[18px] opacity-75"
+                      type="number"
+                      placeholder="0"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="flex content-center items-center justify-center">
+              <button
+                onClick={handleClickSaveProgress}
+                className="mt-[24px] block w-full rounded-[30px] bg-mainColor text-[18px] hover:bg-mainHover"
+              >
+                <p className="mx-[128px] my-[16px]">Сохранить</p>
+              </button>
             </div>
           </div>
-          <div className="flex content-center items-center justify-center">
-            <button
-              onClick={handleClickSaveProgress}
-              className="mt-[24px] block w-full rounded-[30px] bg-mainColor text-[18px] hover:bg-mainHover"
-            >
-              <p className="mx-[128px] my-[16px]">Сохранить</p>
-            </button>
-          </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }

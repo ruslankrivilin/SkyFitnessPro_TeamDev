@@ -22,7 +22,7 @@ export default function Exercises({ setIsOpenedMyProgress }: Exercises) {
   ];
 
   return (
-    <div className="rounded-[30px] bg-white p-[40px]">
+    <div className="rounded-[30px] bg-white p-[40px] shadow-blockShadow">
       <h1 className="mb-[20px] text-[32px]">Упражнения тренировки 2</h1>
       <div className="mb-[40px] grid grid-cols-3 gap-x-[60px] gap-y-[20px]">
         {testArr.map((item, itemIndex) => (

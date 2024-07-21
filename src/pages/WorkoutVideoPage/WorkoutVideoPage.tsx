@@ -1,21 +1,18 @@
-/* import Header from "../../components/Common/Header/Header"; */
-/* import CourseCard from "../../components/Common/CourseCard/CourseCard"; */
-/* import WorkoutModal from "../../components/OtherModals/WorkoutModal/WorkoutModal";
-/* import { useParams } from "react-router-dom"; */
-/* import MyProgressModal from "../../components/OtherModals/MyProgressModal/MyProgressModal"; */
-
-/* import Exercises from "../../components/OtherComponents/Exercises/Exercises"; */
+import Header from "../../components/Common/Header/Header";
+import MyProgressModal from "../../components/OtherModals/MyProgressModal/MyProgressModal";
+import Exercises from "../../components/OtherComponents/Exercises/Exercises";
+import { useState } from "react";
 
 export default function WorkoutVideoPage() {
-  /* const {id} = useParams() */
+  const [isOpenedMyProgress, setIsOpenedMyProgress] = useState<boolean>(false);
 
   return (
     <>
-      {/* <Header /> */}
-      {/* <CourseCard isMainPage={false} /> */}
-      {/* <WorkoutModal /> */}
-      {/* <MyProgressModal /> */}
-      {/* <Exercises /> */}
+      {isOpenedMyProgress && (
+        <MyProgressModal setIsOpenedMyProgress={setIsOpenedMyProgress} />
+      )}
+      <Header />
+      <Exercises setIsOpenedMyProgress={setIsOpenedMyProgress} />
     </>
   );
 }

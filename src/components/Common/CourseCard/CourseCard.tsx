@@ -42,7 +42,7 @@ export default function CourseCard({ isMainPage }: { isMainPage: boolean }) {
       <div className="flex flex-wrap gap-[40px]">
         {CourseData.map((el, index) => (
           <div key={index}>
-            <div className="relative mb-[24px]">
+            <div className="relative mb-[24px] shadow-blockShadow">
               <img
                 className="rounded-[30px] object-contain"
                 src={el.imgSrc}
