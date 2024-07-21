@@ -1,5 +1,5 @@
+import { child, get, ref, set } from "firebase/database";
 import { CourseType, WorkoutType } from "../types";
-import { ref, get, child } from "firebase/database";
 import { database } from "./firebase_api";
 
 //Получить все курсы
@@ -135,3 +135,71 @@ export function compareByOrder(a: CourseType, b: CourseType) {
   }
   return 0;
 }
+
+//Добавление курса------------------------------------------------------
+export const fetchAddFavoriteCourseToUser = async (
+  userId: string,
+  courseId: string
+) => {
+  const snapshot = await get(child(ref(database), `scheme/${courseId}`));
+  if (snapshot.exists()) {
+    set(ref(database, `users/${userId}/${courseId}`), snapshot.val());
+  }
+};
+// //разделение добавления курса для API и CourseForm
+// //API
+// import { set, get, child, ref } from "./path/to/firebase/database";
+// import { database } from "./path/to/firebase";
+
+// export const fetchAddFavoriteCourseToUser = async (
+//   userId: string,
+//   courseId: string
+// ) => {
+//   const snapshot = await get(child(ref(database), `scheme/${courseId}`));
+//   if (snapshot.exists()) {
+//     set(ref(database, `users/${userId}/${courseId}`), snapshot.val());
+//   }
+// };
+// //CourseForm
+// import { fetchAddFavoriteCourseToUser } from "./api";
+// // Код компонента CourseForm
+// // Пример использования функции fetchAddFavoriteCourseToUser
+// const handleAddCourse = async (userId: string, courseId: string) => {
+//   try {
+//     await fetchAddFavoriteCourseToUser(userId, courseId);
+//     console.log("Курс успешно добавлен в избранное");
+//   } catch (error) {
+//     console.error("Ошибка при добавлении курса:", error);
+//   }
+// };
+
+
+//удаление курсов из добавленных----------------------------------------
+export const deleteFavoriteCourse = async (
+  userId: string,
+  courseId: string
+) => {
+  set(ref(database, `users/${userId}/${courseId}`), {});
+};
+
+// //Раздельно удаление для api и courseForm
+// //для API
+// import { set, ref } from "./path/to/firebase/database";
+// import { database } from "./path/to/firebase";
+
+// export const deleteFavoriteCourse = async (userId: string, courseId: string) => {
+//   set(ref(database, `users/${userId}/${courseId}`), {});
+// };
+
+// //для courseForm
+// import { deleteFavoriteCourse } from "./api";
+// // Код компонента CourseForm
+// // Пример использования функции deleteFavoriteCourse
+// const handleDeleteCourse = async (userId: string, courseId: string) => {
+//   try {
+//     await deleteFavoriteCourse(userId, courseId);
+//     console.log("Курс успешно удален из избранного");
+//   } catch (error) {
+//     console.error("Ошибка при удалении курса:", error);
+//   }
+// };
