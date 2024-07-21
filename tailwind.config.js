@@ -36,6 +36,7 @@ export default {
         bgColor: "#F7F7F7",
         blackout: "#FAFAFA",
         inputColor: "#D0CECE",
+        underLineColor: "#C4C4C4",
       },
       borderRadius: {
         inputRadius: "8px",
