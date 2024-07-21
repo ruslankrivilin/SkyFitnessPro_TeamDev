@@ -1,15 +1,9 @@
 import { Link } from "react-router-dom";
 import { appRoutes } from "../../../lib/appRoutes";
 
-type UserModal = {
-  setIsOpenedUserModal: (arg: boolean) => void,
-}
-
-export default function UserModal({ setIsOpenedUserModal }: UserModal) {
-  
+export default function UserModal() {
   const handleLogout = () => {
     localStorage.removeItem('user');
-    setIsOpenedUserModal(false)
   };
 
   return (
