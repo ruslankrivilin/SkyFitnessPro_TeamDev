@@ -3,8 +3,11 @@ import { useAppDispatch } from "../hooks/redux-hooks";
 import { setUser } from "./slices/userSlices";
 import { useNavigate } from "react-router-dom";
 import { auth } from "./firebase_api";
-
-export default function signinApi(email: string, password: string) {
+type api = {
+  email: string,
+  password: string,
+}
+export default function signinApi({email, password}: api) {
   signInWithEmailAndPassword(auth, email, password)
     .then(({ user }) => {
       const dispatch = useAppDispatch();

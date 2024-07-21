@@ -3,12 +3,15 @@ import { setUser } from "./slices/userSlices";
 import { useAppDispatch } from "../hooks/redux-hooks";
 import { useNavigate } from "react-router-dom";
 import { auth } from "./firebase_api";
-
-export default function signupApi(
+type api = {
   email: string,
-  password: string,
+  passwordFirst: string,
+  passwordSecond: string,
+}
+export default function signupApi(
+  {email, passwordFirst}: api
 ) {
-  createUserWithEmailAndPassword(auth, email, password)
+  createUserWithEmailAndPassword(auth, email, passwordFirst)
     .then(({ user }) => {
       console.log(user);
       const dispatch = useAppDispatch();
