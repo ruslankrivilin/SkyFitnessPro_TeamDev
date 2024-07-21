@@ -5,7 +5,7 @@ import UserModal from "../UserModal/UserModal";
 import { Link } from "react-router-dom";
 import { appRoutes } from "../../../lib/appRoutes";
 
-// import UserModal from "../UserModal/UserModal";
+
 type HeaderType = {
   page: string;
 };
@@ -84,7 +84,7 @@ export default function Header({ page }: HeaderType) {
         <SigninForm setIsOpenedSigninForm={setIsOpenedSigninForm} />
       )}
       {isOpenedUserModal && (
-        <UserModal setIsOpenedUserModal={setIsOpenedUserModal} />
+        <UserModal setIsAuthorizated={setIsAuthorizated} setIsOpenedUserModal={setIsOpenedUserModal} />
       )}
     </div>
   );
