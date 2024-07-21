@@ -11,7 +11,7 @@ const testArr = [
     title: "Красота и здоровье",
     description: "Йога на каждый день",
     day: 2,
-    progress: 12,
+    progress: 100,
   },
   {
     title: "Асаны стоя",
@@ -29,7 +29,7 @@ const testArr = [
     title: "Гибкость спины",
     description: "Йога на каждый день",
     day: 5,
-    progress: 100,
+    progress: 70,
   },
   {
     title: "Гибкость рук",
@@ -41,7 +41,7 @@ const testArr = [
     title: "Сальто назад",
     description: "Йога на каждый день",
     day: 7,
-    progress: 100,
+    progress: 10,
   },
 ];
 
@@ -94,18 +94,20 @@ export default function WorkoutModal() {
                     /* border-b-[1px] border-mainColor */
                     <div
                       onClick={() => handleSelectTraining(index, el)}
-                      className={`border-underLineColor mb-[20px] flex cursor-pointer content-center items-center justify-start border-b-[1px]`}
+                      className="border-underLineColor mb-[20px] border-b-[1px]"
                     >
-                      <svg className="ml-[2px] mr-[12px] h-[20px] w-[20px]">
-                        <use
-                          xlinkHref={`/public/icons/sprite.svg#${training === index ? "icon-done" : "icon-not-done"}`}
-                        />
-                      </svg>
-                      <div className="mr-[10px]">
-                        <p className="text-[24px]">{el.title}</p>
-                        <p className="text-[18px]">
-                          {el.description} / {el.day} день
-                        </p>
+                      <div
+                        className={`flex cursor-pointer content-center items-center justify-start ${training === index && `rounded-[8px] border-[2px] border-mainColor`}`}
+                      >
+                        <svg className="ml-[2px] mr-[12px] h-[20px] w-[20px]">
+                          <use xlinkHref="/public/icons/sprite.svg#icon-not-done" />
+                        </svg>
+                        <div className="mr-[10px]">
+                          <p className="text-[24px]">{el.title}</p>
+                          <p className="text-[18px]">
+                            {el.description} / {el.day} день
+                          </p>
+                        </div>
                       </div>
                     </div>
                   )}
