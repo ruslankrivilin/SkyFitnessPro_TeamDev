@@ -51,7 +51,7 @@ export default function Header({ page }: HeaderType) {
         </div>
         {isCorrectForTextPage && (
           <div className="space-y-[60px]">
-            <p className="font-roboto hidden md:flex md:text-stone-500">
+            <p className="font-roboto hidden md:flex md:text-stone-500 md:text-lg/[19.8px]">
               Онлайн тренировки для занятий дома
             </p>
           </div>
@@ -61,20 +61,20 @@ export default function Header({ page }: HeaderType) {
       {/* Если пользователь авторизован, то user Блок */}
       {isAuthorizated ? (
         <div className="flex items-center" onClick={handleUserModal}>
-          <svg className=" h-[36px] w-[36px] md:m-[16px] md:h-[50px] md:w-[50px]">
+          <svg className=" h-[36px] w-[36px] md:m-[16px] md:h-[42px] md:w-[42px]">
             <use xlinkHref="./public/icons/sprite.svg#icon-profile" />
           </svg>
 
-          <div className="pl-[10px] flex items-center">
-            <div className="hidden md:mr-[12px]">Сергей</div>
-            <svg className="border-black border-solid  h-[4px] w-[8px] md:h-[8px]">
+          <div className="cursor-pointer pl-[10px] flex items-center md:m-0">
+            <div className="sm:hidden md:mr-[12px] md:text-2xl/[26px] md:block">Сергей</div>
+            <svg className=" border-black border-solid  h-[4px] w-[15px] md:h-[15px] ">
               <use xlinkHref="./public/icons/sprite.svg#icon-user-arrow" />
             </svg>
           </div>
         </div>
       ) : (
         <div
-          className="rounded-buttonRadius bg-mainColor  hover:bg-mainHover text-lg/[19.8px]  px-[16px] py-[8px] text-center font-normal text-black md:h-[52px] md:w-[103px] md:px-btnX md:py-btnY md:"
+          className="cursor-pointer rounded-buttonRadius bg-mainColor  hover:bg-mainHover text-lg/[19.8px]  px-[16px] py-[8px] text-center font-normal text-black md:h-[52px] md:w-[103px] md:px-btnX md:py-btnY md:"
           onClick={handleOpenSigninForm}
         >
           Войти
