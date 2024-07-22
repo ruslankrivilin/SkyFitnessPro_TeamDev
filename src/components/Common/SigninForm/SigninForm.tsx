@@ -44,13 +44,13 @@ export default function SigninForm({ setIsOpenedSigninForm }: SigninForm) {
   function handleRecoverPassword() {
     setIsOpenedEmailForm(true);
     setTimeout(() => {
-      setIsOpenedEmailForm(false)
+      setIsOpenedEmailForm(false);
     }, 3000)
   }
 
   const handleLogin = async () => {
     setIsNotCorrectPassword(false);
-    await signinApi(loginData).then((data) => {
+    await signinApi(loginData.email, loginData.password).then((data) => {
       login(data.user);
       navigate(appRoutes.MAIN);
       setIsOpenedSigninForm(false);
@@ -62,8 +62,8 @@ export default function SigninForm({ setIsOpenedSigninForm }: SigninForm) {
   return (
     <>
       {!isOpenedSignupForm && (
-        <div className="absolute top-0 left-0 min-w-[375px] min-h-[100vh] w-[100%] h-[100%]
-    flex flex-col justify-center items-center bg-blackout bg-opacity-20">
+        <div className="absolute z-50 top-0 left-0 min-w-[375px] min-h-[100vh] w-[100%] h-[100%]
+    flex flex-col justify-center items-center bg-black bg-opacity-20">
           <div className="block bg-white max-w-[360px] w-[100%] h-[425px] rounded-blockRadiusMax border-solid border-zinc-300 px-20 py-10">
             <div className="mb-12 flex justify-center items-center">
               <img src="/images/logo.png" alt="logo" />
@@ -96,34 +96,30 @@ export default function SigninForm({ setIsOpenedSigninForm }: SigninForm) {
                     <div className="text-errorColor text-error w-[270px] text-sm text-center">
                       Пароль введен неверно, попробуйте еще раз.&nbsp;
                       <button
-                        className="text-errorColor"
+                        className="text-errorColor underline"
                         onClick={handleRecoverPassword} >
                         Восстановить пароль?
                       </button>
                     </div>
                   </>
                 )}
-
                 {isOpenedEmailForm &&
-                  (<div className="absolute top-0 left-0 min-w-[375px] min-h-[100vh] w-[100%] h-[100%]
-                    flex flex-col justify-center items-center bg-blackout bg-opacity-20">
-                    <div className="block bg-white max-w-[360px] w-[100%] h-[425px] rounded-blockRadiusMax border-solid border-zinc-300 px-20 py-10">
-                      <div className="mb-12 flex justify-center items-center">
+                  (<div className="absolute z-50 top-0 left-0 min-w-[375px] min-h-[100vh] w-[100%]
+                    flex flex-col justify-center items-center bg-black bg-opacity-20">
+                    <div className=" bg-white max-w-[360px] w-[100%]  h-[450px] rounded-blockRadiusMax border-solid border-zinc-300 px-20 py-10
+                    flex items-center">
+                      <div className="flex justify-center items-center flex-col">
                         <img src="/images/logo.png" alt="logo" />
-                        <div>Ссылка для востановления пароля отправлена на ${loginData.email}</div>
+                        <div className="mt-10 text-center text-[18px]">Ссылка для востановления пароля отправлена на {loginData.email}</div>
                       </div>
                     </div>
                   </div>)
                 }
-
-
-
               </div>
-              <div className="mt-5 flex flex-col justify-center items-center">
+              <div className="mt-3 flex flex-col justify-center items-center">
                 <button
-                  className="mt-3 h-[52px] w-[280px] rounded-buttonRadius text-[18px] font-normal bg-mainColor hover:bg-mainHover active:bg-black"
+                  className=" h-[52px] w-[280px] rounded-buttonRadius text-[18px] font-normal bg-mainColor hover:bg-mainHover active:bg-black"
                   onClick={handleLogin}>
-                  {/* onClick={() => handleLogin(loginData.email, loginData.password)} */}
                   Войти
                 </button>
                 <button

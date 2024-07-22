@@ -39,7 +39,7 @@ export default function SignupForm({ setIsOpenedSigninForm, setIsOpenedSignupFor
 
   const handleSignUp = async () => {
     setIsNotCorrectPassword(false);
-    await signupApi(registrationData).then((data) => {
+    await signupApi(registrationData.email, registrationData.passwordFirst).then((data) => {
       logout(data.user);
       navigate(appRoutes.MAIN);
       setIsOpenedSigninForm(false);
@@ -58,7 +58,7 @@ export default function SignupForm({ setIsOpenedSigninForm, setIsOpenedSignupFor
     <>
 
       <div className="absolute z-50 top-0 left-0 min-w-375 min-h-[100vh] w-[100%] h-[100%]
-      flex flex-col justify-center items-center bg-blackout bg-opacity-20">
+      flex flex-col justify-center items-center bg-black bg-opacity-20">
         <div className="block bg-white max-w-[360px] w-[100%] h-[490px] rounded-blockRadiusMax border-solid border-zinc-300 px-20 py-10">
 
           <div className="mb-12 flex justify-center items-center">
@@ -106,15 +106,15 @@ export default function SignupForm({ setIsOpenedSigninForm, setIsOpenedSignupFor
                 Данная почта уже используется. Попробуйте войти.
               </div>
             )}
-            <div className="mt-5 flex flex-col justify-center items-center">
+            <div className="flex flex-col justify-center items-center">
               <button
-                className="mt-3 h-[52px] w-[280px] rounded-buttonRadius text-[18px] font-normal 
+                className="mt-4 h-[52px] w-[280px] rounded-buttonRadius text-[18px] font-normal 
               bg-mainColor hover:bg-mainHover active:bg-black" onClick={handleSignUp}>
                 Зарегистрироваться
               </button>
               <button
                 className="mt-3 h-[52px] w-[280px] rounded-buttonRadius text-[18px] font-normal leading-[19.8px] 
-              border hover:bg-bgColor active:bg-blackout 
+              border hover:bg-bgColor active:bg-blackout border-zinc-900
               disabled:bg-gray-light disabled:text-gray-dark disabled:border-gray-dark 
               transition-colors duration-300" onClick={handleOpenSigninForm}>
                 Войти
