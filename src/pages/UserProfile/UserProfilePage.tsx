@@ -1,54 +1,73 @@
 
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import CourseCard from "../../components/Common/CourseCard/CourseCard";
 import Header from "../../components/Common/Header/Header";
 import { appRoutes } from "../../lib/appRoutes";
-import { useState } from "react";
-import UserProfile from "../../components/OtherComponents/UserProfile/UserProfile";
+import { ChangeEvent, useState } from "react";
+// import { useUserData } from "../../hooks/useUserData";
+
+type ErrorType = {
+  password: string,
+  repeatPassword: string,
+}
 
 
+type UserModalType = {
+  setIsOpenedUserModal: (arg: boolean) => void;
+  setIsAuthorizated: (arg: boolean) => void;
+};
 
-export default function UserProfilePage() {
-  const navigate = useNavigate();
-  const [isOpenedEmailForm, setIsOpenedUserProfile] = useState<boolean>(false);
+export default function UserProfilePage({ setIsOpenedUserModal, setIsAuthorizated }: UserModalType) {
 
- 
-  
+  const [isNotCorrect, setIsNotCorrect] = useState("");
+
+
+  const [isChangeMode, setIsChangeMode] = useState<ErrorType>({ password: "", repeatPassword: "" });
+
+  const [isPasswordCorrect, setIsPasswordCorrect] = useState(true);
+
+  const [isKnopka, setIsKnopka] = useState(true);
+
+
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target
+    setIsChangeMode({
+      ...isChangeMode,
+      [name]: value
+    })
+  }
+
   function handleChangePassword() {
-    setIsOpenedUserProfile(true);
-    
+    setIsPasswordCorrect(false);
+    setIsKnopka(false);
   }
 
-  // const handleLogout = async () => {
-  //   console.log(handleLogout)
-  //   setTimeout(() => {
-  //     aa(false)
-  //   }, 3000)
-  // };
-// const [isOpenedHeader, setIsOpenedHeader] = useState<boolean>(false);
-  // function handleLogout() {
-  //   setIsOpenedHeader(true);
-  // }
-
-  function handleLogout() {
-    navigate(appRoutes.MAIN);
+  function onClick() {
+    if (!isChangeMode.password.trim() || !isChangeMode.repeatPassword.trim()) {
+      setIsNotCorrect("Заполните все поля!");
+      return;
+    }
+    if (isChangeMode.password !== isChangeMode.repeatPassword) {
+      setIsNotCorrect("Пароли не совпадают");
+      return;
+    }
+    else {
+      setIsPasswordCorrect(true);
+      setIsKnopka(true);
+    }
   }
 
-  // const [passwordData, setpasswordData] = useState({ password: "", repeatPassword: "" });
+  const handleLogout = () => {
+    setIsOpenedUserModal(false);
+    setIsAuthorizated(false);
+    // logout();
+  };
 
-  // const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-  //   const { name, value } = e.target
-  //   setpasswordData({ 
-  //     ...passwordData, 
-  //     [name]: value })
-  // }
-
-  
 
   return (
     <>
-      <div className="bg-blackout h-screen">
-        <Header page={""}/>
+      <div className="h-screen">
+        <Header page={""} />
         <h2
           data-tid="titleProfile"
           className="mb-10 ml-8 text-[40px] sm:text-[26px] md:text-[32px] font-semibold leading-[44px]"
@@ -74,28 +93,67 @@ export default function UserProfilePage() {
                 Сергей
               </h3>
               <div className="mt-3 text-[18px] font-normal leading-[19px]">
-                Логин: 
+                Логин: Сергей
               </div>
-              <div className="text-[18px] font-normal leading-[19px] ">
-                Пароль: 
-              </div>
-              <div className="mt-5 w-[394px] sm:w-[283px] md:w-[350px] flex flex-row gap-[10px] sm:items-center">
-                <button
-                  onClick={handleChangePassword}
-                  className="w-[192px] sm:h-[50px] rounded-buttonRadius  bg-mainColor hover:bg-mainHover active:bg-black"
-                >
-                  Изменить пароль
-                  {/* {isOpenedEmailForm ? "Сохранить" : "Изменить пароль"} */}
-                </button>
-      {isOpenedEmailForm && <UserProfile setIsOpenedUserProfile={setIsOpenedUserProfile} />}
-                <button
-                  onClick={handleLogout}
-                  className="w-[192px] sm:h-[50px] rounded-buttonRadius 
+              {isPasswordCorrect && (
+                <div className="flex items-center text-[18px] font-normal leading-[19px] ">
+                  Пароль:
+                  <button
+                    className="w-[120px] sm:h-[25px] rounded-blockRadiusMin border bg-gray-400 text-gray-400"
+                  >
+                  </button>
+                </div>
+              )}
+              {!isPasswordCorrect && (
+                <>
+                  <input
+                    className="mb-2.5 h-[52px] w-[280px] px-[18px] py-[12px] text-lg rounded-inputRadius appearance-none border rounded-small border-gray-extra  bg-white-base text-black-base placeholder-gray-extra"
+                    name="password"
+                    type="password"
+                    placeholder="Старый пароль"
+                    value={isChangeMode.password}
+                    onChange={handleInputChange} />
+                  <input
+                    className="border-error h-[52px] w-[280px] px-[18px] py-[12px] rounded-inputRadius text-lg appearance-none border rounded-small border-gray-extra bg-white-base text-black-base placeholder-gray-extra"
+                    name="repeatPassword"
+                    type="password"
+                    placeholder="Новый пароль"
+                    value={isChangeMode.repeatPassword}
+                    onChange={handleInputChange} />
+                  <div className="text-red-500">{isNotCorrect}</div>
+                </>
+              )}
+
+              <div className="mt-5 w-[394px] flex flex-row gap-[10px] sm:items-center">
+
+                {isKnopka && (
+                  <button
+                    onClick={handleChangePassword}
+                    className="w-[192px] sm:h-[50px] rounded-buttonRadius text-[18px] font-normal leading-[19.8px] 
+                  border  bg-mainColor hover:bg-mainHover active:bg-black"
+                  >
+                    Изменить пароль
+                  </button>
+                )}
+                {!isKnopka && (
+                  <button
+                    onClick={onClick}
+                    className="w-[192px] sm:h-[50px] rounded-buttonRadius text-[18px] font-normal leading-[19.8px] 
+                  border  bg-mainColor hover:bg-mainHover active:bg-black"
+                  >
+                    Сохранить
+                  </button>
+                )}
+                <Link to={appRoutes.MAIN}>
+                  <button
+                    onClick={handleLogout}
+                    className="w-[192px] sm:h-[50px] rounded-buttonRadius 
                 text-[18px] font-normal leading-[19.8px] 
                 border hover:bg-bgColor active:bg-blackout border-zinc-900"
-                >
-                  Выйти
-                </button>
+                  >
+                    Выйти
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -106,7 +164,7 @@ export default function UserProfilePage() {
         </h2>
         <div className="mb-10 ml-8 mr-8 gap-x-16">
           <div className="grid-cols-1 sm:grid">
-            <CourseCard isMainPage={false}/>
+            <CourseCard isMainPage={false} />
           </div>
         </div>
       </div>
