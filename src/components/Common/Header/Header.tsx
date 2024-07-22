@@ -43,7 +43,7 @@ export default function Header({ page }: HeaderType) {
 
   return (
     <div className="flex justify-between py-[40px] md:pb-[60px] md:pt-[50px]">
-      <div className="flex flex-col pr-[69px]">
+      <div className="flex flex-col ">
         <div className="flex w-[220px] h-[35px] md:mb-[15px]">
           <Link to={appRoutes.MAIN}>
             <img src="/images/logo.png" alt="logo" />
@@ -61,20 +61,20 @@ export default function Header({ page }: HeaderType) {
       {/* Если пользователь авторизован, то user Блок */}
       {isAuthorizated ? (
         <div className="flex items-center" onClick={handleUserModal}>
-          <svg className="pr-[10px] h-[36px] w-[36px] md:m-[16px] md:h-[50px] md:w-[50px]">
+          <svg className=" h-[36px] w-[36px] md:m-[16px] md:h-[50px] md:w-[50px]">
             <use xlinkHref="./public/icons/sprite.svg#icon-profile" />
           </svg>
 
-          <div className="ml-2 flex items-center">
+          <div className="pl-[10px] flex items-center">
             <div className="hidden md:mr-[12px]">Сергей</div>
-            <svg className="h-[4px] w-[8px] md:h-[8px]">
+            <svg className="border-black border-solid  h-[4px] w-[8px] md:h-[8px]">
               <use xlinkHref="./public/icons/sprite.svg#icon-user-arrow" />
             </svg>
           </div>
         </div>
       ) : (
         <div
-          className="size-[18px] h-[36px] w-[83px] rounded-buttonRadius bg-mainColor px-[16px] py-[8px] text-center font-normal text-black hover:bg-mainHover md:h-[52px] md:w-[103px] md:px-btnX md:py-btnY md:leading-[20px]"
+          className="rounded-buttonRadius bg-mainColor  hover:bg-mainHover text-lg/[19.8px]  px-[16px] py-[8px] text-center font-normal text-black md:h-[52px] md:w-[103px] md:px-btnX md:py-btnY md:"
           onClick={handleOpenSigninForm}
         >
           Войти
