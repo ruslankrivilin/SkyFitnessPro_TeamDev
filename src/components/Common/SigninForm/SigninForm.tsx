@@ -19,7 +19,7 @@ type SigninType = {
 export default function SigninForm({ setIsOpenedSigninForm }: SigninForm) {
   const navigate = useNavigate();
 
-  const { user, login } = useUserData();
+  const { login } = useUserData();
 
   const [isOpenedSignupForm, setIsOpenedSignupForm] = useState<boolean>(false);
 
