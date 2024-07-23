@@ -17,7 +17,7 @@ type UserModalType = {
   setIsAuthorizated: (arg: boolean) => void;
 };
 
-export default function UserProfilePage({ setIsOpenedUserModal, setIsAuthorizated }: UserModalType) {
+export default function UserProfilePage() {
 
   const [isNotCorrect, setIsNotCorrect] = useState("");
 
