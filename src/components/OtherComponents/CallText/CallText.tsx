@@ -40,14 +40,14 @@ export default function CallText() {
         <div className=" ">
           {isAuthorizated ? (
             <button
-              className="w-1/3 rounded-buttonRadius bg-mainColor py-inptY font-defaultFont text-base/5 font-normal hover:bg-mainHover"
+              className="w-full rounded-buttonRadius bg-mainColor py-inptY font-defaultFont text-base/5 font-normal hover:bg-mainHover  md:w-1/3"
               onClick={handleAddCourse}
             >
               Добавить курс
             </button>
           ) : (
             <button
-              className="w-1/3 rounded-buttonRadius bg-mainColor py-inptY font-defaultFont text-base/5 font-normal hover:bg-mainHover"
+              className="w-full rounded-buttonRadius bg-mainColor py-inptY font-defaultFont text-base/5 font-normal hover:bg-mainHover  md:w-1/3"
               onClick={handleOpenSigninForm}
             >
               Войдите, чтобы добавить курс

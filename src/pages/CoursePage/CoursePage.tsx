@@ -30,7 +30,7 @@ export default function CoursePage() {
     <>
       <div className="md: container mx-auto flex flex-col">
         <Header page={"CorrectForTextPage"} />
-        <CourseLogo courseName={"Зумба"} />
+        <CourseLogo courseName={"Бодифлекс"} />
         <FittingText fittings={fittings} />
         <div className="relative">
           <Directions directions={directions} />

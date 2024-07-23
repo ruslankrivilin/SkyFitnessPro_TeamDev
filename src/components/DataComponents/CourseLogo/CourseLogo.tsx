@@ -16,7 +16,7 @@ export default function CourseLogo({ courseName }: CourseLogoType) {
   return (
     <>
       <div
-        className={`rounded-blockRadius container mx-auto h-[389px] bg-${matchedCourse!.bgColor} md:my-l0`}
+        className={`rounded-blockRadius container mx-auto h-[310px] bg-${matchedCourse!.bgColor} md:my-l0`}
       >
         <div className="marker p-30 mx-auto flex h-80 items-start">
           <div className="hidden md:block md:w-1/3 md:pr-[800px]">
@@ -28,7 +28,7 @@ export default function CourseLogo({ courseName }: CourseLogoType) {
             className={`relative h-full w-full bg-[${matchedCourse!.imgSrcHD}]`}
           >
             <img
-              className="rounded-blockRadius absolute top-[70px] ml-auto mr-auto h-full object-contain object-center"
+              className="rounded-blockRadius  ml-auto mr-auto h-full w-auto object-contain object-center"
               src={matchedCourse!.imgSrc}
             />
           </div>
