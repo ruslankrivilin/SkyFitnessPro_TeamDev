@@ -12,6 +12,8 @@ export async function SigninApi(email: string, password: string) {
   return dataSignin
 }
 
+
+
 // //Авторизация Login c разделением на api и formPage
 
 // //Login api
