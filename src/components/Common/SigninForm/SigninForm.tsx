@@ -50,13 +50,11 @@ export default function SigninForm({ setIsOpenedSigninForm }: SigninForm) {
 
   const handleLogin = async () => {
     setIsNotCorrectPassword(false);
-    console.log(loginData.email, loginData.password)
     await SigninApi(loginData.email, loginData.password)
     .then((userData) => {
       login(userData);
       console.log(userData)
       navigate(appRoutes.MAIN);
-      setIsOpenedSigninForm(false);
     }).catch(() => {
       setIsNotCorrectPassword(true);
     })
@@ -64,8 +62,7 @@ export default function SigninForm({ setIsOpenedSigninForm }: SigninForm) {
 
   return (
     <>
-      {!isOpenedSignupForm && (
-        <div className="absolute z-50 top-0 left-0 min-w-[375px] min-h-[100vh] w-[100%] h-[100%]
+       <div className="absolute z-50 top-0 left-0 min-w-[375px] min-h-[100vh] w-[100%] h-[100%]
     flex flex-col justify-center items-center bg-black bg-opacity-20">
           <div className="block bg-white max-w-[360px] w-[100%] h-[425px] rounded-blockRadiusMax border-solid border-zinc-300 px-20 py-10">
             <div className="mb-12 flex justify-center items-center">
@@ -85,7 +82,7 @@ export default function SigninForm({ setIsOpenedSigninForm }: SigninForm) {
                 </div>
                 <div className="">
                   <input
-                    className={isNotCorrectPassword ? "border-errorColor " : "mb-3 h-[52px] w-[280px] px-[18px] py-[12px] rounded-inputRadius text-lg appearance-none border rounded-small border-gray-extra bg-white-base text-black-base placeholder-gray-extra"
+                    className={isNotCorrectPassword ? "border-errorColor mb-3 h-[52px] w-[280px] px-[18px] py-[12px] rounded-inputRadius text-lg appearance-none border rounded-small border-gray-extra bg-white-base text-black-base placeholder-gray-extra" : "mb-3 h-[52px] w-[280px] px-[18px] py-[12px] rounded-inputRadius text-lg appearance-none border rounded-small border-gray-extra bg-white-base text-black-base placeholder-gray-extra"
                     }
                     name="password"
                     type="password"
@@ -136,10 +133,8 @@ export default function SigninForm({ setIsOpenedSigninForm }: SigninForm) {
               </div>
             </form>
           </div>
-        </div>)}
-
+        </div>
       {isOpenedSignupForm && <SignupForm setIsOpenedSignupForm={setIsOpenedSignupForm} setIsOpenedSigninForm={setIsOpenedSigninForm} />}
-
     </>
   );
 }
