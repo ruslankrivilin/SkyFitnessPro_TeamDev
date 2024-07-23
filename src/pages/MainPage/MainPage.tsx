@@ -38,7 +38,7 @@ export default function MainPage() {
     <>
       <div className="">
         <Header page={page} />
-        <div className="flex items-center justify-between mb-[50px]">
+        <div className="flex items-center justify-between">
           <h1 className="inline-block text-left align-middle text-3xl/[35.2px] font-medium md:text-pretty md:text-6xl/[60px]">
             Начните заниматься спортом и улучшите качество жизни
           </h1>

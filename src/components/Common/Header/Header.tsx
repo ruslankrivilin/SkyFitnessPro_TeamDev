@@ -22,7 +22,7 @@ export default function Header({ page }: HeaderType) {
     if (user) {
       setIsAuthorizated(true);
     } else {
-      setIsAuthorizated(true);
+      setIsAuthorizated(false);
     }
   }, [page]);
 
@@ -42,7 +42,7 @@ export default function Header({ page }: HeaderType) {
   }
 
   return (
-    <div className="flex justify-between py-[40px] md:pb-[60px] md:pt-[50px]">
+    <div className="flex justify-between relative  py-[40px] md:pb-[60px] md:pt-[50px]">
       <div className="flex flex-col ">
         <div className="flex w-[220px] h-[35px] md:mb-[15px]">
           <Link to={appRoutes.MAIN}>
@@ -66,7 +66,7 @@ export default function Header({ page }: HeaderType) {
           </svg>
 
           <div className="cursor-pointer pl-[10px] flex items-center md:m-0">
-            <div className="sm:hidden md:mr-[12px] md:text-2xl/[26px] md:block">Сергей</div>
+            <div className="hidden md:mr-[12px] md:text-2xl/[26px] ">Сергей</div>
             <svg className=" border-black border-solid  h-[4px] w-[15px] md:h-[15px] ">
               <use xlinkHref="./public/icons/sprite.svg#icon-user-arrow" />
             </svg>
