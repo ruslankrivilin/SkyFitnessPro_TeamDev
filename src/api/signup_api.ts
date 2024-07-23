@@ -1,33 +1,16 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { setUser } from "./slices/userSlices";
-import { useAppDispatch } from "../hooks/redux-hooks";
-import { useNavigate } from "react-router-dom";
 import { auth } from "./firebase_api";
 
 // signupApi должна быть компонентом React, переименовл ее заглавной буквы.
 //В ином случае не работают хуки useAppDispatch и useNavigate
-export default function SignupApi(email: string, password: string) {
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
-  createUserWithEmailAndPassword(auth, email, password)
-    .then(({ user }) => {
-      console.log(user);
-      //для теста выводимых параметров.
-      console.log("courseID:", "");
-      console.log("Progress:", "");
-      console.log("token:", user.refreshToken);
-      console.log("id:", user.uid);
-      console.log("email:", user.email);
-      dispatch(
-        setUser({
-          email: user.email,
-          id: user.uid,
-          token: user.refreshToken,
-        }),
-      );
-      navigate("/");
-    })
-    .catch(console.error);
+export async function SignupApi(email: string, password: string) {
+  
+  const resSignup = await createUserWithEmailAndPassword(auth, email, password)
+  if (!resSignup) {
+    throw new Error("Ошибка");
+  }
+  const dataSignup = await resSignup.user.toJSON();
+  return dataSignup
 }
 
 

@@ -2,8 +2,8 @@
 import { ChangeEvent, useState } from "react";
 import { appRoutes } from "../../../lib/appRoutes";
 import { useNavigate } from "react-router-dom";
-import signupApi from "../../../api/signup_api";
 import { useUserData } from "../../../hooks/useUserData";
+import { SignupApi } from "../../../api/signup_api";
 
 type SignupForm = {
   setIsOpenedSignupForm: (arg: boolean) => void,
@@ -19,9 +19,9 @@ type SignupType = {
 export default function SignupForm({ setIsOpenedSigninForm, setIsOpenedSignupForm }: SignupForm) {
   const navigate = useNavigate();
 
-  // const [isNotCorrect, setIsNotCorrect] = useState("");
+  const { login } = useUserData();
 
-  const { user, logout } = useUserData();
+  const [isNotCorrectEmail, setIsNotCorrectEmail] = useState<boolean>(false);
 
   const [isNotCorrectPassword, setIsNotCorrectPassword] = useState<boolean>(false);
 
@@ -39,19 +39,17 @@ export default function SignupForm({ setIsOpenedSigninForm, setIsOpenedSignupFor
 
   const handleSignUp = async () => {
     setIsNotCorrectPassword(false);
-    await signupApi(registrationData.email, registrationData.passwordFirst).then((data) => {
-      logout(data.user);
+    if (registrationData.passwordFirst !== registrationData.passwordSecond) {
+        setIsNotCorrectPassword(true);
+        return;
+      }
+    setIsNotCorrectEmail(false);
+    await SignupApi(registrationData.email, registrationData.passwordFirst).then((userData) => {
+      login(userData);
       navigate(appRoutes.MAIN);
-      setIsOpenedSigninForm(false);
     }).catch(() => {
-      setIsNotCorrectPassword(true);
+      setIsNotCorrectEmail(true);
     })
-    // if (registrationData.passwordFirst !== registrationData.passwordSecond) {
-    //   setIsNotCorrect("Пароли не совпадают");
-    //   console.log(setIsNotCorrect)
-    //   return;
-    // }
-
   };
 
   return (
@@ -68,7 +66,7 @@ export default function SignupForm({ setIsOpenedSigninForm, setIsOpenedSignupFor
             <div className=" flex flex-col justify-center items-center">
               <div className=" ">
                 <input
-                  className={isNotCorrectPassword ? "border-errorColor mb-2.5 h-[52px] w-[280px] px-[18px] py-[12px] text-lg rounded-inputRadius appearance-none border rounded-small border-gray-extra  bg-white-base text-black-base placeholder-gray-extra" : "mb-2.5 h-[52px] w-[280px] px-[18px] py-[12px] text-lg rounded-inputRadius appearance-none border rounded-small border-gray-extra  bg-white-base text-black-base placeholder-gray-extra"}
+                  className={isNotCorrectEmail ? "border-errorColor mb-2.5 h-[52px] w-[280px] px-[18px] py-[12px] text-lg rounded-inputRadius appearance-none border rounded-small border-gray-extra  bg-white-base text-black-base placeholder-gray-extra" : "mb-2.5 h-[52px] w-[280px] px-[18px] py-[12px] text-lg rounded-inputRadius appearance-none border rounded-small border-gray-extra  bg-white-base text-black-base placeholder-gray-extra"}
                   name="email"
                   type="email"
                   placeholder="Email"
@@ -100,8 +98,12 @@ export default function SignupForm({ setIsOpenedSigninForm, setIsOpenedSignupFor
             {/* <div className="border-errorColor text-error w-[220px] text-sm text-center ">
               {isNotCorrectPassword ? "Данная почта уже используется. Попробуйте войти." : `${isNotCorrect}`}
             </div> */}
-
-            {isNotCorrectPassword && (
+{isNotCorrectPassword && (
+              <div className="text-errorColor text-error w-[220px] text-sm text-center ">
+                Пароли не совпадают...
+              </div>
+            )}
+            {isNotCorrectEmail && (
               <div className="text-errorColor text-error w-[220px] text-sm text-center ">
                 Данная почта уже используется. Попробуйте войти.
               </div>
