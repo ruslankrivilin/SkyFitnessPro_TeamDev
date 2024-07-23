@@ -1,5 +1,7 @@
 import { signInWithEmailAndPassword, updatePassword } from "firebase/auth";
 import { auth } from "./firebase_api";
+import { UserType } from "../types";
+
 
 // signinApi должна быть компонентом React, переименовл ее заглавной буквы.
 //В ином случае не работают хуки useAppDispatch и useNavigate
@@ -8,7 +10,7 @@ export async function SigninApi(email: string, password: string) {
   if (!resSignin) {
     throw new Error("Ошибка");
   }
-  const dataSignin = await resSignin.user.toJSON();
+  const dataSignin = await resSignin.user.toJSON() as UserType;
   return dataSignin
 }
 

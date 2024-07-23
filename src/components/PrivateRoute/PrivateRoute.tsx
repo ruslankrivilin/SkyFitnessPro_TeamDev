@@ -3,6 +3,6 @@ import { appRoutes } from "../../lib/appRoutes";
 import { useUserData } from "../../hooks/useUserData";
 
 export default function PrivateRoute() {
-  const { user } = useUserData();
-  return user ? <Outlet /> : <Navigate to={appRoutes.MAIN} />;
+  const user  = useUserData();
+  return user?.user ? <Outlet /> : <Navigate to={appRoutes.MAIN} />;
 }

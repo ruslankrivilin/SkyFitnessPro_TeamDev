@@ -4,6 +4,7 @@ import SigninForm from "../SigninForm/SigninForm";
 import UserModal from "../UserModal/UserModal";
 import { Link } from "react-router-dom";
 import { appRoutes } from "../../../lib/appRoutes";
+import { useUserData } from "../../../hooks/useUserData";
 
 
 type HeaderType = {
@@ -11,20 +12,12 @@ type HeaderType = {
 };
 
 export default function Header({ page }: HeaderType) {
-  const [isAuthorizated, setIsAuthorizated] = useState<boolean>(false);
+  const user = useUserData()
   const [isOpenedSigninForm, setIsOpenedSigninForm] = useState<boolean>(false);
   const [isOpenedUserModal, setIsOpenedUserModal] = useState<boolean>(false);
   const [isCorrectForTextPage, setIsCorrectForTextPage] =
     useState<boolean>(true);
 
-  useEffect(() => {
-    const user = localStorage.getItem("user");
-    if (user) {
-      setIsAuthorizated(true);
-    } else {
-      setIsAuthorizated(false);
-    }
-  }, [page]);
 
   useEffect(() => {
     if (page) {
@@ -59,7 +52,7 @@ export default function Header({ page }: HeaderType) {
       </div>
 
       {/* Если пользователь авторизован, то user Блок */}
-      {isAuthorizated ? (
+      {user ? (
         <div className="flex items-center" onClick={handleUserModal}>
           <svg className=" h-[36px] w-[36px] md:m-[16px] md:h-[42px] md:w-[42px]">
             <use xlinkHref="./public/icons/sprite.svg#icon-profile" />
@@ -84,7 +77,7 @@ export default function Header({ page }: HeaderType) {
         <SigninForm setIsOpenedSigninForm={setIsOpenedSigninForm} />
       )}
       {isOpenedUserModal && (
-        <UserModal setIsAuthorizated={setIsAuthorizated} setIsOpenedUserModal={setIsOpenedUserModal} />
+        <UserModal setIsOpenedUserModal={setIsOpenedUserModal} />
       )}
     </div>
   );

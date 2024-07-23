@@ -4,18 +4,15 @@ import { useUserData } from "../../../hooks/useUserData";
 
 type UserModalType = {
   setIsOpenedUserModal: (arg: boolean) => void;
-  setIsAuthorizated: (arg: boolean) => void;
 };
 
 export default function UserModal({
   setIsOpenedUserModal,
-  setIsAuthorizated,
 }: UserModalType) {
-  const { logout } = useUserData();
+  const { user, logout } = useUserData();
   const handleLogout = () => {
     setIsOpenedUserModal(false);
-    setIsAuthorizated(false);
-    logout();
+    logout?.();
   };
 
   return (
