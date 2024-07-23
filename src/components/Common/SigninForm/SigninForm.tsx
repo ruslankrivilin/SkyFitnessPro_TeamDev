@@ -2,8 +2,8 @@ import { ChangeEvent, useState } from "react";
 import SignupForm from "../SignupForm/SignupForm";
 import { appRoutes } from "../../../lib/appRoutes";
 import { useNavigate } from "react-router-dom";
-import signinApi from "../../../api/signin_api";
 import { useUserData } from "../../../hooks/useUserData";
+import { SigninApi } from "../../../api/signin_api";
 
 
 type SigninForm = {
@@ -19,7 +19,7 @@ type SigninType = {
 export default function SigninForm({ setIsOpenedSigninForm }: SigninForm) {
   const navigate = useNavigate();
 
-  const { user, login } = useUserData();
+  const { login } = useUserData();
 
   const [isOpenedSignupForm, setIsOpenedSignupForm] = useState<boolean>(false);
 
@@ -50,8 +50,11 @@ export default function SigninForm({ setIsOpenedSigninForm }: SigninForm) {
 
   const handleLogin = async () => {
     setIsNotCorrectPassword(false);
-    await signinApi(loginData.email, loginData.password).then((data) => {
-      login(data.user);
+    console.log(loginData.email, loginData.password)
+    await SigninApi(loginData.email, loginData.password)
+    .then((userData) => {
+      login(userData);
+      console.log(userData)
       navigate(appRoutes.MAIN);
       setIsOpenedSigninForm(false);
     }).catch(() => {
@@ -82,7 +85,7 @@ export default function SigninForm({ setIsOpenedSigninForm }: SigninForm) {
                 </div>
                 <div className="">
                   <input
-                    className={!handleLogin ? "border-errorColor " : "mb-3 h-[52px] w-[280px] px-[18px] py-[12px] rounded-inputRadius text-lg appearance-none border rounded-small border-gray-extra bg-white-base text-black-base placeholder-gray-extra"
+                    className={isNotCorrectPassword ? "border-errorColor " : "mb-3 h-[52px] w-[280px] px-[18px] py-[12px] rounded-inputRadius text-lg appearance-none border rounded-small border-gray-extra bg-white-base text-black-base placeholder-gray-extra"
                     }
                     name="password"
                     type="password"
