@@ -2,8 +2,8 @@ export type UserType = Record<string, unknown>;
 
 export type UserContextType = {
   user: UserType | null;
-  login: (arg: UserType) => void;
-  logout: VoidFunction;
+  login: ((arg: UserType) => void )| null;
+  logout: VoidFunction | null;
 };
 
 export type CoursesContextType = {

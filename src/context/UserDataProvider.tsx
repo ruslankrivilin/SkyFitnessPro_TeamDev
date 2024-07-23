@@ -13,7 +13,7 @@ function getUserFromLocalStorage(): UserType | null {
   return null;
 }
 
-export const UserDataContext = createContext<UserContextType | null>(null);
+export const UserDataContext = createContext<UserContextType>({user: null, login: null, logout: null});
 
 export const UserDataProvider: FC<PropsWithChildren> = ({ children }) => {
   const [user, setUser] = useState(getUserFromLocalStorage());
