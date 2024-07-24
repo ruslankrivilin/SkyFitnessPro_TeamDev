@@ -25,12 +25,12 @@ export default function CallText() {
   }
 
   return (
-    <div className="container relative mx-auto mb-10 mt-20 flex rounded-blockRadius shadow-[0_4px_67px_-12px_rgba(0,0,0,0.13)]">
-      <div className="container relative flex flex-col p-10">
-        <h2 className="text-6xl font-medium">
+    <div className="rounded-blockRadius container absolute top-[560px] z-40 mx-auto mb-10 mt-20 flex overflow-hidden shadow-[0_4px_67px_-12px_rgba(0,0,0,0.13)] md:relative">
+      <div className="container relative flex flex-col p-7">
+        <h2 className="text-3xl font-medium md:text-6xl">
           Начните путь <br />к новому телу
         </h2>
-        <ul className="py-l list-disc p-10 text-2xl font-normal">
+        <ul className="list-disc py-7 pl-7 text-lg/8 font-normal md:text-2xl">
           <li>проработка всех групп мышц</li>
           <li>тренировка суставов</li>
           <li>улучшение циркуляции крови</li>
@@ -40,14 +40,14 @@ export default function CallText() {
         <div className=" ">
           {isAuthorizated ? (
             <button
-              className="w-1/3 rounded-buttonRadius bg-mainColor py-inptY font-defaultFont font-normal hover:bg-mainHover"
+              className="w-full rounded-buttonRadius bg-mainColor py-inptY font-defaultFont text-base/5 font-normal hover:bg-mainHover  md:w-1/3"
               onClick={handleAddCourse}
             >
               Добавить курс
             </button>
           ) : (
             <button
-              className="w-1/3 rounded-buttonRadius bg-mainColor py-inptY font-defaultFont font-normal hover:bg-mainHover"
+              className="w-full rounded-buttonRadius bg-mainColor py-inptY font-defaultFont text-base/5 font-normal hover:bg-mainHover  md:w-1/3"
               onClick={handleOpenSigninForm}
             >
               Войдите, чтобы добавить курс

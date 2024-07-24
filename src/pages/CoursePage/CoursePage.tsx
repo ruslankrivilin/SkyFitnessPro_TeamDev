@@ -1,4 +1,4 @@
-// import Header from "../../components/Common/Header/Header";
+import Header from "../../components/Common/Header/Header";
 // import { useParams } from "react-router-dom";
 import CourseLogo from "../../components/DataComponents/CourseLogo/CourseLogo";
 import Directions from "../../components/DataComponents/Directions/Directions";
@@ -20,7 +20,6 @@ const fittings = [
   "Хотите укрепить дыхательную и сердечно-сосудистой системы",
   "Быстрый способ сбросить лишние килограммы",
   "Улучшить настроение, повысить жизненный тонус",
-  
 ];
 
 export default function CoursePage() {
@@ -30,11 +29,11 @@ export default function CoursePage() {
   return (
     <>
       <div className="md: container mx-auto flex flex-col">
-        {/* <Header page={""} /> */}
+        <Header page={"CorrectForTextPage"} />
         <CourseLogo courseName={"Бодифлекс"} />
         <FittingText fittings={fittings} />
-        <Directions directions={directions} />
-        <div className="gap-10">
+        <div className="relative">
+          <Directions directions={directions} />
           <LowStartMan />
           <CallText />
         </div>
