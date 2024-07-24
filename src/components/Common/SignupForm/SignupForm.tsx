@@ -1,7 +1,7 @@
 import { ChangeEvent, useState } from "react";
 
 import { useUserData } from "../../../hooks/useUserData";
-import { SignupApi } from "../../../api/signup_api";
+import { userSignup } from "../../../api/userAuth_api";
 
 type SignupForm = {
   setIsOpenedSignupForm: (arg: boolean) => void;
@@ -18,8 +18,6 @@ export default function SignupForm({
   setIsOpenedSigninForm,
   setIsOpenedSignupForm,
 }: SignupForm) {
-  
-
   const { login } = useUserData();
 
   const [isNotCorrectEmail, setIsNotCorrectEmail] = useState<boolean>(false);
@@ -50,9 +48,13 @@ export default function SignupForm({
       return;
     }
     setIsNotCorrectEmail(false);
-    await SignupApi(registrationData.email, registrationData.passwordFirst)
+    await userSignup(registrationData.email, registrationData.passwordFirst)
       .then((userData) => {
-        login?.(userData);
+        login?.({
+          id: userData.uid,
+          email: userData.email,
+          token: userData.refreshToken,
+        });
         setIsOpenedSignupForm(false);
       })
       .catch(() => {
@@ -87,7 +89,7 @@ export default function SignupForm({
                 <input
                   className="border-error rounded-small border-gray-extra bg-white-base text-black-base placeholder-gray-extra mb-2.5 h-[52px] w-[280px] appearance-none rounded-inputRadius border px-[18px] py-[12px] text-lg"
                   name="passwordFirst"
-                  type="passwordFirst"
+                  type="password"
                   placeholder="Пароль"
                   value={registrationData.passwordFirst}
                   onChange={handleInputChange}
@@ -97,7 +99,7 @@ export default function SignupForm({
                 <input
                   className="border-error rounded-small border-gray-extra bg-white-base text-black-base placeholder-gray-extra mb-4 h-[52px] w-[280px] appearance-none rounded-inputRadius border px-[18px] py-[12px] text-lg"
                   name="passwordSecond"
-                  type="passwordSecond"
+                  type="password"
                   placeholder="Повторите пароль"
                   value={registrationData.passwordSecond}
                   onChange={handleInputChange}
