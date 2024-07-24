@@ -30,6 +30,3 @@ export const courseLogoSrc = [
     bgColor: "zumbaColor",
   },
 ];
-
-
-
