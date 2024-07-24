@@ -2,34 +2,31 @@ export type UserType = Record<string, unknown>;
 
 export type UserContextType = {
   user: UserType | null;
-  login: ((arg: UserType) => void )| null;
+  login: ((arg: UserType) => void) | null;
   logout: VoidFunction | null;
 };
 
 export type CoursesContextType = {
   courses: string[];
-  setCourses: (arg: string[]) => void
+  setCourses: (arg: string[]) => void;
 };
 
-//Типизация для courcesSlice
 export interface CourseType {
-  duration: number;
-  level: string;
-  nameRU: string;
-  order: number;
-  timeaday: string;
-  src: string;
-  src_laptop: string;
   _id: string;
-  fitting: string;
+  description: string;
   directions: string[];
+  fitting: string[];
+  nameEN: string;
+  nameRu: string;
+  order: number;
+  workouts: string[];
 }
 
 export interface WorkoutType {
   name: string;
   _id: string;
   exercises: ExerciseType[];
-  video:string;
+  video: string;
 }
 export interface ExerciseType {
   name: string;
