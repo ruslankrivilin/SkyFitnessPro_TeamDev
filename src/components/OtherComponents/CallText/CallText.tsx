@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
-import CourseCard from "../../Common/CourseCard/CourseCard";
 import SigninForm from "../../Common/SigninForm/SigninForm";
 
 export default function CallText() {
   const [isAuthorizated, setIsAuthorizated] = useState<boolean>(false);
-  const [isOpenSigninForm, setIsOpenSigninForm] = useState<boolean>(false);
-  const [isAddCourse, setIsAddCourse] = useState<boolean>(false);
+  const [isOpenedSigninForm, setIsOpenedSigninForm] = useState<boolean>(false);
 
   useEffect(() => {
     const user = localStorage.getItem("user");
@@ -17,11 +15,11 @@ export default function CallText() {
   }, []);
 
   function handleAddCourse() {
-    setIsAddCourse(true);
+    
   }
 
   function handleOpenSigninForm() {
-    setIsOpenSigninForm(true);
+    setIsOpenedSigninForm(true);
   }
 
   return (
@@ -49,13 +47,13 @@ export default function CallText() {
             <button
               className="w-full rounded-buttonRadius bg-mainColor py-inptY font-defaultFont text-base/5 font-normal hover:bg-mainHover md:w-1/3"
               onClick={handleOpenSigninForm}
+              type="button"
             >
               Войдите, чтобы добавить курс
             </button>
           )}
-          {isAddCourse && <CourseCard setIsAddCourse={setIsAddCourse} />}
-          {isOpenSigninForm && (
-            <SigninForm setIsOpenSigninForm={setIsOpenSigninForm} />
+          {isOpenedSigninForm && (
+            <SigninForm setIsOpenedSigninForm={setIsOpenedSigninForm} setIsOpenedSignupForm={setIsOpenedSigninForm} />
           )}
         </div>
       </div>

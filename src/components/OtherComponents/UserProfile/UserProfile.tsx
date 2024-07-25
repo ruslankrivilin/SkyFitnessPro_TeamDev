@@ -42,7 +42,6 @@ export default function UserProfile() {
   //   await SigninApi(loginData.email, loginData.password)
   //   .then((userData) => {
   //     login(userData);
-  //     console.log(userData)
   //     navigate(appRoutes.MAIN);
   //   }).catch(() => {
   //     setIsNotCorrectPassword(true);
@@ -51,7 +50,7 @@ export default function UserProfile() {
     
 
   const handleLogout = () => {
-    logout();
+    logout?.();
     navigate(appRoutes.MAIN);
   };
   
@@ -82,13 +81,14 @@ export default function UserProfile() {
               Сергей
             </h3>
             <div className="mt-3 text-[18px] font-normal leading-[19px]">
-              Логин: {user.email}
+              Логин: {user?.email}
             </div>
             {!isChangeMode ? (
               <div className="flex items-center text-[18px] font-normal leading-[19px] ">
                 Пароль:
                 <button
                   className="w-[120px] sm:h-[25px] rounded-blockRadiusMin border bg-gray-400 text-gray-400"
+                  type="button"
                 >
                 </button>
               </div>
@@ -118,6 +118,7 @@ export default function UserProfile() {
                   onClick={handleChangePassword}
                   className="w-[192px] sm:h-[50px] rounded-buttonRadius text-[18px] font-normal leading-[19.8px] 
                   border  bg-mainColor hover:bg-mainHover active:bg-black"
+                  type="button"
                 >
                   Изменить пароль
                 </button>
@@ -126,6 +127,7 @@ export default function UserProfile() {
                   // onClick={handleSubmit}
                   className="w-[192px] sm:h-[50px] rounded-buttonRadius text-[18px] font-normal leading-[19.8px] 
                   border  bg-mainColor hover:bg-mainHover active:bg-black"
+                  type="button"
                 >
                   Сохранить
                 </button>
@@ -136,6 +138,7 @@ export default function UserProfile() {
                   className="w-[192px] sm:h-[50px] rounded-buttonRadius 
                 text-[18px] font-normal leading-[19.8px] 
                 border hover:bg-bgColor active:bg-blackout border-zinc-900"
+                type="button"
                 >
                   Выйти
                 </button>

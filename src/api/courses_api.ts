@@ -1,5 +1,5 @@
-import { CourseType } from "../types";
-import {  ref, get, child, } from "firebase/database";
+import { CourseType, WorkoutType } from "../types";
+import { ref, get, child } from "firebase/database";
 import { courseOrder } from "../utils/courseOrder/courseOrder";
 import { database } from "./db_config";
 
@@ -35,4 +35,22 @@ export const getCourseByID = async (courseId: string) => {
   } catch (e) {
     console.error(e);
   }
+};
+
+export const getWorkouts = async () => {
+  const result: WorkoutType[] = [];
+
+  try {
+    const snapshot = await get(child(ref(database), `workouts`));
+
+    if (snapshot.exists()) {
+      Object.keys(snapshot.val()).forEach((key) => {
+        result.push(snapshot.val()[key]);
+      });
+    }
+  } catch (e) {
+    console.error(e);
+  }
+
+  return result;
 };

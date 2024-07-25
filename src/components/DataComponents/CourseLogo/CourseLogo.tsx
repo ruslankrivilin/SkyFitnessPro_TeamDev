@@ -26,7 +26,7 @@ export default function CourseLogo({ courseName }: CourseLogoType) {
             className={` rounded-blockRadius  h-full w-full bg-cover `}>
             {/* bg-center bg-${matchedCourse!.imgSrc} md:bg-${matchedCourse!.imgSrcHD} */}
             <img
-              className="rounded-blockRadius  ml-auto mr-auto h-full w-auto object-contain object-center"
+              className="rounded-blockRadius h-full"
               src={matchedCourse!.imgSrc}
             />
           </div>

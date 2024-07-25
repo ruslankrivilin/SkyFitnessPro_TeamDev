@@ -67,7 +67,11 @@ export default function SignupForm({
       <div className="min-w-375 absolute left-0 top-0 z-50 flex h-[100%] min-h-[100vh] w-[100%] flex-col items-center justify-center bg-black bg-opacity-20">
         <div className="block h-[490px] w-[100%] max-w-[360px] rounded-blockRadiusMax border-solid border-zinc-300 bg-white px-20 py-10">
           <div className="mb-12 flex items-center justify-center">
-            <img src="/images/logo.png" alt="logo" />
+            <img
+              onClick={() => setIsOpenedSignupForm(false)}
+              src="/images/logo.png"
+              alt="logo"
+            />
           </div>
           <form>
             <div className="flex flex-col items-center justify-center">

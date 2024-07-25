@@ -11,8 +11,8 @@ export type UserContextType = {
 };
 
 export type CoursesContextType = {
-  courses: string[] | null;
-  setCourses: ((arg: string[]) => void) | null;
+  courses: CourseType[];
+  setCourses: (arg: CourseType[]) => void;
 };
 
 export type CourseType = {

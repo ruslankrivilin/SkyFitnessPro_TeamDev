@@ -12,7 +12,7 @@ type HeaderType = {
 };
 
 export default function Header({ page }: HeaderType) {
-  const user = useUserData();
+  const {user} = useUserData();
   const [isOpenedSigninForm, setIsOpenedSigninForm] = useState<boolean>(false);
   const [isOpenedUserModal, setIsOpenedUserModal] = useState<boolean>(false);
   const [isCorrectForTextPage, setIsCorrectForTextPage] =
@@ -52,7 +52,7 @@ export default function Header({ page }: HeaderType) {
       </div>
 
       {/* Если пользователь авторизован, то user Блок */}
-      {!user ? (
+      {user ? (
         <div className="flex items-center" onClick={handleUserModal}>
           <svg className="h-[36px] w-[36px] md:m-[16px] md:h-[42px] md:w-[42px]">
             <use xlinkHref="./public/icons/sprite.svg#icon-profile" />
@@ -66,12 +66,13 @@ export default function Header({ page }: HeaderType) {
           </div>
         </div>
       ) : (
-        <div
+        <button
           className="md: cursor-pointer rounded-buttonRadius bg-mainColor px-[16px] py-[8px] text-center text-lg/[19.8px] font-normal text-black hover:bg-mainHover md:h-[52px] md:w-[103px] md:px-btnX md:py-btnY"
           onClick={handleOpenSigninForm}
+          type="button"
         >
           Войти
-        </div>
+        </button>
       )}
       {isOpenedSigninForm && (
         <SigninForm

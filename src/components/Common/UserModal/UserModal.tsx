@@ -33,6 +33,7 @@ export default function UserModal({
           <button
             onClick={handleLogout}
             className="h-[52px] w-[206px] rounded-buttonRadius border-[1px] border-solid border-black bg-white px-btnX py-btnY font-defaultFont font-normal text-black hover:bg-bgColor"
+            type="button"
           >
             Выйти
           </button>

@@ -6,7 +6,7 @@ import { useCourses } from "../../hooks/useCourses";
 import { getCourses } from "../../api/courses_api";
 
 export default function MainPage() {
-  const { courses, setCourses } = useCourses();
+  const { setCourses } = useCourses();
   const page = "CorrectForTextPage";
 
   useEffect(() => {
@@ -32,7 +32,7 @@ export default function MainPage() {
             </svg>
           </div>
         </div>
-        <CourseCard isMainPage={true} courses={courses} />
+        <CourseCard isMainPage={true}/>
         <div className="flex justify-end md:justify-center">
           <div
             className="mb-[29px] mt-[24px] justify-center rounded-buttonRadius bg-mainColor px-btnX py-btnY text-center font-defaultFont text-lg/[19.8px] font-normal text-black hover:bg-mainHover md:mb-[81px] md:mt-[34px] md:flex"
