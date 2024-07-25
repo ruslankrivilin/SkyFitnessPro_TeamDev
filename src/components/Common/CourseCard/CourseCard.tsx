@@ -1,32 +1,19 @@
 import { useState } from "react";
 import "../../../css/style.css";
+import { CourseType } from "../../../types";
+import { courseLogoSrc } from "../../../lib/courseSettings";
+import { Link } from "react-router-dom";
 
-const CourseData = [
-  {
-    id: 1,
-    courseName: "Йога",
-    totalProgress: 40,
-    imgSrc: "/public/images/images_small/yoga_female_sm.png",
-  },
-  {
-    id: 2,
-    courseName: "Стретчинг",
-    totalProgress: 0,
-    imgSrc: "/public/images/images_small/stretching_female_sm.png",
-  },
-  {
-    id: 3,
-    courseName: "Зумба",
-    totalProgress: 100,
-    imgSrc: "/public/images/images_small/zumba_female_sm.png",
-  },
-];
+type CourseCardType = {
+  isMainPage: boolean;
+  courses: CourseType;
+};
 
 interface TooltipState {
   [key: number]: boolean;
 }
 
-export default function CourseCard({ isMainPage }: { isMainPage: boolean }) {
+export default function CourseCard({ isMainPage, courses }: CourseCardType) {
   const [showTooltips, setShowTooltips] = useState<TooltipState>({});
 
   const handleMouseEnter = (id: number) => {
@@ -40,17 +27,22 @@ export default function CourseCard({ isMainPage }: { isMainPage: boolean }) {
   return (
     <>
       <div className="mt-[50px] flex flex-wrap justify-center gap-[40px] sm:justify-center md:justify-center lg:justify-start">
-        {CourseData.map((el, index) => (
+        {courses.map((el, index) => (
           <div
             key={index}
             className="rounded-[30px] bg-bgColor shadow-blockShadow"
           >
             <div className="relative mb-[24px]">
+              
+              <Link to={`/course/${el._id}`}>
               <img
                 className="rounded-[30px] object-contain"
-                src={el.imgSrc}
+                src={courseLogoSrc.find(
+                  (el) => el.id === index,
+                )?.imgSrc}
                 alt=""
               />
+              </Link>
               <div className="absolute right-0 top-0">
                 {isMainPage ? (
                   <div className="relative inline-block cursor-pointer">
@@ -88,7 +80,7 @@ export default function CourseCard({ isMainPage }: { isMainPage: boolean }) {
 
             <div className="mx-[30px] flex flex-col">
               <h1 className="mb-[20px] flex flex-row text-[24px] sm:text-[32px]">
-                {el.courseName}
+                {el.nameRU}
               </h1>
               <div className="mb-[20px] flex w-[288px] flex-wrap">
                 <div className="m-x-[6px] m-y-[3px] flex content-center items-center p-[10px]">

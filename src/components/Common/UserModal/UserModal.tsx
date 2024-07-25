@@ -20,7 +20,7 @@ export default function UserModal({
       <div className="grid gap-2.5">
         <div className=" text-lg/[19.8px] font-normal">Сергей</div>
         <div className="text-lg/[19.8px] font-normal md:text-stone-500">
-          sergey.petrov96@mail.ru
+          {user?.email}
         </div>
       </div>
       <div className="grid gap-2.5">

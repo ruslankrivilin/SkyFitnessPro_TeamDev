@@ -1,43 +1,38 @@
 import Header from "../../components/Common/Header/Header";
-// import { useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import CourseLogo from "../../components/DataComponents/CourseLogo/CourseLogo";
 import Directions from "../../components/DataComponents/Directions/Directions";
 import FittingText from "../../components/DataComponents/FittingText/FittingTexts";
 import CallText from "../../components/OtherComponents/CallText/CallText";
 import LowStartMan from "../../components/OtherComponents/LowStartMan/LowStartMan";
-// import { useCourses } from "../../hooks/useCourses";
-
-const directions = [
-  "Йога для новичков",
-  "Классическая йога",
-  "Йогатерапия",
-  "Кундалини-йога",
-  "Хатха-йога",
-  "Аштанга-йога",
-];
-
-const fittings = [
-  "Хотите укрепить дыхательную и сердечно-сосудистой системы",
-  "Быстрый способ сбросить лишние килограммы",
-  "Улучшить настроение, повысить жизненный тонус",
-];
+import { useCourses } from "../../hooks/useCourses";
+import { useEffect } from "react";
+import { getCourses } from "../../api/courses_api";
 
 export default function CoursePage() {
-  // const { id } = useParams();
-  // const { courses, setCourses } = useCourses();
-  // const courseData: string[] = courses.filter((el: string[]) => el.id === id);
+  const { id } = useParams();
+  const { courses, setCourses } = useCourses();
+
+  useEffect(() => {
+    getCourses().then((data) => {
+      setCourses(data)
+    })
+  })
+
+  const courseData = courses.find((el) => el._id === id);
   return (
     <>
       <div className="md: container mx-auto flex flex-col">
         <Header page={"CorrectForTextPage"} />
-        <CourseLogo courseName={"Бодифлекс"} />
-        <FittingText fittings={fittings} />
+        <CourseLogo courseName={courseData.nameRU} />
+        <FittingText fittings={courseData.fitting} />
+        <Directions directions={courseData.directions} />
         <div className="relative">
-          <Directions directions={directions} />
+          
           <LowStartMan />
           <CallText />
         </div>
       </div>
     </>
   );
-}
+}	

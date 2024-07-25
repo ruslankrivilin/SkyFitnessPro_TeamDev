@@ -1,9 +1,9 @@
 import { ChangeEvent, useState } from "react";
-import SignupForm from "../SignupForm/SignupForm";
 import { useUserData } from "../../../hooks/useUserData";
-import { SigninApi } from "../../../api/signin_api";
+import { userSignin } from "../../../api/userAuth_api";
 
 type SigninForm = {
+  setIsOpenedSignupForm: (arg: boolean) => void;
   setIsOpenedSigninForm: (arg: boolean) => void;
 };
 
@@ -12,10 +12,11 @@ type SigninType = {
   password: string;
 };
 
-export default function SigninForm({ setIsOpenedSigninForm }: SigninForm) {
+export default function SigninForm({
+  setIsOpenedSigninForm,
+  setIsOpenedSignupForm,
+}: SigninForm) {
   const { login } = useUserData();
-
-  const [isOpenedSignupForm, setIsOpenedSignupForm] = useState<boolean>(false);
 
   const [isOpenedEmailForm, setIsOpenedEmailForm] = useState<boolean>(false);
 
@@ -36,6 +37,7 @@ export default function SigninForm({ setIsOpenedSigninForm }: SigninForm) {
   };
 
   function handleOpenSignupForm() {
+    setIsOpenedSigninForm(false);
     setIsOpenedSignupForm(true);
   }
 
@@ -48,10 +50,13 @@ export default function SigninForm({ setIsOpenedSigninForm }: SigninForm) {
 
   const handleLogin = async () => {
     setIsNotCorrectPassword(false);
-    await SigninApi(loginData.email, loginData.password)
+    await userSignin(loginData.email, loginData.password)
       .then((userData) => {
-        login?.(userData);
-        console.log(userData);
+        login?.({
+          id: userData.uid,
+          email: userData.email,
+          token: userData.refreshToken,
+        });
         setIsOpenedSigninForm(false);
       })
       .catch(() => {
@@ -138,12 +143,6 @@ export default function SigninForm({ setIsOpenedSigninForm }: SigninForm) {
           </form>
         </div>
       </div>
-      {isOpenedSignupForm && (
-        <SignupForm
-          setIsOpenedSignupForm={setIsOpenedSignupForm}
-          setIsOpenedSigninForm={setIsOpenedSigninForm}
-        />
-      )}
     </>
   );
 }

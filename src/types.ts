@@ -1,4 +1,8 @@
-export type UserType = Record<string, unknown>;
+export type UserType = {
+  id: string;
+  email: string | null;
+  token: string;
+};
 
 export type UserContextType = {
   user: UserType | null;
@@ -7,11 +11,11 @@ export type UserContextType = {
 };
 
 export type CoursesContextType = {
-  courses: string[];
-  setCourses: (arg: string[]) => void;
+  courses: string[] | null;
+  setCourses: ((arg: string[]) => void) | null;
 };
 
-export interface CourseType {
+export type CourseType = {
   _id: string;
   description: string;
   directions: string[];
