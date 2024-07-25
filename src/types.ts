@@ -21,10 +21,11 @@ export type CourseType = {
   directions: string[];
   fitting: string[];
   nameEN: string;
-  nameRu: string;
+  nameRU: string;
   order: number;
   workouts: string[];
-}
+  totalProgress: number;
+};
 
 export interface WorkoutType {
   name: string;

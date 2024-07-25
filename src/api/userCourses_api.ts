@@ -2,6 +2,7 @@ import { CourseType, WorkoutType } from "../types";
 import { ref, get, child, set } from "firebase/database";
 import { getCourseByID } from "./courses_api";
 import { database } from "./db_config";
+import firebase from "firebase/compat/app";
 
 export const getMatchedCourseOfUser = async (
   userId: string,
@@ -120,5 +121,13 @@ export const fetchAddFavoriteCourseToUser = async (
   const snapshot = await get(child(ref(database), `scheme/${courseId}`));
   if (snapshot.exists()) {
     set(ref(database, `users/${userId}/${courseId}`), snapshot.val());
+  }
+};
+
+export const addCourseToUser = async (userData: string[]) => {
+  try {
+    firebase.database().ref("users").push(userData);
+  } catch (error) {
+    throw new Error();
   }
 };
