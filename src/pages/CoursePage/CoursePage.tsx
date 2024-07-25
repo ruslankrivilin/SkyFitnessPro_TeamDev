@@ -6,26 +6,33 @@ import FittingText from "../../components/DataComponents/FittingText/FittingText
 import CallText from "../../components/OtherComponents/CallText/CallText";
 import LowStartMan from "../../components/OtherComponents/LowStartMan/LowStartMan";
 import { useCourses } from "../../hooks/useCourses";
-// import { useCourses } from "../../hooks/useCourses";
+import { useEffect } from "react";
+import { getCourses } from "../../api/courses_api";
 
 export default function CoursePage() {
   const { id } = useParams();
-  const { courses } = useCourses();
-  
-  // const { courses, setCourses } = useCourses();
+  const { courses, setCourses } = useCourses();
+
+  useEffect(() => {
+    getCourses().then((data) => {
+      setCourses(data)
+    })
+  })
+
   const courseData = courses.find((el) => el._id === id);
   return (
     <>
       <div className="md: container mx-auto flex flex-col">
         <Header page={"CorrectForTextPage"} />
-        <CourseLogo courseName={"Бодифлекс"} />
+        <CourseLogo courseName={courseData.nameRU} />
         <FittingText fittings={courseData.fitting} />
+        <Directions directions={courseData.directions} />
         <div className="relative">
-          <Directions directions={courseData.directions} />
+          
           <LowStartMan />
           <CallText />
         </div>
       </div>
     </>
   );
-}
+}	
