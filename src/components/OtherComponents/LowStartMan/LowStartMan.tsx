@@ -13,7 +13,7 @@ export default function LowStartMan() {
           src="/images/images_full/low_start_man_hd.png"
         />
       </div>
-      <div className="absolute right-8 top-[90px] z-0 md:top-[190px]">
+      <div className="absolute right-8 top-[90px] z-0 md:top-[190px] ">
         <svg className="h-[370px] w-[475px] pl-[75px] object-contain object-center md:h-[431px] md:w-[770px] md:pl-0">
           <use xlinkHref="/icons/sprite.svg#icon-arc-big " />
         </svg>
