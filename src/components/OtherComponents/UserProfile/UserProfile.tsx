@@ -1,4 +1,3 @@
-
 import { ChangeEvent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { appRoutes } from "../../../lib/appRoutes";
@@ -11,16 +10,12 @@ type ErrorType = {
 }
 
 
-
 export default function UserProfile() {
   const { user, logout } = useUserData();
 
   const navigate = useNavigate();
 
-
   const [passwordData, setPasswordData] = useState<ErrorType>({ password: "", repeatPassword: "" });
-
-  // const [isMismatchPassword, setIsMismatchPassword] = useState(false);
 
   const [isChangeMode, setIsChangeMode] = useState(false);
 
@@ -35,19 +30,13 @@ export default function UserProfile() {
 
   function handleChangePassword() {
     setIsChangeMode(true);
+    
   }
 
-  // const handleSubmit = async () => {
-  //   setIsNotCorrectPassword(false);
-  //   await SigninApi(loginData.email, loginData.password)
-  //   .then((userData) => {
-  //     login(userData);
-  //     navigate(appRoutes.MAIN);
-  //   }).catch(() => {
-  //     setIsNotCorrectPassword(true);
-  //   })
-  // };
+  function handleSubmit() {
+    setIsChangeMode(false);
     
+  }    
 
   const handleLogout = () => {
     logout?.();
@@ -78,7 +67,7 @@ export default function UserProfile() {
             className="flex flex-col gap-[10px] "
           >
             <h3 className="text-[32px] sm:text-[26px] font-medium leading-[35px]">
-              Сергей
+            {user?.email}
             </h3>
             <div className="mt-3 text-[18px] font-normal leading-[19px]">
               Логин: {user?.email}
@@ -88,7 +77,6 @@ export default function UserProfile() {
                 Пароль:
                 <button
                   className="w-[120px] sm:h-[25px] rounded-blockRadiusMin border bg-gray-400 text-gray-400"
-                  type="button"
                 >
                 </button>
               </div>
@@ -113,21 +101,19 @@ export default function UserProfile() {
 
             <div className="mt-5 w-[394px] flex flex-row gap-[10px] sm:items-center">
 
-              {isChangeMode ? (
+              {!isChangeMode ? (
                 <button
                   onClick={handleChangePassword}
                   className="w-[192px] sm:h-[50px] rounded-buttonRadius text-[18px] font-normal leading-[19.8px] 
                   border  bg-mainColor hover:bg-mainHover active:bg-black"
-                  type="button"
                 >
                   Изменить пароль
                 </button>
               ) : (
                 <button
-                  // onClick={handleSubmit}
+                  onClick={handleSubmit}
                   className="w-[192px] sm:h-[50px] rounded-buttonRadius text-[18px] font-normal leading-[19.8px] 
                   border  bg-mainColor hover:bg-mainHover active:bg-black"
-                  type="button"
                 >
                   Сохранить
                 </button>
@@ -138,7 +124,6 @@ export default function UserProfile() {
                   className="w-[192px] sm:h-[50px] rounded-buttonRadius 
                 text-[18px] font-normal leading-[19.8px] 
                 border hover:bg-bgColor active:bg-blackout border-zinc-900"
-                type="button"
                 >
                   Выйти
                 </button>

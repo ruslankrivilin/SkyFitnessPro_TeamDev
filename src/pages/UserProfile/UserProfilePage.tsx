@@ -3,7 +3,6 @@ import CourseCard from "../../components/Common/CourseCard/CourseCard";
 import Header from "../../components/Common/Header/Header";
 import UserProfile from "../../components/OtherComponents/UserProfile/UserProfile";
 
-
 export default function UserProfilePage() {
   return (
     <>
