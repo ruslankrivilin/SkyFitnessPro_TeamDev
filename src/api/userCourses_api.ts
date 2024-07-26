@@ -117,7 +117,7 @@ export const fetchAddFavoriteCourseToUser = async (
   userId: string,
   courseId: string,
 ) => {
-  const snapshot = await get(child(ref(database), `scheme/${courseId}`));
+  const snapshot = await get(child(ref(database), `courses/${courseId}`));
   if (snapshot.exists()) {
     set(ref(database, `users/${userId}/${courseId}`), snapshot.val());
   }
