@@ -16,7 +16,7 @@ export default function WorkoutModal({
 }: WorkoutModalType) {
   const [training, setTraining] = useState<string>("");
   const [courses, setCourses] = useState<CourseType[]>();
-  const [workouts, setWorkouts] = useState<(WorkoutType | undefined)[]>([]);
+  const [workouts, setWorkouts] = useState<WorkoutType[]>([]);
 
   useEffect(() => {
     getCourses().then((data) => {
@@ -40,10 +40,10 @@ export default function WorkoutModal({
       const matchedCourse = courses?.find((el) => el._id === id);
       const courseWorkouts = matchedCourse?.workouts;
 
-      const result: (WorkoutType | undefined)[] = [];
-      result?.push(
-        data.find((element) =>
-          courseWorkouts?.filter((el) => el === element._id),
+      const result: WorkoutType[] = [];
+      result.push(
+        data.filter((element) =>
+          courseWorkouts?.find((el) => el === element._id),
         ),
       );
       if (result) {
