@@ -1,25 +1,31 @@
 import Header from "../../components/Common/Header/Header";
 import MyProgressModal from "../../components/OtherModals/MyProgressModal/MyProgressModal";
 import Exercises from "../../components/OtherComponents/Exercises/Exercises";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import { getWorkouts } from "../../api/courses_api";
 import { WorkoutType } from "../../types";
+import { useState } from "react";
+import { useParams } from "react-router-dom";
 
 export default function WorkoutVideoPage() {
   const [isOpenedMyProgress, setIsOpenedMyProgress] = useState<boolean>(false);
   const { id } = useParams();
 
-  const [workout, setWorkout] = useState<WorkoutType>();
-
-  useEffect(() => {
-    getWorkouts().then((data) => {
-      const matchedWorkout = data.find((el) => el._id === id);
-      setWorkout(matchedWorkout);
-    });
+  const [workout, setWorkout] = useState<WorkoutType>({
+    name: "",
+    _id: "",
+    exercises: [{ name: "", progress: 0, quantity: 0 }],
+    video: "",
   });
 
-  const exercises = workout!.exercises
+  getWorkouts().then((data) => {
+    const matchedWorkout = data.find((el) => el._id === id);
+    setWorkout({
+      name: matchedWorkout!.name,
+      _id: matchedWorkout!._id,
+      exercises: matchedWorkout!.exercises,
+      video: matchedWorkout!.video,
+    });
+  });
 
   return (
     <>
@@ -43,10 +49,13 @@ export default function WorkoutVideoPage() {
       </div>
       <Exercises
         setIsOpenedMyProgress={setIsOpenedMyProgress}
-        exercises={exercises}
+        exercises={workout!.exercises}
       />
       {isOpenedMyProgress && (
-        <MyProgressModal setIsOpenedMyProgress={setIsOpenedMyProgress} exercises={exercises} />
+        <MyProgressModal
+          setIsOpenedMyProgress={setIsOpenedMyProgress}
+          exercises={workout!.exercises}
+        />
       )}
     </>
   );
