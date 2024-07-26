@@ -3,7 +3,6 @@ import "../../../css/style.css";
 import { courseLogoSrc } from "../../../lib/courseSettings";
 import { Link } from "react-router-dom";
 import { getCourses } from "../../../api/courses_api";
-import WorkoutModal from "../../OtherModals/WorkoutModal/WorkoutModal";
 import {
   deleteMatchedCourse,
   fetchAddFavoriteCourseToUser,
@@ -11,6 +10,7 @@ import {
 } from "../../../api/userCourses_api";
 import { useUserData } from "../../../hooks/useUserData";
 import { CourseType } from "../../../types";
+import WorkoutModal from "../../OtherModals/WorkoutModal/WorkoutModal";
 
 type CourseCardType = {
   isMainPage: boolean;
