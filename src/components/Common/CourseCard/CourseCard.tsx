@@ -31,7 +31,7 @@ export default function CourseCard({ isMainPage }: CourseCardType) {
 
   const { user } = useUserData();
 
-  const [courseId, setCourseId] = useState<number | null>(null);
+  const [courseId, setCourseId] = useState<string>("");
 
   const handleMouseEnter = (id: number) => {
     setShowTooltips((prev) => ({ ...prev, [id]: true }));
@@ -80,7 +80,7 @@ export default function CourseCard({ isMainPage }: CourseCardType) {
   //   }
   // })
 
-  const handleStartWorkout = (id: number) => {
+  const handleStartWorkout = (id: string) => {
     setCourseId(id);
     setIsOpenedWorkoutModal(true);
   };
@@ -183,7 +183,7 @@ export default function CourseCard({ isMainPage }: CourseCardType) {
                     ></progress>
                   </div>
                   <button
-                    onClick={() => handleStartWorkout(Number(el._id))}
+                    onClick={() => handleStartWorkout(el._id)}
                     className="mb-[15px] mt-[34px] block w-full rounded-[30px] bg-mainColor text-[18px] hover:bg-mainHover"
                     type="button"
                   >
@@ -203,7 +203,7 @@ export default function CourseCard({ isMainPage }: CourseCardType) {
         {isOpenedWorkoutModal && (
           <WorkoutModal
             setIsOpenedWorkoutModal={setIsOpenedWorkoutModal}
-            id={String(courseId)}
+            id={courseId}
           />
         )}
       </div>
