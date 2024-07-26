@@ -5,8 +5,9 @@ import { appRoutes } from "./lib/appRoutes";
 import MainPage from "./pages/MainPage/MainPage";
 import CoursePage from "./pages/CoursePage/CoursePage";
 import UserProfilePage from "./pages/UserProfile/UserProfilePage";
-import WorkoutVideoPage from "./pages/WorkoutVideoPage/WorkoutVideoPage";
+
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
+import WorkoutVideoPage from "./pages/WorkoutVideoPage/WorkoutVideoPage";
 
 export default function App() {
   return (

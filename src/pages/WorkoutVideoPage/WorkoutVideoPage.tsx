@@ -23,7 +23,7 @@ export default function WorkoutVideoPage() {
 
   return (
     <>
-      <Header page={""} />
+      <Header page={"NotCorrectForText"} />
       <div className="flex-start mt-[20px] flex flex-col">
         {/* <h1 className="mb-[24px] text-[60px] font-medium">{courseName}</h1> */}
         <p className="mb-[40px] w-[800px] border-b-[2px] border-black text-[32px]">
