@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import "../../../css/style.css";
 
-
 import { getCourses, getWorkouts } from "../../../api/courses_api";
 import { useNavigate } from "react-router-dom";
 import { CourseType, WorkoutType } from "../../../types";
@@ -15,10 +14,9 @@ export default function WorkoutModal({
   setIsOpenedWorkoutModal,
   id,
 }: WorkoutModalType) {
-  const [training, setTraining] = useState<number>(0);
+  const [training, setTraining] = useState<string>("");
   const [courses, setCourses] = useState<CourseType[]>();
-  const [workouts, setWorkouts] = useState<WorkoutType[]>([]);
-  const [matchedIds, setMatchedIds] = useState<string[]>([]);
+  const [workouts, setWorkouts] = useState<WorkoutType[]>();
 
   useEffect(() => {
     getCourses().then((data) => {
@@ -28,7 +26,7 @@ export default function WorkoutModal({
 
   const navigate = useNavigate();
 
-  function handleSelectTraining(id: number) {
+  function handleSelectTraining(id: string) {
     setTraining(id);
   }
 
@@ -39,15 +37,14 @@ export default function WorkoutModal({
 
   useEffect(() => {
     getWorkouts().then((data) => {
-      // const courseIds = courses!.map((course) => course._id);
-      const workoutsById = courses![id].workouts
-      console.log(workoutsById)
-      // const workoutIds = workouts.map((workout) => workout._id);
+      const matchedCourse = courses?.find((el) => el._id === id);
+      const courseWorkouts = matchedCourse?.workouts;
+      const matchedWorkouts = data.filter((element) =>
+        courseWorkouts?.find((el) => el === element._id),
+      );
+      
+      setWorkouts(matchedWorkouts)
 
-      const matches = workoutsById.filter((id) => workouts.includes(id));
-      setMatchedIds(matches);
-      const result = data.filter((el) => matchedIds.includes(el._id));
-      setWorkouts(result);
     });
   });
   return (
@@ -60,7 +57,7 @@ export default function WorkoutModal({
           <div>
             <div className="w-[283px] overflow-hidden scroll-smooth sm:w-auto">
               <div className="flex h-[314px] flex-col overflow-y-scroll scroll-smooth sm:h-[354px]">
-                {workouts.map((el, index) => (
+                {workouts?.map((el, index) => (
                   <div key={index} className="pb-[8px] sm:mb-[20px]">
                     {/* {0 ? (
                       <div className="pointer-events-none flex content-center items-center justify-start border-b-[1px] border-underLineColor sm:mb-[20px]">
@@ -78,18 +75,18 @@ export default function WorkoutModal({
                       </div>
                     ) : ( */}
                     <div
-                      onClick={() => handleSelectTraining(Number(el._id))}
+                      onClick={() => handleSelectTraining(el!._id)}
                       className="border-b-[1px] border-underLineColor sm:mb-[20px]"
                     >
                       <div
-                        className={`flex cursor-pointer content-center items-center justify-start ${training === Number(el._id) && `rounded-[8px] border-[2px] border-mainColor`}`}
+                        className={`flex cursor-pointer content-center items-center justify-start ${training === el!._id && `rounded-[8px] border-[2px] border-mainColor`}`}
                       >
                         <svg className="ml-[2px] mr-[12px] h-[20px] w-[20px]">
                           <use xlinkHref="/public/icons/sprite.svg#icon-not-done" />
                         </svg>
                         <div className="mr-[10px] sm:mb-[10px]">
                           <p className="text-[18px] sm:text-[24px]">
-                            {el.name}
+                            {el!.name}
                           </p>
                           {/* <p className="text-[14px] sm:text-[18px]">
                               {el.description} / {el.day} день
