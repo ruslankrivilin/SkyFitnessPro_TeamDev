@@ -6,14 +6,3 @@ import { UserDataContext } from "../context/UserDataProvider";
 export function useUserData() {
   return useContext(UserDataContext);
 }
-
-//обеспечивает получение компонентом состояния аутентификации и перерисовку компонента при наличии изменений
-// export function useAuth() {
-//   const { email, token, id } = useAppSelector((state) => state.user);
-//   return {
-//     isAuth: !!email,
-//     email,
-//     token,
-//     id,
-//   };
-// }
