@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import "../../../css/style.css";
 
-import { getCourses, getWorkouts } from "../../../api/courses_api";
+import { getWorkouts } from "../../../api/courses_api";
 import { useNavigate } from "react-router-dom";
-import { CourseType, WorkoutType } from "../../../types";
+import { WorkoutType } from "../../../types";
+import { useCourses } from "../../../hooks/useCourses";
 
 type WorkoutModalType = {
   setIsOpenedWorkoutModal: (arg: boolean) => void;
@@ -15,14 +16,8 @@ export default function WorkoutModal({
   id,
 }: WorkoutModalType) {
   const [training, setTraining] = useState<string>("");
-  const [courses, setCourses] = useState<CourseType[]>();
+  const { courses } = useCourses();
   const [workouts, setWorkouts] = useState<WorkoutType[]>();
-
-  useEffect(() => {
-    getCourses().then((data) => {
-      setCourses(data);
-    });
-  });
 
   const navigate = useNavigate();
 
@@ -42,11 +37,11 @@ export default function WorkoutModal({
       const matchedWorkouts = data.filter((element) =>
         courseWorkouts?.find((el) => el === element._id),
       );
-      
-      setWorkouts(matchedWorkouts)
 
+      setWorkouts(matchedWorkouts);
     });
-  });
+  }, [id, courses]);
+
   return (
     <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black bg-opacity-20">
       <div className="flex w-[343px] justify-center rounded-[30px] bg-white p-[30px] shadow-blockShadow sm:w-[460px] sm:p-[40px]">
