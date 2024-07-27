@@ -1,16 +1,14 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "../../../css/style.css";
 import { courseLogoSrc } from "../../../lib/courseSettings";
 import { Link } from "react-router-dom";
-import { getCourses } from "../../../api/courses_api";
 import {
   deleteMatchedCourse,
   fetchAddFavoriteCourseToUser,
-  
 } from "../../../api/userCourses_api";
 import { useUserData } from "../../../hooks/useUserData";
-import { CourseType } from "../../../types";
 import WorkoutModal from "../../OtherModals/WorkoutModal/WorkoutModal";
+import { useCourses } from "../../../hooks/useCourses";
 
 type CourseCardType = {
   isMainPage: boolean;
@@ -27,7 +25,7 @@ export default function CourseCard({ isMainPage }: CourseCardType) {
 
   const [addedCourse, setAddedCourse] = useState<string[]>([]);
 
-  const [courses, setCourses] = useState<CourseType[]>();
+  const { courses } = useCourses();
 
   const { user } = useUserData();
 
@@ -41,16 +39,10 @@ export default function CourseCard({ isMainPage }: CourseCardType) {
     setShowTooltips((prev) => ({ ...prev, [id]: false }));
   };
 
-  useEffect(() => {
-    getCourses().then((data) => {
-      setCourses(data);
-    });
-  });
-
   const handleAddCourse = (id: string) => {
     if (user) {
-      fetchAddFavoriteCourseToUser(user.id, id)
-      setAddedCourse([...id])
+      fetchAddFavoriteCourseToUser(user.id, id);
+      setAddedCourse([...id]);
     } else {
       alert("Войдите, чтобы добавить курс");
     }
@@ -58,6 +50,7 @@ export default function CourseCard({ isMainPage }: CourseCardType) {
 
   const handleDeleteCourse = (id: string) => {
     deleteMatchedCourse(user!.id, id);
+    setAddedCourse([...id]);
   };
 
   // useEffect(() => {
