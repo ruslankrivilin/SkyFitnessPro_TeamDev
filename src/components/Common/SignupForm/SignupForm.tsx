@@ -110,6 +110,9 @@ export default function SignupForm({
                 />
               </div>
             </div>
+            {/* <div className="border-errorColor text-error w-[220px] text-sm text-center ">
+              {isNotCorrectPassword ? "Данная почта уже используется. Попробуйте войти." : `${isNotCorrect}`}
+            </div> */}
             {isNotCorrectPassword && (
               <div className="text-error w-[220px] text-center text-sm text-errorColor">
                 Пароли не совпадают...
