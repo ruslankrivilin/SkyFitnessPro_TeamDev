@@ -1,29 +1,25 @@
-
 import { ChangeEvent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { appRoutes } from "../../../lib/appRoutes";
 import { useUserData } from "../../../hooks/useUserData";
-
 
 type ErrorType = {
   password: string,
   repeatPassword: string,
 }
 
-
-
 export default function UserProfile() {
   const { user, logout } = useUserData();
 
   const navigate = useNavigate();
 
-
   const [passwordData, setPasswordData] = useState<ErrorType>({ password: "", repeatPassword: "" });
-
-  // const [isMismatchPassword, setIsMismatchPassword] = useState(false);
 
   const [isChangeMode, setIsChangeMode] = useState(false);
 
+  const [isNotCorrect, setIsNotCorrect] = useState(false);
+
+  const [isNotCorrect1, setIsNotCorrect1] = useState(false);
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
@@ -35,25 +31,28 @@ export default function UserProfile() {
 
   function handleChangePassword() {
     setIsChangeMode(true);
+
   }
 
-  // const handleSubmit = async () => {
-  //   setIsNotCorrectPassword(false);
-  //   await SigninApi(loginData.email, loginData.password)
-  //   .then((userData) => {
-  //     login(userData);
-  //     navigate(appRoutes.MAIN);
-  //   }).catch(() => {
-  //     setIsNotCorrectPassword(true);
-  //   })
-  // };
-    
+  function handleSubmit() {
+    setIsNotCorrect(false);
+    setIsNotCorrect1(false);
+    if (!passwordData.password.trim() || !passwordData.repeatPassword.trim()) {
+      setIsNotCorrect(true);
+      return;
+    }
+    if (passwordData.password === passwordData.repeatPassword) {
+      setIsNotCorrect1(true);
+      return;
+    }
+    setIsChangeMode(false);
+  }
 
   const handleLogout = () => {
     logout?.();
     navigate(appRoutes.MAIN);
   };
-  
+
   return (
     <>
       <h2
@@ -88,7 +87,6 @@ export default function UserProfile() {
                 Пароль:
                 <button
                   className="w-[120px] sm:h-[25px] rounded-blockRadiusMin border bg-gray-400 text-gray-400"
-                  type="button"
                 >
                 </button>
               </div>
@@ -108,26 +106,26 @@ export default function UserProfile() {
                   placeholder="Новый пароль"
                   value={passwordData.repeatPassword}
                   onChange={handleInputChange} />
+                {isNotCorrect && (<div className="text-red-500">Заполните все поля!</div>)}
+                {isNotCorrect1 && (<div className="text-red-500">Пароли не должны совпадать!</div>)}
               </>
             )}
 
             <div className="mt-5 w-[394px] flex flex-row gap-[10px] sm:items-center">
 
-              {isChangeMode ? (
+              {!isChangeMode ? (
                 <button
                   onClick={handleChangePassword}
                   className="w-[192px] sm:h-[50px] rounded-buttonRadius text-[18px] font-normal leading-[19.8px] 
                   border  bg-mainColor hover:bg-mainHover active:bg-black"
-                  type="button"
                 >
                   Изменить пароль
                 </button>
               ) : (
                 <button
-                  // onClick={handleSubmit}
+                  onClick={handleSubmit}
                   className="w-[192px] sm:h-[50px] rounded-buttonRadius text-[18px] font-normal leading-[19.8px] 
                   border  bg-mainColor hover:bg-mainHover active:bg-black"
-                  type="button"
                 >
                   Сохранить
                 </button>
@@ -138,7 +136,6 @@ export default function UserProfile() {
                   className="w-[192px] sm:h-[50px] rounded-buttonRadius 
                 text-[18px] font-normal leading-[19.8px] 
                 border hover:bg-bgColor active:bg-blackout border-zinc-900"
-                type="button"
                 >
                   Выйти
                 </button>
